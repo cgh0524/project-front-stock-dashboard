@@ -1,0 +1,37 @@
+name: CI (npm)
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    env:
+      CI: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm" # npm 캐시 활성화
+
+      - name: Use clean install (npm ci)
+        run: npm ci # package-lock.json 기반 재현 가능한 설치
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Test (Jest/RTL)
+        run: npm run test
+
+      - name: Build
+        run: npm run build
