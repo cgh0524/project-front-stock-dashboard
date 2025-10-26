@@ -3,14 +3,129 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Primitive palette synced with tailwind.config.ts */
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #6b7280;
+  --color-gray-600: #4b5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1f2937;
+  --color-gray-900: #111827;
+
+  --color-blue-50: #eff6ff;
+  --color-blue-100: #dbeafe;
+  --color-blue-200: #bfdbfe;
+  --color-blue-300: #93c5fd;
+  --color-blue-400: #60a5fa;
+  --color-blue-500: #3b82f6;
+  --color-blue-600: #2563eb;
+  --color-blue-700: #1d4ed8;
+  --color-blue-800: #1e40af;
+  --color-blue-900: #1e3a8a;
+
+  --color-green-50: #ecfdf5;
+  --color-green-100: #d1fae5;
+  --color-green-200: #a7f3d0;
+  --color-green-300: #6ee7b7;
+  --color-green-400: #34d399;
+  --color-green-500: #10b981;
+  --color-green-600: #059669;
+  --color-green-700: #047857;
+  --color-green-800: #065f46;
+  --color-green-900: #064e3b;
+
+  --color-red-50: #fef2f2;
+  --color-red-100: #fee2e2;
+  --color-red-200: #fecaca;
+  --color-red-300: #fca5a5;
+  --color-red-400: #f87171;
+  --color-red-500: #ef4444;
+  --color-red-600: #dc2626;
+  --color-red-700: #b91c1c;
+  --color-red-800: #991b1b;
+  --color-red-900: #7f1d1d;
+
+  --color-yellow-50: #fffbeb;
+  --color-yellow-100: #fef3c7;
+  --color-yellow-200: #fde68a;
+  --color-yellow-300: #fcd34d;
+  --color-yellow-400: #fbbf24;
+  --color-yellow-500: #f59e0b;
+  --color-yellow-600: #d97706;
+  --color-yellow-700: #b45309;
+  --color-yellow-800: #92400e;
+  --color-yellow-900: #78350f;
+
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  /* Semantic palette for stock dashboard */
+  --color-bg-default: var(--color-gray-50);
+  --color-bg-subtle: var(--color-gray-100);
+
+  --color-surface-default: var(--color-white);
+  --color-surface-alt: var(--color-gray-50);
+
+  --color-border-default: var(--color-gray-200);
+  --color-border-strong: var(--color-gray-300);
+
+  --color-text-primary: var(--color-gray-900);
+  --color-text-secondary: var(--color-gray-600);
+  --color-text-muted: var(--color-gray-500);
+  --color-text-inverted: var(--color-white);
+
+  --color-accent-primary: var(--color-blue-500);
+  --color-accent-hover: var(--color-blue-600);
+  --color-accent-muted: var(--color-blue-100);
+
+  --color-positive: var(--color-green-500);
+  --color-positive-subtle: var(--color-green-50);
+  --color-negative: var(--color-red-500);
+  --color-negative-subtle: var(--color-red-50);
+  --color-warning: var(--color-yellow-500);
+  --color-warning-subtle: var(--color-yellow-50);
+
+  --color-focus-ring: var(--color-blue-500);
+
+  --background: var(--color-bg-default);
+  --foreground: var(--color-text-primary);
+  color-scheme: light dark;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --color-bg-default: var(--color-gray-900);
+    --color-bg-subtle: var(--color-gray-800);
+
+    --color-surface-default: var(--color-gray-900);
+    --color-surface-alt: var(--color-gray-800);
+
+    --color-border-default: var(--color-gray-700);
+    --color-border-strong: var(--color-gray-600);
+
+    --color-text-primary: var(--color-gray-50);
+    --color-text-secondary: var(--color-gray-300);
+    --color-text-muted: var(--color-gray-400);
+    --color-text-inverted: var(--color-gray-900);
+
+    --color-accent-primary: var(--color-blue-400);
+    --color-accent-hover: var(--color-blue-300);
+    --color-accent-muted: var(--color-blue-800);
+
+    --color-positive: var(--color-green-400);
+    --color-positive-subtle: var(--color-green-900);
+    --color-negative: var(--color-red-400);
+    --color-negative-subtle: var(--color-red-900);
+    --color-warning: var(--color-yellow-400);
+    --color-warning-subtle: var(--color-yellow-900);
+
+    --color-focus-ring: var(--color-blue-400);
+
+    --background: var(--color-bg-default);
+    --foreground: var(--color-text-primary);
   }
 }
 
