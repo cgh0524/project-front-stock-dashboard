@@ -6,8 +6,7 @@ export class BaseError extends Error {
     public readonly code: string, // 내부 에러 코드 키 (로그/매핑용)
     public readonly meta?: Record<string, any> // 디버깅용(민감정보 주의)
   ) {
-    super(message);
-    this.name = new.target.name;
+    super(`[${code}]: ${message}`);
   }
 }
 
