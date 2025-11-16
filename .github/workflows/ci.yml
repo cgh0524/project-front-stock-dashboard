@@ -11,6 +11,12 @@ jobs:
     runs-on: ubuntu-latest
     env:
       CI: true
+      FINNHUB_API_BASE_URL: ${{ vars.FINNHUB_API_BASE_URL }}
+      FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
+      ALPHAVANTAGE_API_BASE_URL: ${{ vars.ALPHAVANTAGE_API_BASE_URL }}
+      ALPHAVANTAGE_API_KEY: ${{ secrets.ALPHAVANTAGE_API_KEY }}
+      FINANCIAL_MODELING_PREP_API_BASE_URL: ${{ vars.FINANCIAL_MODELING_PREP_API_BASE_URL }}
+      FINANCIAL_MODELING_PREP_API_KEY: ${{ secrets.FINANCIAL_MODELING_PREP_API_KEY }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
