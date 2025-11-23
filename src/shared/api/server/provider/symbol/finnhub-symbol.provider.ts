@@ -1,11 +1,14 @@
-import { toSymbols } from "@/shared/api/server/adapter/symbol.adapter";
 import { fetcher } from "@/shared/api/server/http/http-client";
 import {
   type ApiProvider,
   getApiProviderConfig,
 } from "@/shared/api/server/provider/api-provider";
-import type { FinnhubSymbolResult, Symbol } from "@/shared/domain/symbol";
+import { toSymbols } from "@/shared/api/server/provider/symbol/finnhub-symbol.adapter";
+import type { Symbol } from "@/shared/domain/symbol";
 
+import { ERROR_SOURCE } from "../../errors/base-error";
+import { parseOrFail } from "../../validation/zod-validate";
+import { finnhubSymbolResultSchema } from "./finnhub-symbol.schema";
 import type { SymbolProvider } from "./symbol-provider";
 
 export class FinnhubSymbolProvider implements SymbolProvider {
@@ -17,11 +20,19 @@ export class FinnhubSymbolProvider implements SymbolProvider {
   }
 
   async searchSymbols(query: string): Promise<Symbol[]> {
-    const raw = await fetcher<FinnhubSymbolResult>(
-      `${this.baseUrl}/search?q=${query}`,
-      { provider: this.provider }
-    );
+    const url = `${this.baseUrl}/search?q=${query}`;
+    const data = await fetcher(url, {
+      provider: this.provider,
+    });
 
-    return toSymbols(raw);
+    const dto = parseOrFail(finnhubSymbolResultSchema, data, {
+      source: ERROR_SOURCE.UPSTREAM,
+      context: {
+        provider: this.provider,
+        url,
+      },
+    });
+
+    return toSymbols(dto);
   }
 }

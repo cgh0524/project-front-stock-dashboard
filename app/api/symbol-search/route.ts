@@ -1,6 +1,7 @@
 import type { NextRequest, NextResponse } from "next/server";
 
-import { ValidationError } from "@/shared/api/server/errors/base-error";
+import { ERROR_SOURCE } from "@/shared/api/server/errors/base-error";
+import { ValidationError } from "@/shared/api/server/errors/validation-error";
 import { fail } from "@/shared/api/server/http/error-response";
 import { ok } from "@/shared/api/server/http/success-response";
 import {
@@ -17,7 +18,12 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
   const { searchParams } = new URL(request.url);
   const symbol = searchParams.get("symbol") ?? "";
 
-  if (!symbol) return fail(new ValidationError("Symbol is required"));
+  if (!symbol)
+    return fail(
+      new ValidationError("Symbol is required", {
+        source: ERROR_SOURCE.CLIENT,
+      })
+    );
 
   try {
     const result = await searchSymbols(provider, symbol);

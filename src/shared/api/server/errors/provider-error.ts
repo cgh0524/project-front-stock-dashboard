@@ -24,7 +24,7 @@ export class ProviderError extends Error {
   }
 }
 
-export const normalizeProviderError = (
+export const toBffProviderError = (
   provider: ApiProvider,
   error: ProviderError
 ): BffError => {

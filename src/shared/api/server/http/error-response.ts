@@ -9,19 +9,39 @@ import {
 import { toBffError } from "@/shared/api/server/errors/bff-error";
 import { CANONICAL_STATUS } from "@/shared/api/server/errors/error-codes";
 import {
-  normalizeProviderError,
   ProviderError,
+  toBffProviderError,
 } from "@/shared/api/server/errors/provider-error";
 import {
   API_PROVIDER,
   type ApiProvider,
 } from "@/shared/api/server/provider/api-provider";
 
+import {
+  toBffValidationError,
+  ValidationError,
+} from "../errors/validation-error";
+import { logError } from "../logging/error";
+
 /** error 유형에 따라 NextResponse 반환 */
 export function fail(err: any, provider: ApiProvider = API_PROVIDER.NONE) {
+  logError("[BFF_ERROR]", {
+    name: err.name,
+    message: err.message,
+    provider,
+    meta: err.meta,
+    source: err.source ?? err.meta?.source,
+    stack: err.stack,
+  });
+
   if (err instanceof ProviderError) {
-    const apiError = normalizeProviderError(provider, err);
+    const apiError = toBffProviderError(provider, err);
     return NextResponse.json(apiError, { status: apiError.code });
+  }
+
+  if (err instanceof ValidationError) {
+    const validationError = toBffValidationError(err, provider);
+    return NextResponse.json(validationError, { status: validationError.code });
   }
 
   if (err instanceof TimeoutError) {
