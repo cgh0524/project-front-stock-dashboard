@@ -73,10 +73,10 @@ export async function withRetry(
   throw lastError ?? new Error("fetcher exhausted without response");
 }
 
-export const fetcher = async <T>(
+export const fetcher = async (
   url: string,
   options: FetcherOptions = {}
-): Promise<T> => {
+): Promise<unknown> => {
   const provider: ApiProvider = options.provider ?? API_PROVIDER.NONE;
 
   const { url: authorizedUrl, options: authorizedOptions } = setAuthorization({
@@ -95,30 +95,30 @@ export const fetcher = async <T>(
         provider,
         url: authorizedUrl,
         status: res.status,
-        body: text.slice(0, 300), // full body logging 금지
+        body: text.slice(0, 300),
       });
 
       throw new ProviderError(res.status, text, { provider, url });
     }
     return JSON.parse(text);
-  } catch (e: any) {
+  } catch (error: any) {
     // BFF, fetcher 에러 로깅
     console.error("[UPSTREAM FAIL]", {
       provider,
       url: authorizedUrl,
-      error: e.message,
-      type: e.name,
+      error: error.message,
+      type: error.name,
     });
 
     // withTimeout에서 AbortError가 발생한 경우
-    if (e.name === "AbortError")
+    if (error.name === "AbortError")
       throw new TimeoutError("Fetch aborted by timeout", { provider, url });
 
     // fetch는 네트워크 실패 시 TypeError를 던짐
-    if (e instanceof TypeError)
-      throw new NetworkError(e.message, { provider, url });
+    if (error instanceof TypeError)
+      throw new NetworkError(error.message, { provider, url });
 
     // ProviderError 등은 그대로 전파
-    throw e;
+    throw error;
   }
 };
