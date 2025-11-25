@@ -1,1 +1,1 @@
-export * from "./symbol-provider";
+export * from "./symbol.provider";

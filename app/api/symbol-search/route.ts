@@ -8,7 +8,7 @@ import {
   API_PROVIDER,
   type ApiProvider,
 } from "@/shared/api/server/provider/provider.config";
-import { searchSymbols } from "@/shared/api/server/service/symbol.service";
+import { symbolService } from "@/shared/api/server/service/symbol.service";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -26,7 +26,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     );
 
   try {
-    const result = await searchSymbols(provider, symbol);
+    const result = await symbolService.searchSymbols(symbol);
     return ok(result, provider);
   } catch (error) {
     return fail(error, provider);

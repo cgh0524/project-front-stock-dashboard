@@ -1,6 +1,7 @@
 import { fetcher } from "@/shared/api/server/http/http-client";
+import type { ApiProviderConfig } from "@/shared/api/server/provider/provider.config";
 import {
-  type ApiProvider,
+  API_PROVIDER,
   getApiProviderConfig,
 } from "@/shared/api/server/provider/provider.config";
 import { toSymbols } from "@/shared/api/server/provider/symbol/finnhub-symbol.adapter";
@@ -9,18 +10,16 @@ import type { Symbol } from "@/shared/domain/symbol";
 import { ERROR_SOURCE } from "../../errors/base-error";
 import { parseOrFail } from "../../validation/zod-validate";
 import { finnhubSymbolResultSchema } from "./finnhub-symbol.schema";
-import type { SymbolProvider } from "./symbol-provider";
+import type { SymbolProvider } from "./symbol.provider";
 
 export class FinnhubSymbolProvider implements SymbolProvider {
-  private readonly baseUrl: string;
-
-  constructor(private readonly provider: ApiProvider) {
-    const { baseUrl } = getApiProviderConfig(provider);
-    this.baseUrl = baseUrl;
-  }
+  private readonly provider = API_PROVIDER.FINNHUB;
+  private readonly apiConfig: ApiProviderConfig = getApiProviderConfig(
+    this.provider
+  );
 
   async searchSymbols(query: string): Promise<Symbol[]> {
-    const url = `${this.baseUrl}/search?q=${query}`;
+    const url = `${this.apiConfig.baseUrl}/search?q=${query}`;
     const data = await fetcher(url, {
       provider: this.provider,
     });
