@@ -1,4 +1,4 @@
-import type { ApiProvider } from "@/shared/api/server/provider/api-provider";
+import type { ApiProvider } from "@/shared/api/server/provider/provider.config";
 
 import type { CanonicalStatus } from "./error-codes";
 import { toHttpCode } from "./error-codes";

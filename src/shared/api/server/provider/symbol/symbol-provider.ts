@@ -1,6 +1,6 @@
 import type { Symbol } from "@/shared/domain/symbol";
 
-import { API_PROVIDER, type ApiProvider } from "../api-provider";
+import { API_PROVIDER, type ApiProvider } from "../provider.config";
 import { FinnhubSymbolProvider } from "./finnhub-symbol.provider";
 
 export interface SymbolProvider {

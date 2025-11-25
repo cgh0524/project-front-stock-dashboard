@@ -2,7 +2,7 @@ import { fetcher } from "@/shared/api/server/http/http-client";
 import {
   type ApiProvider,
   getApiProviderConfig,
-} from "@/shared/api/server/provider/api-provider";
+} from "@/shared/api/server/provider/provider.config";
 import { toSymbols } from "@/shared/api/server/provider/symbol/finnhub-symbol.adapter";
 import type { Symbol } from "@/shared/domain/symbol";
 

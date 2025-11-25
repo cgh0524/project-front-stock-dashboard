@@ -1,4 +1,4 @@
-import { type ApiProvider } from "@/shared/api/server/provider/api-provider";
+import { type ApiProvider } from "@/shared/api/server/provider/provider.config";
 import { createSymbolProvider } from "@/shared/api/server/provider/symbol";
 import type { Symbol } from "@/shared/domain/symbol";
 

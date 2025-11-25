@@ -1,4 +1,4 @@
-import type { ApiProvider } from "@/shared/api/server/provider/api-provider";
+import type { ApiProvider } from "@/shared/api/server/provider/provider.config";
 
 import type { BffError } from "./bff-error";
 import { toBffError } from "./bff-error";

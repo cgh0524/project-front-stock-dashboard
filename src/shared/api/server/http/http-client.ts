@@ -9,7 +9,7 @@ import { type BffSuccess } from "@/shared/api/server/http/success-response";
 import {
   API_PROVIDER,
   type ApiProvider,
-} from "@/shared/api/server/provider/api-provider";
+} from "@/shared/api/server/provider/provider.config";
 
 import { type FetcherOptions, setAuthorization } from "./authorization";
 import { backoff, DEFAULT_RETRY, sleep } from "./retry-policy";

@@ -7,7 +7,7 @@ import { ok } from "@/shared/api/server/http/success-response";
 import {
   API_PROVIDER,
   type ApiProvider,
-} from "@/shared/api/server/provider/api-provider";
+} from "@/shared/api/server/provider/provider.config";
 import { searchSymbols } from "@/shared/api/server/service/symbol.service";
 
 export const runtime = "nodejs";

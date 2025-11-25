@@ -1,4 +1,4 @@
-import type { ApiProvider } from "../provider/api-provider";
+import type { ApiProvider } from "../provider/provider.config";
 import type { ErrorSource } from "./base-error";
 import { BaseError, ERROR_SOURCE } from "./base-error";
 import type { BffError } from "./bff-error";

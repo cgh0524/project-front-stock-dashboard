@@ -15,7 +15,7 @@ import {
 import {
   API_PROVIDER,
   type ApiProvider,
-} from "@/shared/api/server/provider/api-provider";
+} from "@/shared/api/server/provider/provider.config";
 
 import {
   toBffValidationError,

@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import {
   API_PROVIDER,
   type ApiProvider,
-} from "@/shared/api/server/provider/api-provider";
+} from "@/shared/api/server/provider/provider.config";
 
 export type BffSuccess<T> = {
   ok: true;

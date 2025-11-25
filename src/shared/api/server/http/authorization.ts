@@ -4,7 +4,7 @@ import {
   type ApiProvider,
   type ApiProviderConfig,
   getApiProviderConfig,
-} from "@/shared/api/server/provider/api-provider";
+} from "@/shared/api/server/provider/provider.config";
 
 /** fetcher에서 사용하는 옵션 확장 */
 export type FetcherOptions = RequestInit & {
