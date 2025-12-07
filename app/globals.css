@@ -96,8 +96,8 @@
     --color-bg-default: var(--color-gray-900);
     --color-bg-subtle: var(--color-gray-800);
 
-    --color-surface-default: var(--color-gray-900);
-    --color-surface-alt: var(--color-gray-800);
+    --color-surface-default: var(--color-gray-800);
+    --color-surface-alt: var(--color-gray-900);
 
     --color-border-default: var(--color-gray-700);
     --color-border-strong: var(--color-gray-600);
