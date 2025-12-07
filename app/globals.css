@@ -1,7 +1,6 @@
 @import "tailwindcss";
 
-:root {
-  /* Primitive palette synced with tailwind.config.ts */
+@theme {
   --color-gray-50: #f9fafb;
   --color-gray-100: #f3f4f6;
   --color-gray-200: #e5e7eb;
@@ -90,11 +89,10 @@
 
   --background: var(--color-bg-default);
   --foreground: var(--color-text-primary);
-  color-scheme: light dark;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  @theme {
     --color-bg-default: var(--color-gray-900);
     --color-bg-subtle: var(--color-gray-800);
 
@@ -127,14 +125,18 @@
   }
 }
 
+@layer base {
+  :root {
+    color-scheme: light dark;
+  }
+}
+
 body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+@utility text-balance {
+  text-wrap: balance;
 }
