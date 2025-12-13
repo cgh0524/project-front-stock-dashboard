@@ -5,7 +5,7 @@ import {
   getApiProviderConfig,
 } from "@/shared/api/server/provider/provider.config";
 import { toSymbols } from "@/shared/api/server/provider/symbol/finnhub-symbol.adapter";
-import type { Symbol } from "@/shared/domain/symbol";
+import type { Symbol } from "@/entities/stock/model/symbol";
 
 import { ERROR_SOURCE } from "../../errors/base-error";
 import { parseOrFail } from "../../validation/zod-validate";

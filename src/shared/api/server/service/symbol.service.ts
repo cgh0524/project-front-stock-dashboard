@@ -2,7 +2,7 @@ import {
   type SymbolProvider,
   symbolProvider,
 } from "@/shared/api/server/provider/symbol";
-import type { Symbol } from "@/shared/domain/symbol";
+import type { Symbol } from "@/entities/stock/model/symbol";
 
 class SymbolService {
   constructor(private readonly provider: SymbolProvider) {}

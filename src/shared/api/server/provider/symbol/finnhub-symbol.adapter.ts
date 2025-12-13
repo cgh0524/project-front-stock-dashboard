@@ -1,4 +1,4 @@
-import type { Symbol } from "@/shared/domain/symbol";
+import type { Symbol } from "@/entities/stock/model/symbol";
 
 import type { FinnhubSymbolResultDTO } from "./finnhub-symbol.schema";
 
