@@ -1,6 +1,6 @@
 import type { SwatchGroup } from "@/shared/lib/design-tokens/types";
 
-import { SwatchCard } from "./SwatchCard";
+import { SwatchCard } from "./swatch-card";
 
 type PaletteGroupProps = SwatchGroup;
 
