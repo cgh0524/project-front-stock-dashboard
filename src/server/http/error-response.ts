@@ -5,17 +5,17 @@ import {
   BaseError,
   NetworkError,
   TimeoutError,
-} from "@/shared/api/server/errors/base-error";
-import { toBffError } from "@/shared/api/server/errors/bff-error";
-import { CANONICAL_STATUS } from "@/shared/api/server/errors/error-codes";
+} from "@/server/errors/base-error";
+import { toBffError } from "@/server/errors/bff-error";
+import { CANONICAL_STATUS } from "@/server/errors/error-codes";
 import {
   ProviderError,
   toBffProviderError,
-} from "@/shared/api/server/errors/provider-error";
+} from "@/server/errors/provider-error";
 import {
   API_PROVIDER,
   type ApiProvider,
-} from "@/shared/api/server/provider/provider.config";
+} from "@/server/provider/provider.config";
 
 import {
   toBffValidationError,

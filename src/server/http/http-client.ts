@@ -1,15 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import {
-  NetworkError,
-  TimeoutError,
-} from "@/shared/api/server/errors/base-error";
-import { type BffError } from "@/shared/api/server/errors/bff-error";
-import { ProviderError } from "@/shared/api/server/errors/provider-error";
-import { type BffSuccess } from "@/shared/api/server/http/success-response";
+import { NetworkError, TimeoutError } from "@/server/errors/base-error";
+import { type BffError } from "@/server/errors/bff-error";
+import { ProviderError } from "@/server/errors/provider-error";
+import { type BffSuccess } from "@/server/http/success-response";
 import {
   API_PROVIDER,
   type ApiProvider,
-} from "@/shared/api/server/provider/provider.config";
+} from "@/server/provider/provider.config";
 
 import { type FetcherOptions, setAuthorization } from "./authorization";
 import { backoff, DEFAULT_RETRY, sleep } from "./retry-policy";

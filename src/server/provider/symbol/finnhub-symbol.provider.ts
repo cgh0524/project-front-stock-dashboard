@@ -1,10 +1,10 @@
-import { fetcher } from "@/shared/api/server/http/http-client";
-import type { ApiProviderConfig } from "@/shared/api/server/provider/provider.config";
+import { fetcher } from "@/server/http/http-client";
+import type { ApiProviderConfig } from "@/server/provider/provider.config";
 import {
   API_PROVIDER,
   getApiProviderConfig,
-} from "@/shared/api/server/provider/provider.config";
-import { toSymbols } from "@/shared/api/server/provider/symbol/finnhub-symbol.adapter";
+} from "@/server/provider/provider.config";
+import { toSymbols } from "@/server/provider/symbol/finnhub-symbol.adapter";
 import type { Symbol } from "@/entities/stock/model/symbol";
 
 import { ERROR_SOURCE } from "../../errors/base-error";

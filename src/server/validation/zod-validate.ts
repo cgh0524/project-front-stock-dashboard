@@ -2,8 +2,8 @@
 import type { z } from "zod";
 import { ZodError } from "zod";
 
-import type { ErrorSource } from "@/shared/api/server/errors/base-error";
-import { ValidationError } from "@/shared/api/server/errors/validation-error";
+import type { ErrorSource } from "@/server/errors/base-error";
+import { ValidationError } from "@/server/errors/validation-error";
 
 export function parseOrFail<T>(
   schema: z.ZodSchema<T>,

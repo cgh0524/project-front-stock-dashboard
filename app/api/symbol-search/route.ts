@@ -1,16 +1,16 @@
 import type { NextRequest, NextResponse } from "next/server";
 
 import type { Symbol } from "@/entities/stock";
-import { ERROR_SOURCE } from "@/shared/api/server/errors/base-error";
-import { ValidationError } from "@/shared/api/server/errors/validation-error";
-import { fail } from "@/shared/api/server/http/error-response";
-import type { Result } from "@/shared/api/server/http/http-client";
-import { ok } from "@/shared/api/server/http/success-response";
+import { ERROR_SOURCE } from "@/server/errors/base-error";
+import { ValidationError } from "@/server/errors/validation-error";
+import { fail } from "@/server/http/error-response";
+import type { Result } from "@/server/http/http-client";
+import { ok } from "@/server/http/success-response";
 import {
   API_PROVIDER,
   type ApiProvider,
-} from "@/shared/api/server/provider/provider.config";
-import { symbolService } from "@/shared/api/server/service/symbol.service";
+} from "@/server/provider/provider.config";
+import { symbolService } from "@/server/service/symbol.service";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";

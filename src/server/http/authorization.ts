@@ -1,10 +1,10 @@
-import type { RetryPolicy } from "@/shared/api/server/http/retry-policy";
+import type { RetryPolicy } from "@/server/http/retry-policy";
 import {
   API_PROVIDER,
   type ApiProvider,
   type ApiProviderConfig,
   getApiProviderConfig,
-} from "@/shared/api/server/provider/provider.config";
+} from "@/server/provider/provider.config";
 
 /** fetcher에서 사용하는 옵션 확장 */
 export type FetcherOptions = RequestInit & {
