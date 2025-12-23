@@ -1,4 +1,4 @@
-import type { Symbol } from "@/entities/stock/model/symbol";
+import type { Symbol } from "@/entities/symbol/model/symbol";
 
 import { FinnhubSymbolProvider } from "./finnhub-symbol.provider";
 

@@ -1,4 +1,4 @@
-import type { Symbol } from "@/entities/stock";
+import type { Symbol } from "@/entities/symbol";
 import { EmptyContent } from "@/shared/ui/fallback/empty-content";
 import { LoadingSpinner } from "@/shared/ui/fallback/loading-spinner";
 

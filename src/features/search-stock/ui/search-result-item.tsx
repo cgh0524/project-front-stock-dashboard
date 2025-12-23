@@ -1,7 +1,6 @@
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 
-import type { Symbol } from "@/entities/stock";
+import type { Symbol } from "@/entities/symbol";
 
 export type SearchResultItemProps = {
   symbol: Symbol;

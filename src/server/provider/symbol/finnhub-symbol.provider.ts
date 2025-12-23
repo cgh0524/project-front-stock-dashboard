@@ -1,4 +1,4 @@
-import type { Symbol } from "@/entities/stock/model/symbol";
+import type { Symbol } from "@/entities/symbol/model/symbol";
 import { fetcher } from "@/server/http/http-client";
 import type { ApiProviderConfig } from "@/server/provider/provider.config";
 import {

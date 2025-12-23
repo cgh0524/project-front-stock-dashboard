@@ -1,6 +1,6 @@
 import type { NextRequest, NextResponse } from "next/server";
 
-import type { Symbol } from "@/entities/stock";
+import type { Symbol } from "@/entities/symbol";
 import { ERROR_SOURCE } from "@/server/errors/base-error";
 import { ValidationError } from "@/server/errors/validation-error";
 import { fail } from "@/server/http/error-response";
@@ -22,12 +22,13 @@ export async function GET(
   const { searchParams } = new URL(request.url);
   const symbol = searchParams.get("symbol") ?? "";
 
-  if (!symbol)
+  if (!symbol) {
     return fail(
       new ValidationError("Symbol is required", {
         source: ERROR_SOURCE.CLIENT,
       })
     );
+  }
 
   try {
     const result = await symbolService.searchSymbols(symbol);

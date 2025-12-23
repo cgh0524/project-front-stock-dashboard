@@ -3,7 +3,7 @@ import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import React from "react";
 
-import type { Symbol } from "@/entities/stock";
+import type { Symbol } from "@/entities/symbol";
 
 import { SearchResultList } from "./search-result-list";
 

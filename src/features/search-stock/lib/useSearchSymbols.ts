@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 
-import type { Symbol } from "@/entities/stock";
-import { getSearchSymbols } from "@/entities/stock/lib/get-search-symbols";
+import type { Symbol } from "@/entities/symbol";
+import { getSearchSymbols } from "@/entities/symbol/lib/get-search-symbols";
 
 export const useSearchSymbols = ({
   query,
