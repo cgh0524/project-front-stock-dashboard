@@ -20,7 +20,8 @@ export async function GET(request: Request) {
   }
 
   try {
-    return ok(quoteService.getQuote(symbol), provider);
+    const result = await quoteService.getQuote(symbol);
+    return ok(result, provider);
   } catch (error) {
     return fail(error, provider);
   }
