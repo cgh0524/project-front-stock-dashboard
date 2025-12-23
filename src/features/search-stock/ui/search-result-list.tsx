@@ -16,7 +16,7 @@ export function SearchResultList({
   symbols,
 }: SearchResultListProps) {
   const defaultStyles =
-    "absolute w-full p-2 bg-surface-default border-border-default border-solid border rounded-md shadow-lg drop-shadow-lg";
+    "absolute w-full max-h-96 p-2 overflow-y-auto bg-surface-default border-border-default border-solid border rounded-md shadow-lg drop-shadow-lg";
 
   if (loading && symbols.length === 0) {
     return (
@@ -47,8 +47,8 @@ export function SearchResultList({
   return (
     <div className={defaultStyles}>
       <ul className="list-none">
-        {symbols.map((item) => (
-          <li key={item.symbol}>
+        {symbols.map((item, index) => (
+          <li key={`${item.displaySymbol}-${index}`}>
             <SearchResultItem symbol={item} />
           </li>
         ))}

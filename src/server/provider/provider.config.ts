@@ -1,18 +1,11 @@
 /** API 공급자 관련 설정 */
 import "server-only";
 
-export const API_PROVIDER = {
-  /** Financial Moeling Prep - 250 Calls / Day */
-  FMP: "FMP",
-  /** Alphavantage - 25 Calls / Day */
-  ALPHAVANTAGE: "ALPHAVANTAGE",
-  /** Finnhub - 30 Calls / Seconds & 60 Calls / Minute */
-  FINNHUB: "FINNHUB",
-  /** 사용하지 않는 공급자 */
-  NONE: "NONE",
-} as const;
+import type { ApiProvider } from "@/shared/api/provider";
+import { API_PROVIDER } from "@/shared/api/provider";
 
-export type ApiProvider = (typeof API_PROVIDER)[keyof typeof API_PROVIDER];
+export { API_PROVIDER };
+export type { ApiProvider };
 
 /**
  * API 공급자 설정 객체

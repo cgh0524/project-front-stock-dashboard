@@ -4,14 +4,7 @@ import {
   API_PROVIDER,
   type ApiProvider,
 } from "@/server/provider/provider.config";
-
-export type BffSuccess<T> = {
-  ok: true;
-  data: T;
-  provider: ApiProvider;
-  requestId: string;
-  timestamp: string;
-};
+import type { BffSuccess } from "@/shared/api/bff-success";
 
 export const toBffSuccess = <T>(
   provider: ApiProvider,

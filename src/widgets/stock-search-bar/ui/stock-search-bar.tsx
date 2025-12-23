@@ -12,7 +12,7 @@ export function StockSearchBar() {
     useSearchInput();
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const shouldShowSearchResult = searchKeyword.length > 2;
+  const shouldShowSearchResult = searchKeyword.length >= 2;
 
   const {
     data: symbols,

@@ -2,11 +2,11 @@
 import { NetworkError, TimeoutError } from "@/server/errors/base-error";
 import { type BffError } from "@/server/errors/bff-error";
 import { ProviderError } from "@/server/errors/provider-error";
-import { type BffSuccess } from "@/server/http/success-response";
 import {
   API_PROVIDER,
   type ApiProvider,
 } from "@/server/provider/provider.config";
+import { type BffSuccess } from "@/shared/api/bff-success";
 
 import { type FetcherOptions, setAuthorization } from "./authorization";
 import { backoff, DEFAULT_RETRY, sleep } from "./retry-policy";

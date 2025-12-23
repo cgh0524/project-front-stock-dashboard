@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 
 import type { Symbol } from "@/entities/stock";
+import { getSearchSymbols } from "@/entities/stock/lib/get-search-symbols";
 
 export const useSearchSymbols = ({
   query,
@@ -11,7 +12,7 @@ export const useSearchSymbols = ({
 }) => {
   return useQuery<Symbol[], Error>({
     queryKey: ["search-symbols", query],
-    queryFn: () => data,
+    queryFn: () => getSearchSymbols(query),
     enabled,
     staleTime: 1000 * 60 * 2, // 2 minutes
     placeholderData: (previousData) => previousData,

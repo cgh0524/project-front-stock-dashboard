@@ -1,3 +1,4 @@
+import type { Symbol } from "@/entities/stock/model/symbol";
 import { fetcher } from "@/server/http/http-client";
 import type { ApiProviderConfig } from "@/server/provider/provider.config";
 import {
@@ -5,7 +6,6 @@ import {
   getApiProviderConfig,
 } from "@/server/provider/provider.config";
 import { toSymbols } from "@/server/provider/symbol/finnhub-symbol.adapter";
-import type { Symbol } from "@/entities/stock/model/symbol";
 
 import { ERROR_SOURCE } from "../../errors/base-error";
 import { parseOrFail } from "../../validation/zod-validate";
@@ -19,7 +19,7 @@ export class FinnhubSymbolProvider implements SymbolProvider {
   );
 
   async searchSymbols(query: string): Promise<Symbol[]> {
-    const url = `${this.apiConfig.baseUrl}/search?q=${query}`;
+    const url = `${this.apiConfig.baseUrl}/search?q=${query}&exchange=US`;
     const data = await fetcher(url, {
       provider: this.provider,
     });
