@@ -3,11 +3,12 @@
 import { useRef } from "react";
 
 import { useSearchSymbols } from "@/entities/symbol";
-import { SearchInput, SearchResultList } from "@/features/search-stock/ui";
 
 import { useSearchInput } from "../lib";
+import { SearchInput } from "./search-input";
+import { SearchResultList } from "./search-result-list";
 
-export function StockSearchBar() {
+export function SearchSymbolBar() {
   const { searchKeyword, setSearchKeyword, debouncedSearchKeyword, canSearch } =
     useSearchInput();
   const containerRef = useRef<HTMLDivElement>(null);

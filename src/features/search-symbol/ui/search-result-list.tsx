@@ -2,7 +2,7 @@ import type { Symbol } from "@/entities/symbol";
 import { EmptyContent } from "@/shared/ui/fallback/empty-content";
 import { LoadingSpinner } from "@/shared/ui/fallback/loading-spinner";
 
-import { SearchResultItem } from ".";
+import { SearchResultItem } from "./search-result-item";
 
 export type SearchResultListProps = {
   symbols: Symbol[];
