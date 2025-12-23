@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 
-import { useSearchSymbols } from "@/features/search-stock/lib/useSearchSymbols";
+import { useSearchSymbols } from "@/entities/symbol";
 import { SearchInput, SearchResultList } from "@/features/search-stock/ui";
 
 import { useSearchInput } from "../lib";

@@ -1,1 +1,1 @@
-export * from "./get-search-symbols";
+export * from "./use-search-symbols";
