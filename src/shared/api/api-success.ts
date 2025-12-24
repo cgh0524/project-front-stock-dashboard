@@ -1,6 +1,6 @@
 import type { ApiProvider } from "@/shared/api/provider";
 
-export type BffSuccess<T> = {
+export type ApiSuccess<T> = {
   ok: true;
   data: T;
   provider: ApiProvider;

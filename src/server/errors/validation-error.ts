@@ -1,8 +1,8 @@
 import type { ApiProvider } from "../provider/provider.config";
+import type { ApiError } from "./api-error";
+import { toApiError } from "./api-error";
 import type { ErrorSource } from "./base-error";
 import { BaseError, ERROR_SOURCE } from "./base-error";
-import type { BffError } from "./bff-error";
-import { toBffError } from "./bff-error";
 import type { CanonicalStatus } from "./error-codes";
 import { CANONICAL_STATUS } from "./error-codes";
 
@@ -20,10 +20,10 @@ export class ValidationError extends BaseError {
   }
 }
 
-export function toBffValidationError(
+export function toApiValidationError(
   err: ValidationError,
   provider: ApiProvider
-): BffError {
+): ApiError {
   let status: CanonicalStatus;
 
   switch (err.meta?.source) {
@@ -40,7 +40,7 @@ export function toBffValidationError(
       status = CANONICAL_STATUS.INTERNAL_ERROR;
   }
 
-  return toBffError(provider, status, err.message, {
+  return toApiError(provider, status, err.message, {
     retryable: false,
   });
 }

@@ -4,13 +4,13 @@ import {
   API_PROVIDER,
   type ApiProvider,
 } from "@/server/provider/provider.config";
-import type { BffSuccess } from "@/shared/api/bff-success";
+import type { ApiSuccess } from "@/shared/api/api-success";
 
-export const toBffSuccess = <T>(
+export const normalizeSuccess = <T>(
   provider: ApiProvider,
   data: T,
   requestId = crypto.randomUUID()
-): BffSuccess<T> => ({
+): ApiSuccess<T> => ({
   ok: true,
   provider,
   data,
@@ -22,6 +22,6 @@ export const toBffSuccess = <T>(
 export function ok<T>(
   data: T,
   provider: ApiProvider = API_PROVIDER.NONE
-): NextResponse<BffSuccess<T>> {
-  return NextResponse.json(toBffSuccess(provider, data), { status: 200 });
+): NextResponse<ApiSuccess<T>> {
+  return NextResponse.json(normalizeSuccess(provider, data), { status: 200 });
 }

@@ -1,17 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { NetworkError, TimeoutError } from "@/server/errors/base-error";
-import { type BffError } from "@/server/errors/bff-error";
+import { type ApiError } from "@/server/errors/api-error";
 import { ProviderError } from "@/server/errors/provider-error";
 import {
   API_PROVIDER,
   type ApiProvider,
 } from "@/server/provider/provider.config";
-import { type BffSuccess } from "@/shared/api/bff-success";
+import { type ApiSuccess } from "@/shared/api/api-success";
 
 import { type FetcherOptions, setAuthorization } from "./authorization";
 import { backoff, DEFAULT_RETRY, sleep } from "./retry-policy";
 
-export type Result<T> = BffSuccess<T> | BffError;
+export type Result<T> = ApiSuccess<T> | ApiError;
 
 /** 기본 타임아웃 시간 (10초) */
 const DEFAULT_TIMEOUT_MILLIS = 10_000;

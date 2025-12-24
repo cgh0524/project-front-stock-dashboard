@@ -1,7 +1,7 @@
 import type { ApiProvider } from "@/server/provider/provider.config";
 
-import type { BffError } from "./bff-error";
-import { toBffError } from "./bff-error";
+import type { ApiError } from "./api-error";
+import { toApiError } from "./api-error";
 import { CANONICAL_STATUS } from "./error-codes";
 
 export class ProviderError extends Error {
@@ -24,12 +24,12 @@ export class ProviderError extends Error {
   }
 }
 
-export const toBffProviderError = (
+export const toApiProviderError = (
   provider: ApiProvider,
   error: ProviderError
-): BffError => {
+): ApiError => {
   if (error.code === 429) {
-    return toBffError(
+    return toApiError(
       provider,
       CANONICAL_STATUS.RATE_LIMITED,
       "Rate limit exceeded. Please try again later.",
@@ -40,7 +40,7 @@ export const toBffProviderError = (
   }
 
   if (error.code === 404) {
-    return toBffError(
+    return toApiError(
       provider,
       CANONICAL_STATUS.NOT_FOUND,
       "Requested resource was not found.",
@@ -51,7 +51,7 @@ export const toBffProviderError = (
   }
 
   if (error.code === 401 || error.code === 403) {
-    return toBffError(
+    return toApiError(
       provider,
       CANONICAL_STATUS.UNAUTHORIZED,
       "Provider authentication failed. Please verify credentials.",
@@ -60,7 +60,7 @@ export const toBffProviderError = (
   }
 
   if (error.code >= 400 && error.code < 500) {
-    return toBffError(
+    return toApiError(
       provider,
       CANONICAL_STATUS.INVALID_REQUEST,
       "Invalid request was sent to provider. Check input values.",
@@ -73,7 +73,7 @@ export const toBffProviderError = (
   // Upstream Timeout
   const is504 = error.code === 504;
 
-  return toBffError(
+  return toApiError(
     provider,
     is504 ? CANONICAL_STATUS.TIMEOUT : CANONICAL_STATUS.PROVIDER_ERROR,
     is504

@@ -3,7 +3,7 @@ import type { ApiProvider } from "@/server/provider/provider.config";
 import type { CanonicalStatus } from "./error-codes";
 import { toHttpCode } from "./error-codes";
 
-export type BffError = {
+export type ApiError = {
   /** 성공여부 */
   ok: false;
   /** API 공급자 식별 ex) FMP(Financial Moeling Prep), Alphavantage, etc. */
@@ -22,7 +22,7 @@ export type BffError = {
   timestamp: string;
 };
 
-export const toBffError = (
+export const toApiError = (
   provider: ApiProvider,
   status: CanonicalStatus,
   msg: string,
@@ -30,7 +30,7 @@ export const toBffError = (
     retryable?: boolean;
     requestId?: string;
   }
-): BffError => ({
+): ApiError => ({
   ok: false,
   provider,
   requestId: opt?.requestId ?? crypto.randomUUID(),

@@ -1,16 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { NextResponse } from "next/server";
 
+import { type ApiError, toApiError } from "@/server/errors/api-error";
 import {
   BaseError,
   NetworkError,
   TimeoutError,
 } from "@/server/errors/base-error";
-import { toBffError } from "@/server/errors/bff-error";
 import { CANONICAL_STATUS } from "@/server/errors/error-codes";
 import {
   ProviderError,
-  toBffProviderError,
+  toApiProviderError,
 } from "@/server/errors/provider-error";
 import {
   API_PROVIDER,
@@ -18,14 +18,17 @@ import {
 } from "@/server/provider/provider.config";
 
 import {
-  toBffValidationError,
+  toApiValidationError,
   ValidationError,
 } from "../errors/validation-error";
 import { logError } from "../logging/error";
 
-/** error 유형에 따라 NextResponse 반환 */
-export function fail(err: any, provider: ApiProvider = API_PROVIDER.NONE) {
-  logError("[BFF_ERROR]", {
+/** error 유형에 따라 API 에러 정규화 */
+export function normalizeError(
+  err: any,
+  provider: ApiProvider = API_PROVIDER.NONE
+): ApiError {
+  logError("[API_ERROR]", {
     name: err.name,
     message: err.message,
     provider,
@@ -35,50 +38,41 @@ export function fail(err: any, provider: ApiProvider = API_PROVIDER.NONE) {
   });
 
   if (err instanceof ProviderError) {
-    const apiError = toBffProviderError(provider, err);
-    return NextResponse.json(apiError, { status: apiError.code });
+    return toApiProviderError(provider, err);
   }
 
   if (err instanceof ValidationError) {
-    const validationError = toBffValidationError(err, provider);
-    return NextResponse.json(validationError, { status: validationError.code });
+    return toApiValidationError(err, provider);
   }
 
   if (err instanceof TimeoutError) {
-    const apiError = toBffError(
-      provider,
-      CANONICAL_STATUS.TIMEOUT,
-      err.message,
-      { retryable: true }
-    );
-    return NextResponse.json(apiError, { status: apiError.code });
+    return toApiError(provider, CANONICAL_STATUS.TIMEOUT, err.message, {
+      retryable: true,
+    });
   }
 
   if (err instanceof NetworkError) {
-    const apiError = toBffError(
-      provider,
-      CANONICAL_STATUS.NETWORK_ERROR,
-      err.message,
-      { retryable: true }
-    );
-    return NextResponse.json(apiError, { status: apiError.code });
+    return toApiError(provider, CANONICAL_STATUS.NETWORK_ERROR, err.message, {
+      retryable: true,
+    });
   }
 
   if (err instanceof BaseError) {
-    const apiError = toBffError(
-      provider,
-      CANONICAL_STATUS.INTERNAL_ERROR,
-      err.message,
-      { retryable: false }
-    );
-    return NextResponse.json(apiError, { status: apiError.code });
+    return toApiError(provider, CANONICAL_STATUS.INTERNAL_ERROR, err.message, {
+      retryable: false,
+    });
   }
 
-  const apiError = toBffError(
+  return toApiError(
     provider,
     CANONICAL_STATUS.INTERNAL_ERROR,
     err?.message ?? "Unknown error",
     { retryable: false }
   );
+}
+
+/** error 유형에 따라 NextResponse 반환 */
+export function fail(err: any, provider: ApiProvider = API_PROVIDER.NONE) {
+  const apiError = normalizeError(err, provider);
   return NextResponse.json(apiError, { status: apiError.code });
 }
