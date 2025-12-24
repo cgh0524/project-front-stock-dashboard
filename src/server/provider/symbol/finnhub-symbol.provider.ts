@@ -13,21 +13,21 @@ import { finnhubSymbolResultSchema } from "./finnhub-symbol.schema";
 import type { SymbolProvider } from "./symbol.provider";
 
 export class FinnhubSymbolProvider implements SymbolProvider {
-  private readonly provider = API_PROVIDER.FINNHUB;
+  readonly name = API_PROVIDER.FINNHUB;
   private readonly apiConfig: ApiProviderConfig = getApiProviderConfig(
-    this.provider
+    this.name
   );
 
   async searchSymbols(query: string): Promise<Symbol[]> {
     const url = `${this.apiConfig.baseUrl}/search?q=${query}&exchange=US`;
     const data = await fetcher(url, {
-      provider: this.provider,
+      provider: this.name,
     });
 
     const dto = parseOrFail(finnhubSymbolResultSchema, data, {
       source: ERROR_SOURCE.UPSTREAM,
       context: {
-        provider: this.provider,
+        provider: this.name,
         url,
       },
     });

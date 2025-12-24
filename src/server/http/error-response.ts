@@ -72,7 +72,6 @@ export function normalizeError(
 }
 
 /** error 유형에 따라 NextResponse 반환 */
-export function fail(err: any, provider: ApiProvider = API_PROVIDER.NONE) {
-  const apiError = normalizeError(err, provider);
+export function fail(apiError: ApiError) {
   return NextResponse.json(apiError, { status: apiError.code });
 }

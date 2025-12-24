@@ -1,8 +1,10 @@
 import type { Symbol } from "@/entities/symbol/model/symbol";
 
+import type { ApiProvider } from "../provider.config";
 import { FinnhubSymbolProvider } from "./finnhub-symbol.provider";
 
 export interface SymbolProvider {
+  readonly name: ApiProvider;
   searchSymbols(query: string): Promise<Symbol[]>;
 }
 

@@ -1,9 +1,6 @@
 import { NextResponse } from "next/server";
 
-import {
-  API_PROVIDER,
-  type ApiProvider,
-} from "@/server/provider/provider.config";
+import { type ApiProvider } from "@/server/provider/provider.config";
 import type { ApiSuccess } from "@/shared/api/api-success";
 
 export const normalizeSuccess = <T>(
@@ -19,9 +16,6 @@ export const normalizeSuccess = <T>(
 });
 
 /** NextResponse.json 래퍼 */
-export function ok<T>(
-  data: T,
-  provider: ApiProvider = API_PROVIDER.NONE
-): NextResponse<ApiSuccess<T>> {
-  return NextResponse.json(normalizeSuccess(provider, data), { status: 200 });
+export function ok<T>(result: ApiSuccess<T>): NextResponse<ApiSuccess<T>> {
+  return NextResponse.json(result, { status: 200 });
 }

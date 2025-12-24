@@ -10,9 +10,9 @@ import { finnhubQuoteSchema } from "./finnhub-quote.schema";
 import type { QuoteProvider } from "./quote.provider";
 
 export class FinnhubQuoteProvider implements QuoteProvider {
-  private readonly provider = API_PROVIDER.FINNHUB;
+  readonly name = API_PROVIDER.FINNHUB;
   private readonly apiConfig: ApiProviderConfig = getApiProviderConfig(
-    this.provider
+    this.name
   );
 
   async getQuote(symbol: string): Promise<Quote> {
@@ -20,13 +20,13 @@ export class FinnhubQuoteProvider implements QuoteProvider {
       this.apiConfig.baseUrl
     }/quote?symbol=${symbol.toUpperCase()}`;
     const data = await fetcher(url, {
-      provider: this.provider,
+      provider: this.name,
     });
 
     const dto = parseOrFail(finnhubQuoteSchema, data, {
       source: ERROR_SOURCE.UPSTREAM,
       context: {
-        provider: this.provider,
+        provider: this.name,
         url,
       },
     });
