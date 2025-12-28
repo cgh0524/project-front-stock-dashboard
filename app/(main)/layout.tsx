@@ -10,9 +10,9 @@ export default function MainLayout({
     <div className="flex flex-col h-screen">
       <MainHeader />
 
-      <div className="flex flex-1">
+      <div className="flex min-h-0 flex-1">
         <MainNavigation />
-        <main className="flex-1 p-3">{children}</main>
+        <main className="min-h-0 flex-1 p-3 overflow-auto">{children}</main>
       </div>
     </div>
   );
