@@ -1,4 +1,7 @@
 export type Quote = {
+  /** 심볼 */
+  symbol: string;
+
   /** 현재가 */
   currentPrice: number;
   /** 최고점 */

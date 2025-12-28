@@ -16,11 +16,14 @@ export class FinnhubQuoteProvider implements QuoteProvider {
   );
 
   async getQuote(symbol: string): Promise<Quote> {
-    const url = `${
-      this.apiConfig.baseUrl
-    }/quote?symbol=${symbol.toUpperCase()}`;
+    const symbolUpperCased = symbol.toUpperCase();
+    const url = `${this.apiConfig.baseUrl}/quote?symbol=${symbolUpperCased}`;
     const data = await fetcher(url, {
       provider: this.name,
+      next: {
+        revalidate: 1000 * 60 * 1, // 1분
+        tags: [symbolUpperCased, "quotes"],
+      },
     });
 
     const dto = parseOrFail(finnhubQuoteSchema, data, {
@@ -31,6 +34,6 @@ export class FinnhubQuoteProvider implements QuoteProvider {
       },
     });
 
-    return toQuote(dto);
+    return toQuote(dto, symbolUpperCased);
   }
 }
