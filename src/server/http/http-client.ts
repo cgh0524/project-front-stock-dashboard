@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { NetworkError, TimeoutError } from "@/server/errors/base-error";
 import { type ApiError } from "@/server/errors/api-error";
+import { NetworkError, TimeoutError } from "@/server/errors/base-error";
 import { ProviderError } from "@/server/errors/provider-error";
 import {
   API_PROVIDER,
@@ -70,10 +70,10 @@ export async function withRetry(
   throw lastError ?? new Error("fetcher exhausted without response");
 }
 
-export const fetcher = async (
+export const fetcher = async <T>(
   url: string,
   options: FetcherOptions = {}
-): Promise<unknown> => {
+): Promise<T> => {
   const provider: ApiProvider = options.provider ?? API_PROVIDER.NONE;
 
   const { url: authorizedUrl, options: authorizedOptions } = setAuthorization({
