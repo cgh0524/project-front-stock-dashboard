@@ -1,5 +1,6 @@
 "server-only";
 
+import { marketPerformanceService } from "@/server/service/market-performance.service";
 import { quoteService } from "@/server/service/quote.service";
 
 import {
