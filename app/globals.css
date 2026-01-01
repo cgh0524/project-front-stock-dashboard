@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-@theme {
+:root {
   --color-gray-50: #f9fafb;
   --color-gray-100: #f3f4f6;
   --color-gray-200: #e5e7eb;
@@ -91,8 +91,37 @@
   --foreground: var(--color-text-primary);
 }
 
+@theme {
+  --color-bg-default: var(--color-bg-default);
+  --color-bg-subtle: var(--color-bg-subtle);
+
+  --color-surface-default: var(--color-surface-default);
+  --color-surface-alt: var(--color-surface-alt);
+
+  --color-border-default: var(--color-border-default);
+  --color-border-strong: var(--color-border-strong);
+
+  --color-text-primary: var(--color-text-primary);
+  --color-text-secondary: var(--color-text-secondary);
+  --color-text-muted: var(--color-text-muted);
+  --color-text-inverted: var(--color-text-inverted);
+
+  --color-accent-primary: var(--color-accent-primary);
+  --color-accent-hover: var(--color-accent-hover);
+  --color-accent-muted: var(--color-accent-muted);
+
+  --color-positive: var(--color-positive);
+  --color-positive-subtle: var(--color-positive-subtle);
+  --color-negative: var(--color-negative);
+  --color-negative-subtle: var(--color-negative-subtle);
+  --color-warning: var(--color-warning);
+  --color-warning-subtle: var(--color-warning-subtle);
+
+  --color-focus-ring: var(--color-focus-ring);
+}
+
 @media (prefers-color-scheme: dark) {
-  @theme {
+  :root {
     --color-bg-default: var(--color-gray-900);
     --color-bg-subtle: var(--color-gray-800);
 
