@@ -12,7 +12,9 @@ export default function MainLayout({
 
       <div className="flex min-h-0 flex-1">
         <MainNavigation />
-        <main className="min-h-0 flex-1 p-3 overflow-auto">{children}</main>
+        <main className="max-w-6xl mx-auto min-h-0 flex-1 p-3 overflow-auto">
+          {children}
+        </main>
       </div>
     </div>
   );
