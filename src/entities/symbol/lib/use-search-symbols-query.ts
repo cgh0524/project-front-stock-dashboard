@@ -3,7 +3,9 @@ import { useQuery } from "@tanstack/react-query";
 import type { Symbol } from "@/entities/symbol";
 import { getSearchSymbols } from "@/entities/symbol/lib/get-search-symbols";
 
-export const useSearchSymbols = ({
+export const SEARCH_SYMBOLS_QUERY_KEY = "search-symbols";
+
+export const useSearchSymbolsQuery = ({
   query,
   enabled,
 }: {
@@ -11,7 +13,7 @@ export const useSearchSymbols = ({
   enabled?: boolean;
 }) => {
   return useQuery<Symbol[], Error>({
-    queryKey: ["search-symbols", query],
+    queryKey: [SEARCH_SYMBOLS_QUERY_KEY, query],
     queryFn: () => getSearchSymbols(query),
     enabled,
     staleTime: 1000 * 60 * 2, // 2 minutes

@@ -1,1 +1,1 @@
-export * from "./use-get-quotes";
+export * from "./use-get-quotes-query";

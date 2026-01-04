@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 
-import { useSearchSymbols } from "@/entities/symbol";
+import { useSearchSymbolsQuery } from "@/entities/symbol";
 
 import { useSearchInput } from "../lib";
 import { SearchInput } from "./search-input";
@@ -19,7 +19,10 @@ export function SearchSymbolBar() {
     data: symbols,
     isLoading,
     error,
-  } = useSearchSymbols({ query: debouncedSearchKeyword, enabled: canSearch });
+  } = useSearchSymbolsQuery({
+    query: debouncedSearchKeyword,
+    enabled: canSearch,
+  });
 
   const onChangeSearchKeyword = (
     event: React.ChangeEvent<HTMLInputElement>

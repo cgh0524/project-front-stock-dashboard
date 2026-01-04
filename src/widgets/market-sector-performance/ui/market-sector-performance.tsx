@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 import { useState } from "react";
 
 import { MarketExchangeSelect } from "@/entities/market-performance";
-import { useGetMarketSectorPerformance } from "@/entities/market-performance/lib";
+import { useGetMarketSectorPerformanceQuery } from "@/entities/market-performance/lib";
 import type { Option } from "@/shared/lib/types";
 import { MARKET_EXCHANGE } from "@/shared/lib/types";
 import { createSelectOption } from "@/shared/lib/utils/createSelectOption";
@@ -16,7 +16,7 @@ export function MarketSectorPerformance() {
     createSelectOption(MARKET_EXCHANGE.NASDAQ)
   );
 
-  const { data } = useGetMarketSectorPerformance({
+  const { data } = useGetMarketSectorPerformanceQuery({
     date: TODAY,
     exchange: exchange.value,
   });

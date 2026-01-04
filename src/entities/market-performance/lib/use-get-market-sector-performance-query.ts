@@ -5,7 +5,7 @@ import { getMarketSectorPerformance } from "./get-market-sector-performance";
 
 export const MARKET_SECTOR_PERFORMANCE_QUERY_KEY = "market-sector-performance";
 
-export function useGetMarketSectorPerformance(
+export function useGetMarketSectorPerformanceQuery(
   params: MarketSectorPerformanceQuery
 ) {
   const { date, exchange, sector } = params;
