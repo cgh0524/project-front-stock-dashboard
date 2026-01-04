@@ -1,30 +1,32 @@
 "use client";
 
+import dayjs from "dayjs";
 import { useState } from "react";
 
+import { MarketExchangeSelect } from "@/entities/market-performance";
+import { useGetMarketSectorPerformance } from "@/entities/market-performance/lib";
 import type { Option } from "@/shared/lib/types";
-import { Select } from "@/shared/ui/select";
-
-const options = [
-  { label: "NASDAQ", value: "NASDAQ" },
-  { label: "NYSE", value: "NYSE" },
-  { label: "AMEX", value: "AMEX" },
-];
+import { MARKET_EXCHANGE } from "@/shared/lib/types";
+import { createSelectOption } from "@/shared/lib/utils/createSelectOption";
 
 export function MarketSectorPerformance() {
-  const [selectedOption, setSelectedOption] = useState<Option>(options[0]);
+  const TODAY = dayjs().subtract(2, "day").format("YYYY-MM-DD");
 
-  const onChangeOption = (option: Option) => {
-    setSelectedOption(option);
-  };
+  const [exchange, setExchange] = useState<Option>(
+    createSelectOption(MARKET_EXCHANGE.NASDAQ)
+  );
+
+  const { data } = useGetMarketSectorPerformance({
+    date: TODAY,
+    exchange: exchange.value,
+  });
 
   return (
     <div className="flex flex-col gap-4 w-full">
       <h2 className="text-2xl font-bold">Market Sector Performance</h2>
-      <Select
-        options={options}
-        selectedOption={options[0]}
-        onChange={onChangeOption}
+      <MarketExchangeSelect
+        selectedOption={exchange}
+        onChangeOption={setExchange}
       />
     </div>
   );
