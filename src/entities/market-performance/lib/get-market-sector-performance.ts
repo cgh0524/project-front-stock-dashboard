@@ -9,8 +9,8 @@ import type {
 
 export const getMarketSectorPerformance = async (
   params: MarketSectorPerformanceQuery
-): Promise<MarketSectorPerformance> => {
-  const { data } = await axiosClient.get<ApiSuccess<MarketSectorPerformance>>(
+): Promise<MarketSectorPerformance[]> => {
+  const { data } = await axiosClient.get<ApiSuccess<MarketSectorPerformance[]>>(
     `/api/performance/market${toQueryString(params)}`
   );
 

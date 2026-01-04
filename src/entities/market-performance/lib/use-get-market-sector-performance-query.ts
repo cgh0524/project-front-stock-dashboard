@@ -13,5 +13,6 @@ export function useGetMarketSectorPerformanceQuery(
   return useQuery({
     queryKey: [MARKET_SECTOR_PERFORMANCE_QUERY_KEY, date, exchange, sector],
     queryFn: () => getMarketSectorPerformance(params),
+    staleTime: 1000 * 60 * 10, // 10 minutes
   });
 }
