@@ -1,1 +1,1 @@
-export * from "./useSearchInput";
+export * from "./use-search-input";

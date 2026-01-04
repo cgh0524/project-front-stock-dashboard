@@ -1,6 +1,5 @@
 "server-only";
 
-import { marketPerformanceService } from "@/server/service/market-performance.service";
 import { quoteService } from "@/server/service/quote.service";
 
 import {
@@ -37,7 +36,7 @@ export async function KeyMarketIndices() {
   const results = await getKeyMarketIndices();
 
   return (
-    <div className="flex flex-col gap-2 w-full">
+    <div className="flex flex-col gap-4 w-full">
       <h2 className="text-2xl font-bold">Key Market Indices</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
         {results.map((result, index) => {
