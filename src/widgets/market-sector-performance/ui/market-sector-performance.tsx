@@ -4,11 +4,12 @@ import dayjs from "dayjs";
 import { useState } from "react";
 
 import { MarketExchangeSelect } from "@/entities/market-performance";
-import { useGetMarketSectorPerformanceQuery } from "@/entities/market-performance/lib";
 import type { Option } from "@/shared/lib/types";
 import { MARKET_EXCHANGE } from "@/shared/lib/types";
 import { createSelectOption } from "@/shared/lib/utils/createSelectOption";
 import { DateStepper } from "@/shared/ui/date-stepper";
+
+import { MarketSectorPerformanceList } from "./market-sector-performance-list";
 
 export function MarketSectorPerformance() {
   const TODAY = dayjs().format("YYYY-MM-DD");
@@ -20,11 +21,6 @@ export function MarketSectorPerformance() {
 
   /** 선택된 날짜, YYYY-MM-DD 형식 */
   const [date, setDate] = useState<string>(TODAY);
-
-  const { data } = useGetMarketSectorPerformanceQuery({
-    date: date,
-    exchange: exchange.value,
-  });
 
   return (
     <div className="flex flex-col gap-4 w-full">
@@ -43,6 +39,8 @@ export function MarketSectorPerformance() {
         selectedOption={exchange}
         onChangeOption={setExchange}
       />
+
+      <MarketSectorPerformanceList date={date} exchange={exchange.value} />
     </div>
   );
 }
