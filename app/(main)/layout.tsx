@@ -13,7 +13,7 @@ export default function MainLayout({
 
       <div className="flex min-h-0 flex-1 pt-[56px]">
         <MainNavigation />
-        <main className="flex justify-center mx-auto min-h-0 flex-1 p-3 overflow-auto">
+        <main className="flex justify-center mx-auto min-h-0 flex-1 overflow-auto">
           <Page>{children}</Page>
         </main>
       </div>
