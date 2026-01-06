@@ -5,7 +5,7 @@ export type LoadingSpinnerProps = {
 export function LoadingSpinner({ message }: LoadingSpinnerProps) {
   return (
     <div
-      className="flex flex-col items-center gap-2 text-text-secondary"
+      className="flex flex-col items-center gap-2 w-full h-full text-text-secondary"
       role="status"
       aria-live="polite"
     >
