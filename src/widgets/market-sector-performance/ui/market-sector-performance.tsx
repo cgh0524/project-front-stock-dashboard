@@ -15,7 +15,7 @@ export function MarketSectorPerformance() {
   const TODAY = dayjs().format("YYYY-MM-DD");
   const ONCE_A_WEEK_AGO = dayjs().subtract(7, "day").format("YYYY-MM-DD");
 
-  const [exchange, setExchange] = useState<Option>(
+  const [exchange, setExchange] = useState<Option>(() =>
     createSelectOption(MARKET_EXCHANGE.NASDAQ)
   );
 
