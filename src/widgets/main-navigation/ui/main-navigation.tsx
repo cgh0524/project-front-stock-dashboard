@@ -23,18 +23,22 @@ export function MainNavigation() {
   };
 
   return (
-    <nav className="h-full bg-surface-default max-w-3xs border-border-default border-solid border">
-      <ul className="flex flex-col items-center gap-1 p-1 ">
-        {items.map((item) => (
-          <MainNavigationItem
-            key={item.href}
-            href={item.href}
-            isActive={isActiveRoute(item.href)}
-          >
-            {item.label}
-          </MainNavigationItem>
-        ))}
-      </ul>
-    </nav>
+    <>
+      <nav className="fixed h-full bg-surface-default w-[190px] border-border-default border-solid border">
+        <ul className="flex flex-col items-center gap-1 p-1 ">
+          {items.map((item) => (
+            <MainNavigationItem
+              key={item.href}
+              href={item.href}
+              isActive={isActiveRoute(item.href)}
+            >
+              {item.label}
+            </MainNavigationItem>
+          ))}
+        </ul>
+      </nav>
+
+      <div className="block w-[190px]"></div>
+    </>
   );
 }

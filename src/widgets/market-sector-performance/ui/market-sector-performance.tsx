@@ -24,7 +24,7 @@ export function MarketSectorPerformance() {
 
   return (
     <div className="flex flex-col gap-4 w-full">
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center flex-wrap">
         <h2 className="text-2xl font-bold">Market Sector Performance</h2>
 
         <DateStepper

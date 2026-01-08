@@ -31,7 +31,7 @@ export default async function StockDashboard() {
   });
 
   return (
-    <div className="flex flex-col gap-12">
+    <div className="flex flex-col gap-14">
       <KeyMarketIndices />
 
       <HydrationBoundary state={dehydrate(queryClient)}>
