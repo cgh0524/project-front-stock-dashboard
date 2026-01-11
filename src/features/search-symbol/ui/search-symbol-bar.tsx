@@ -31,7 +31,7 @@ export function SearchSymbolBar() {
   };
 
   return (
-    <div ref={containerRef} className="relative max-w-md min-w-2xs ">
+    <div ref={containerRef} className="relative max-w-md w-full sm:min-w-2xs">
       <SearchInput value={searchKeyword} onChange={onChangeSearchKeyword} />
 
       {shouldShowSearchResult && (

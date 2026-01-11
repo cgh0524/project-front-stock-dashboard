@@ -12,7 +12,7 @@ export function MainNavigationItem({
   isActive = false,
 }: MainNavigationItemProps) {
   const defaultStyles =
-    "w-full text-text-primary text-left hover:bg-surface-alt rounded-md  font-bold cursor-pointer";
+    "w-full text-text-primary text-left hover:bg-surface-alt rounded-md font-bold cursor-pointer";
   const activeStyles = isActive ? "bg-surface-alt" : "";
 
   return (

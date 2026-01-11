@@ -20,8 +20,8 @@ export function MarketSectorPerformanceItem({
       : "text-negative";
   return (
     <Item>
-      <span className="text-xl font-bold">{data.sector}</span>
-      <span className={`text-lg font-bold ${textColorStyles}`}>
+      <span className="text-base font-bold">{data.sector}</span>
+      <span className={`text-sm font-bold ${textColorStyles}`}>
         {data.averageChange.toFixed(2)}%
       </span>
     </Item>

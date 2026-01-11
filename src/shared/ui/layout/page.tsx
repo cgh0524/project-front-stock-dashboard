@@ -3,5 +3,9 @@ export type PageProps = {
 };
 
 export function Page({ children }: PageProps) {
-  return <div className="max-w-6xl w-full h-full">{children}</div>;
+  return (
+    <main className="flex-1 overflow-auto w-full max-w-6xl  min-h-0 p-5 mx-auto">
+      {children}
+    </main>
+  );
 }
