@@ -19,7 +19,7 @@ export class FmpMarketLeaderProvider implements MarketLeaderProvider {
   );
 
   async getBiggestGainers(): Promise<MarketLeaderItem[]> {
-    const url = `${this.apiConfig.baseUrl}/stock/biggest-gainers`;
+    const url = `${this.apiConfig.baseUrl}/biggest-gainers`;
     const data = await fetcher<FmpMarketLeaderItemDTO[]>(url, {
       provider: this.name,
     });
@@ -38,7 +38,7 @@ export class FmpMarketLeaderProvider implements MarketLeaderProvider {
   }
 
   async getBiggestLosers(): Promise<MarketLeaderItem[]> {
-    const url = `${this.apiConfig.baseUrl}/stock/biggest-losers`;
+    const url = `${this.apiConfig.baseUrl}/biggest-losers`;
     const data = await fetcher<FmpMarketLeaderItemDTO[]>(url, {
       provider: this.name,
     });
@@ -56,7 +56,7 @@ export class FmpMarketLeaderProvider implements MarketLeaderProvider {
     return dtos.map(toMarketLeaderItem);
   }
   async getMostActives(): Promise<MarketLeaderItem[]> {
-    const url = `${this.apiConfig.baseUrl}/stock/most-actives`;
+    const url = `${this.apiConfig.baseUrl}/most-actives`;
     const data = await fetcher<FmpMarketLeaderItemDTO[]>(url, {
       provider: this.name,
     });
