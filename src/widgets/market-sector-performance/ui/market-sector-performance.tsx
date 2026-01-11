@@ -6,7 +6,7 @@ import { useState } from "react";
 import { MarketExchangeSelect } from "@/entities/market-performance";
 import type { Option } from "@/shared/lib/types";
 import { MARKET_EXCHANGE } from "@/shared/lib/types";
-import { createSelectOption } from "@/shared/lib/utils/createSelectOption";
+import { createOption } from "@/shared/lib/utils/create-options";
 import { DateStepper } from "@/shared/ui/date-stepper";
 
 import { MarketSectorPerformanceList } from "./market-sector-performance-list";
@@ -16,7 +16,7 @@ export function MarketSectorPerformance() {
   const ONCE_A_WEEK_AGO = dayjs().subtract(7, "day").format("YYYY-MM-DD");
 
   const [exchange, setExchange] = useState<Option>(() =>
-    createSelectOption(MARKET_EXCHANGE.NASDAQ)
+    createOption(MARKET_EXCHANGE.NASDAQ)
   );
 
   /** 선택된 날짜, YYYY-MM-DD 형식 */

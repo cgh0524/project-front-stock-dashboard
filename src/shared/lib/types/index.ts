@@ -16,3 +16,16 @@ export const MARKET_EXCHANGE = {
 
 export type MarketExchange =
   (typeof MARKET_EXCHANGE)[keyof typeof MARKET_EXCHANGE];
+
+/** market leaders tabs */
+export const MARKET_LEADERS_TABS = {
+  /** 최대 상승주 */
+  BIGGEST_GAINERS: "Biggest Gainers",
+  /** 최대 하락주 */
+  BIGGEST_LOSERS: "Biggest Losers",
+  /** 최대 거래량 */
+  MOST_ACTIVES: "Most Actives",
+} as const;
+
+export type MarketLeadersTab =
+  (typeof MARKET_LEADERS_TABS)[keyof typeof MARKET_LEADERS_TABS];

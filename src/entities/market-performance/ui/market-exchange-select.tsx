@@ -1,6 +1,7 @@
 "use client";
 
 import { MARKET_EXCHANGE, type Option } from "@/shared/lib/types";
+import { createOptions } from "@/shared/lib/utils/create-options";
 import { Select } from "@/shared/ui/select";
 
 export type MarketExchangeSelectProps = {
@@ -8,11 +9,7 @@ export type MarketExchangeSelectProps = {
   onChangeOption: (option: Option) => void;
 };
 
-const MARKET_EXCHANGE_OPTIONS = [
-  { label: MARKET_EXCHANGE.NASDAQ, value: MARKET_EXCHANGE.NASDAQ },
-  { label: MARKET_EXCHANGE.NYSE, value: MARKET_EXCHANGE.NYSE },
-  { label: MARKET_EXCHANGE.AMEX, value: MARKET_EXCHANGE.AMEX },
-];
+const MARKET_EXCHANGE_OPTIONS = createOptions(MARKET_EXCHANGE);
 
 export function MarketExchangeSelect({
   selectedOption,
