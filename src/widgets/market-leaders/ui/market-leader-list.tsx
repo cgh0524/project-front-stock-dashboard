@@ -61,7 +61,7 @@ export const MarketLeaderList = ({
       <ul className="flex flex-col py-2 px-2 bg-surface-default rounded-md max-h-[500px] overflow-y-auto">
         {data.map((item: MarketLeaderItemEntity, index: number) => (
           <li key={item.symbol}>
-            <Link href={`/stock-dashboard/${item.symbol}`} title={item.name}>
+            <Link href={`/stock-dashboard/${item.symbol}?name=${item.name}`} title={item.name}>
               <MarketLeaderItem rank={index + 1} data={item} />
             </Link>
           </li>

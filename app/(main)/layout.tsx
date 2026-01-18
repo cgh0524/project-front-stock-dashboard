@@ -12,7 +12,7 @@ export default function MainLayout({
 
       <main className="flex-1 overflow-auto w-full min-h-0 mx-auto">
         <MainHeader />
-        <div className="p-5">{children}</div>
+        <div className="max-w-6xl mx-auto p-5">{children}</div>
       </main>
     </div>
   );
