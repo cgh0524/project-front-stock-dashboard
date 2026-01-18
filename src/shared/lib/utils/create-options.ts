@@ -7,6 +7,11 @@ export function createOption(value: string, label?: string): Option {
   };
 }
 
-export function createOptions(obj: Record<string, string>): Option[] {
-  return Object.entries(obj).map(([key, value]) => createOption(key, value));
+export function createOptions(
+  keys: Record<string, string>,
+  labels?: Record<string, string>
+): Option[] {
+  return Object.entries(keys).map(([key]) =>
+    createOption(key, labels?.[key] ?? key)
+  );
 }

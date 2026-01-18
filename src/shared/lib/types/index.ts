@@ -17,15 +17,27 @@ export const MARKET_EXCHANGE = {
 export type MarketExchange =
   (typeof MARKET_EXCHANGE)[keyof typeof MARKET_EXCHANGE];
 
-/** market leaders tabs */
-export const MARKET_LEADERS_TABS = {
+/**
+ * market leaders option key
+ */
+export const MARKET_LEADERS_OPTION_KEY = {
   /** 최대 상승주 */
-  BIGGEST_GAINERS: "Biggest Gainers",
+  BIGGEST_GAINERS: "BIGGEST_GAINERS",
   /** 최대 하락주 */
-  BIGGEST_LOSERS: "Biggest Losers",
+  BIGGEST_LOSERS: "BIGGEST_LOSERS",
   /** 최대 거래량 */
-  MOST_ACTIVES: "Most Actives",
+  MOST_ACTIVES: "MOST_ACTIVES",
 } as const;
 
-export type MarketLeadersTab =
-  (typeof MARKET_LEADERS_TABS)[keyof typeof MARKET_LEADERS_TABS];
+export type MarketLeadersOptionKey =
+  (typeof MARKET_LEADERS_OPTION_KEY)[keyof typeof MARKET_LEADERS_OPTION_KEY];
+
+/** market leaders theme label */
+export const MARKET_LEADERS_OPTION_LABEL = {
+  [MARKET_LEADERS_OPTION_KEY.BIGGEST_GAINERS]: "Biggest Gainers",
+  [MARKET_LEADERS_OPTION_KEY.BIGGEST_LOSERS]: "Biggest Losers",
+  [MARKET_LEADERS_OPTION_KEY.MOST_ACTIVES]: "Most Actives",
+} as const;
+
+export type MarketLeadersOptionLabel =
+  (typeof MARKET_LEADERS_OPTION_LABEL)[keyof typeof MARKET_LEADERS_OPTION_LABEL];

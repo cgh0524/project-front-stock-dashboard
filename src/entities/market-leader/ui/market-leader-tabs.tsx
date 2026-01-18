@@ -1,5 +1,8 @@
 import type { Option } from "@/shared/lib/types";
-import { MARKET_LEADERS_TABS } from "@/shared/lib/types";
+import {
+  MARKET_LEADERS_OPTION_KEY,
+  MARKET_LEADERS_OPTION_LABEL,
+} from "@/shared/lib/types";
 import { createOptions } from "@/shared/lib/utils/create-options";
 import { Tabs } from "@/shared/ui/tabs";
 
@@ -12,7 +15,10 @@ export function MarketLeadersTabs({
   selectedTab,
   onChangeTab,
 }: MarketLeadersTabsProps) {
-  const MARKET_LEADERS_TABS_OPTIONS = createOptions(MARKET_LEADERS_TABS);
+  const MARKET_LEADERS_TABS_OPTIONS = createOptions(
+    MARKET_LEADERS_OPTION_KEY,
+    MARKET_LEADERS_OPTION_LABEL
+  );
 
   return (
     <Tabs
