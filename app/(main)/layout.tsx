@@ -1,4 +1,3 @@
-import { Page } from "@/shared/ui/layout";
 import { MainHeader } from "@/widgets/main-header";
 import { MainNavigation } from "@/widgets/main-navigation";
 

@@ -1,5 +1,4 @@
 import type { Quote } from "@/entities/quote";
-import { Item } from "@/shared/ui/layout";
 
 export type KeyMarketIndiceItemProps = { data: Quote };
 
@@ -16,7 +15,7 @@ export function KeyMarketIndiceItem({ data }: KeyMarketIndiceItemProps) {
       : "text-negative";
 
   return (
-    <Item>
+    <div className="flex flex-col justify-between gap-2 min-w-12 min-h-[100px] p-4 bg-surface-default rounded-lg border border-border-default shadow-sm">
       <span className="text-xl font-bold">{data.symbol}</span>
       <span className={`text-lg font-bold ${textColorStyles}`}>
         {data.currentPrice.toLocaleString("en-US", {
@@ -27,7 +26,7 @@ export function KeyMarketIndiceItem({ data }: KeyMarketIndiceItemProps) {
       <span className={textColorStyles}>
         {data.changePercentage?.toFixed(2)}%
       </span>
-    </Item>
+    </div>
   );
 }
 
@@ -36,5 +35,9 @@ export type KeyMarketIndiceFallbackItemProps = { message?: string };
 export function KeyMarketIndiceFallbackItem({
   message = "데이터를 불러오지 못했습니다.",
 }: KeyMarketIndiceFallbackItemProps) {
-  return <Item>{message}</Item>;
+  return (
+    <div className="flex flex-col justify-between gap-2 min-w-12 min-h-[100px] p-4 bg-surface-default rounded-lg border border-border-default shadow-sm">
+      {message}
+    </div>
+  );
 }

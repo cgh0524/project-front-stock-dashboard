@@ -1,5 +1,4 @@
 import type { MarketSectorPerformance } from "@/entities/market-performance";
-import { Item } from "@/shared/ui/layout";
 
 export type MarketSectorPerformanceItemProps = {
   data: MarketSectorPerformance;
@@ -19,11 +18,11 @@ export function MarketSectorPerformanceItem({
       ? "text-positive"
       : "text-negative";
   return (
-    <Item>
+    <div className="flex flex-col justify-between gap-2 min-w-12 min-h-[100px] p-4 bg-surface-default rounded-lg border border-border-default shadow-sm">
       <span className="text-base font-bold">{data.sector}</span>
       <span className={`text-sm font-bold ${textColorStyles}`}>
         {data.averageChange.toFixed(2)}%
       </span>
-    </Item>
+    </div>
   );
 }
