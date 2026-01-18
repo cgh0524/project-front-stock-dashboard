@@ -36,7 +36,13 @@ const getMarketSectorPerformance = async (date: string, exchange: string) => {
 };
 
 export default async function StockDashboard() {
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: 1000 * 60 * 5,
+      },
+    },
+  });
 
   const TODAY = dayjs().format("YYYY-MM-DD");
 
