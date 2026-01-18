@@ -3,7 +3,7 @@ import { useQueries } from "@tanstack/react-query";
 import type { Quote } from "../model";
 import { getQuote } from "./get-quote";
 
-export const QUOTES_QUERY_KEY = "quote";
+export const QUOTES_QUERY_KEY = "quotes";
 
 export const useGetQuotesQuery = ({
   queries,
