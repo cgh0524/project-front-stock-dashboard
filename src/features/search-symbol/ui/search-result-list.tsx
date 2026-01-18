@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import type { Symbol } from "@/entities/symbol";
 import { EmptyContent } from "@/shared/ui/fallback/empty-content";
 import { LoadingSpinner } from "@/shared/ui/fallback/loading-spinner";
@@ -49,7 +51,9 @@ export function SearchResultList({
       <ul className="list-none">
         {symbols.map((item, index) => (
           <li key={`${item.displaySymbol}-${index}`}>
-            <SearchResultItem symbol={item} />
+            <Link href={`/stock-dashboard/${item.symbol}?name=${item.description}`}>
+              <SearchResultItem symbol={item} />
+            </Link>
           </li>
         ))}
       </ul>
