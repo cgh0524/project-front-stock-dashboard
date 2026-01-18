@@ -23,7 +23,7 @@ export function MainNavigation() {
   };
 
   return (
-    <nav className="min-w-[190px] w-[190px] h-full bg-surface-default">
+    <nav className="min-w-[190px] w-[190px] bg-surface-default">
       <div className="p-2 text-2xl font-bold text-center italic text-accent-primary">
         Market Watch
       </div>

@@ -8,13 +8,13 @@ export default function MainLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen min-h-screen">
       <MainNavigation />
 
-      <div className="flex-1 flex flex-col">
+      <main className="flex-1 overflow-auto w-full min-h-0 mx-auto">
         <MainHeader />
-        <Page>{children}</Page>
-      </div>
+        <div className="p-5">{children}</div>
+      </main>
     </div>
   );
 }
