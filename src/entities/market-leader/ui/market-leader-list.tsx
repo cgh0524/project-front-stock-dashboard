@@ -1,43 +1,14 @@
 import Link from "next/link";
 
 import type { MarketLeaderItem as MarketLeaderItemEntity } from "@/entities/market-leader";
-import { ErrorMessage, LoadingSpinner } from "@/shared/ui/fallback";
 
 import { MarketLeaderItem } from "./market-leader-item";
 
 type MarketLeaderListProps = {
   data: MarketLeaderItemEntity[];
-  isLoading?: boolean;
-  isError?: boolean;
-  loadingMessage?: string;
-  errorMessage?: string;
-  onRetry?: () => void;
 };
 
-export const MarketLeaderList = ({
-  data,
-  isLoading,
-  isError,
-  loadingMessage = "Loading market leaders...",
-  errorMessage = "Failed to load market leaders.",
-  onRetry,
-}: MarketLeaderListProps) => {
-  if (isLoading) {
-    return (
-      <div className="flex items-center justify-center w-full min-h-[500px] py-6 bg-surface-default rounded-md">
-        <LoadingSpinner message={loadingMessage} />
-      </div>
-    );
-  }
-
-  if (isError) {
-    return (
-      <div className="w-full min-h-44 py-6 bg-surface-default rounded-md">
-        <ErrorMessage message={errorMessage} retry={onRetry} />
-      </div>
-    );
-  }
-
+export const MarketLeaderList = ({ data }: MarketLeaderListProps) => {
   return (
     <div className="max-w-full">
       {/* Table Header */}
