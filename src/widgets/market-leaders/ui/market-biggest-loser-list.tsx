@@ -1,6 +1,5 @@
+import { MarketLeaderList } from "@/entities/market-leader";
 import { useGetMarketBiggestLosersQuery } from "@/entities/market-leader/lib";
-
-import { MarketLeaderList } from "./market-leader-list";
 
 export const MarketBiggestLoserList = () => {
   const { data, isLoading, isError, error, refetch } =

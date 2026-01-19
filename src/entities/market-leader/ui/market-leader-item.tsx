@@ -13,8 +13,8 @@ export const MarketLeaderItem = ({ rank, data }: MarketLeaderItemProps) => {
   const textColorStyles = isPositive
     ? "text-positive"
     : isNegative
-    ? "text-negative"
-    : "text-text-primary";
+      ? "text-negative"
+      : "text-text-primary";
 
   return (
     <div

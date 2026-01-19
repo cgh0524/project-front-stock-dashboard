@@ -1,8 +1,7 @@
 "use client";
 
+import { MarketLeaderList } from "@/entities/market-leader";
 import { useGetMarketBiggestGainersQuery } from "@/entities/market-leader/lib";
-
-import { MarketLeaderList } from "./market-leader-list";
 
 export const MarketBiggestGainerList = () => {
   const { data, isLoading, isError, error, refetch } =
