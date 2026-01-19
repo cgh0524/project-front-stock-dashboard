@@ -11,9 +11,11 @@ import {
   MARKET_MOST_ACTIVES_QUERY_KEY,
 } from "@/entities/market-leader/lib";
 import { MARKET_SECTOR_PERFORMANCE_QUERY_KEY } from "@/entities/market-performance/lib";
+import { KEY_MARKET_INDICES_QUERY_KEY } from "@/entities/quote";
 import { marketPerformanceService } from "@/server/service/market-performance.service";
 import { MARKET_EXCHANGE } from "@/shared/lib/types";
 import { KeyMarketIndices } from "@/widgets/key-market-indices";
+import { getKeyMarketIndices } from "@/widgets/key-market-indices/lib";
 import { MarketLeaders } from "@/widgets/market-leaders";
 import {
   getMarketBiggestGainers,
@@ -47,6 +49,12 @@ export default async function StockDashboard() {
   const TODAY = dayjs().format("YYYY-MM-DD");
 
   await Promise.all([
+    // 주요 시장 지수 조회
+    queryClient.prefetchQuery({
+      queryKey: [KEY_MARKET_INDICES_QUERY_KEY],
+      queryFn: async () => await getKeyMarketIndices(),
+    }),
+
     // 시장 성적 조회
     queryClient.prefetchQuery({
       queryKey: [
@@ -56,33 +64,32 @@ export default async function StockDashboard() {
         null,
       ],
       queryFn: async () =>
-        getMarketSectorPerformance(TODAY, MARKET_EXCHANGE.NASDAQ),
+        await getMarketSectorPerformance(TODAY, MARKET_EXCHANGE.NASDAQ),
     }),
 
     // 가장 많이 상승한 종목 조회
     queryClient.prefetchQuery({
       queryKey: [MARKET_BIGGEST_GAINERS_QUERY_KEY],
-      queryFn: async () => getMarketBiggestGainers(),
+      queryFn: async () => await getMarketBiggestGainers(),
     }),
 
     // 가장 많이 하락한 종목 조회
     queryClient.prefetchQuery({
       queryKey: [MARKET_BIGGEST_LOSERS_QUERY_KEY],
-      queryFn: async () => getMarketBiggestLosers(),
+      queryFn: async () => await getMarketBiggestLosers(),
     }),
 
     // 가장 거래가 활발한 종목 조회
     queryClient.prefetchQuery({
       queryKey: [MARKET_MOST_ACTIVES_QUERY_KEY],
-      queryFn: async () => getMarketMostActives(),
+      queryFn: async () => await getMarketMostActives(),
     }),
   ]);
 
   return (
     <div className="flex flex-col gap-14">
-      <KeyMarketIndices />
-
       <HydrationBoundary state={dehydrate(queryClient)}>
+        <KeyMarketIndices />
         <MarketSectorPerformance />
         <MarketLeaders />
       </HydrationBoundary>

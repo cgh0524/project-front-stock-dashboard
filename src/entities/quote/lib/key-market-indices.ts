@@ -1,0 +1,1 @@
+export const KEY_MARKET_INDICES = ["QQQ", "SPY", "DIA", "GLD"] as const;
