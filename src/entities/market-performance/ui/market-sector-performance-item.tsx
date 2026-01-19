@@ -1,4 +1,4 @@
-import type { MarketSectorPerformance } from "@/entities/market-performance";
+import type { MarketSectorPerformance } from "../model";
 
 export type MarketSectorPerformanceItemProps = {
   data: MarketSectorPerformance;
@@ -15,8 +15,8 @@ export function MarketSectorPerformanceItem({
     changePercentage === ZERO_CHANGE_PERCENTAGE
       ? "text-text-primary"
       : changePercentage > ZERO_CHANGE_PERCENTAGE
-      ? "text-positive"
-      : "text-negative";
+        ? "text-positive"
+        : "text-negative";
   return (
     <div className="flex flex-col justify-between gap-2 min-w-12 min-h-[100px] p-4 bg-surface-default rounded-lg border border-border-default shadow-sm">
       <span className="text-base font-bold">{data.sector}</span>

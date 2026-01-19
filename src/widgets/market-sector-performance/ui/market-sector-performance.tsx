@@ -9,7 +9,7 @@ import { MARKET_EXCHANGE } from "@/shared/lib/types";
 import { createOption } from "@/shared/lib/utils/create-options";
 import { DateStepper } from "@/shared/ui/date-stepper";
 
-import { MarketSectorPerformanceList } from "./market-sector-performance-list";
+import { MarketSectorPerformanceListContainer } from "./market-sector-performance-list-container";
 
 export function MarketSectorPerformance() {
   const TODAY = dayjs().format("YYYY-MM-DD");
@@ -40,7 +40,10 @@ export function MarketSectorPerformance() {
         onChangeOption={setExchange}
       />
 
-      <MarketSectorPerformanceList date={date} exchange={exchange.value} />
+      <MarketSectorPerformanceListContainer
+        date={date}
+        exchange={exchange.value}
+      />
     </div>
   );
 }

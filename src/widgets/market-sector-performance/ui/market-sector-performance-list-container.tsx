@@ -1,23 +1,24 @@
-import { useGetMarketSectorPerformanceQuery } from "@/entities/market-performance";
+import {
+  MarketSectorPerformanceList,
+  useGetMarketSectorPerformanceQuery,
+} from "@/entities/market-performance";
 import {
   EmptyContent,
   ErrorMessage,
   LoadingSpinner,
 } from "@/shared/ui/fallback";
 
-import { MarketSectorPerformanceItem } from "./market-sector-performance-item";
-
-export type MarketSectorPerformanceListProps = {
+export type MarketSectorPerformanceListContainerProps = {
   /** 날짜 (YYYY-MM-DD) */
   date: string;
   /** 거래소 (NASDAQ, NYSE, AMEX) */
   exchange: string;
 };
 
-export function MarketSectorPerformanceList({
+export function MarketSectorPerformanceListContainer({
   date,
   exchange,
-}: MarketSectorPerformanceListProps) {
+}: MarketSectorPerformanceListContainerProps) {
   const {
     data: performances,
     error: performancesError,
@@ -44,7 +45,7 @@ export function MarketSectorPerformanceList({
     );
   }
 
-  if (performances?.length === 0) {
+  if (!performances || performances?.length === 0) {
     return (
       <div className="flex items-center justify-center w-full min-h-44 py-6 bg-surface-default rounded-md">
         <EmptyContent
@@ -55,14 +56,5 @@ export function MarketSectorPerformanceList({
     );
   }
 
-  return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-      {performances?.map((performance) => (
-        <MarketSectorPerformanceItem
-          key={performance.sector}
-          data={performance}
-        />
-      ))}
-    </div>
-  );
+  return <MarketSectorPerformanceList data={performances} />;
 }
