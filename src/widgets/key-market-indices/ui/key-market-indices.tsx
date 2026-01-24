@@ -5,6 +5,7 @@ import {
   useGetKeyMarketIndicesQuery,
 } from "@/entities/quote";
 import { EmptyContent, ErrorMessage, LoadingSpinner } from "@/shared/ui/fallback";
+import { Section, Tile } from "@/shared/ui/layout";
 
 export function KeyMarketIndices() {
   const { data, isLoading, error, refetch } =
@@ -12,23 +13,19 @@ export function KeyMarketIndices() {
 
   const items = data?.map((result, index) =>
     result.data ? (
-      <KeyMarketIndiceItem
-        key={result.data.symbol}
-        data={result.data}
-      />
+      <KeyMarketIndiceItem key={result.data.symbol} data={result.data} />
     ) : (
-      <div
+      <Tile
         key={`key-market-indice-${index}`}
-        className="flex flex-col justify-between gap-2 min-w-12 min-h-[100px] p-4 bg-surface-default rounded-lg border border-border-default shadow-sm"
+        className="flex flex-col justify-between gap-2 min-w-12 min-h-[100px] p-4 border border-border-default"
       >
         {result.errorMessage ?? "데이터를 불러오지 못했습니다."}
-      </div>
+      </Tile>
     )
   ) ?? [];
 
   return (
-    <div className="flex flex-col gap-4 w-full">
-      <h2 className="text-2xl font-bold">Key Market Indices</h2>
+    <Section title="Key Market Indices">
       {isLoading && (
         <div className="flex items-center justify-center w-full min-h-[120px] py-6 bg-surface-default rounded-lg">
           <LoadingSpinner message="Loading key market indices..." />
@@ -52,6 +49,6 @@ export function KeyMarketIndices() {
           {items}
         </div>
       )}
-    </div>
+    </Section>
   );
 }

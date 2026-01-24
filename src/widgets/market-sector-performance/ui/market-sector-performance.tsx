@@ -8,6 +8,7 @@ import type { Option } from "@/shared/lib/types";
 import { MARKET_EXCHANGE } from "@/shared/lib/types";
 import { createOption } from "@/shared/lib/utils/create-options";
 import { DateStepper } from "@/shared/ui/date-stepper";
+import { Section } from "@/shared/ui/layout";
 
 import { MarketSectorPerformanceListContainer } from "./market-sector-performance-list-container";
 
@@ -23,17 +24,17 @@ export function MarketSectorPerformance() {
   const [date, setDate] = useState<string>(TODAY);
 
   return (
-    <div className="flex flex-col gap-4 w-full">
-      <div className="flex justify-between items-center flex-wrap">
-        <h2 className="text-2xl font-bold">Market Sector Performance</h2>
-
+    <Section
+      title="Market Sector Performance"
+      actions={
         <DateStepper
           date={date}
           min={ONCE_A_WEEK_AGO}
           max={TODAY}
           onChangeDate={setDate}
         />
-      </div>
+      }
+    >
 
       <MarketExchangeSelect
         selectedOption={exchange}
@@ -44,6 +45,6 @@ export function MarketSectorPerformance() {
         date={date}
         exchange={exchange.value}
       />
-    </div>
+    </Section>
   );
 }

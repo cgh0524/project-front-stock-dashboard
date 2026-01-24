@@ -10,6 +10,7 @@ import {
   type Option,
 } from "@/shared/lib/types";
 import { createOption } from "@/shared/lib/utils/create-options";
+import { Section } from "@/shared/ui/layout";
 
 import { MarketBiggestGainerList } from "./market-biggest-gainer-list";
 import { MarketBiggestLoserList } from "./market-biggest-loser-list";
@@ -33,14 +34,13 @@ export const MarketLeaders = () => {
   };
 
   return (
-    <div className="flex flex-col gap-4">
-      <h2 className="text-2xl font-bold">Market Leaders</h2>
+    <Section title="Market Leaders">
       <MarketLeadersTabs
         selectedTab={selectedTab}
         onChangeTab={setSelectedTab}
       />
 
       {MARKET_LEADERS_LIST_MAP[selectedTab.value as MarketLeadersOptionKey]}
-    </div>
+    </Section>
   );
 };

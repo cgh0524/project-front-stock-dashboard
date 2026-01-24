@@ -1,3 +1,5 @@
+import { Tile } from "@/shared/ui/layout";
+
 import type { MarketSectorPerformance } from "../model";
 
 export type MarketSectorPerformanceItemProps = {
@@ -18,11 +20,11 @@ export function MarketSectorPerformanceItem({
         ? "text-positive"
         : "text-negative";
   return (
-    <div className="flex flex-col justify-between gap-2 min-w-12 min-h-[100px] p-4 bg-surface-default rounded-lg border border-border-default shadow-sm">
+    <Tile className="flex flex-col justify-between gap-2 min-w-12 min-h-[100px] p-4 border border-border-default">
       <span className="text-base font-bold">{data.sector}</span>
       <span className={`text-sm font-bold ${textColorStyles}`}>
         {data.averageChange.toFixed(2)}%
       </span>
-    </div>
+    </Tile>
   );
 }

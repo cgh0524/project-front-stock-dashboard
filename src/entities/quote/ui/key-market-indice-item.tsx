@@ -1,3 +1,5 @@
+import { Tile } from "@/shared/ui/layout";
+
 import type { Quote } from "../model";
 
 export type KeyMarketIndiceItemProps = { data: Quote };
@@ -11,11 +13,11 @@ export function KeyMarketIndiceItem({ data }: KeyMarketIndiceItemProps) {
     changePercentage === ZERO_CHANGE_PERCENTAGE
       ? "text-text-primary"
       : changePercentage > ZERO_CHANGE_PERCENTAGE
-      ? "text-positive"
-      : "text-negative";
+        ? "text-positive"
+        : "text-negative";
 
   return (
-    <div className="flex flex-col justify-between gap-2 min-w-12 min-h-[100px] p-4 bg-surface-default rounded-lg border border-border-default shadow-sm">
+    <Tile className="flex flex-col justify-between gap-2 min-w-12 min-h-[100px] p-4 border border-border-default">
       <span className="text-xl font-bold">{data.symbol}</span>
       <span className={`text-lg font-bold ${textColorStyles}`}>
         {data.currentPrice.toLocaleString("en-US", {
@@ -26,6 +28,6 @@ export function KeyMarketIndiceItem({ data }: KeyMarketIndiceItemProps) {
       <span className={textColorStyles}>
         {data.changePercentage?.toFixed(2)}%
       </span>
-    </div>
+    </Tile>
   );
 }
