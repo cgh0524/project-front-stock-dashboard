@@ -15,6 +15,15 @@ export type FmpMarketSectorPerformanceDTO = z.infer<
   typeof fmpMarketSectorPerformanceSchema
 >;
 
+export type FmpMarketSectorPerformanceQuery = {
+  /** 날짜 - ex) 2025-12-29 */
+  date: string;
+  /** 섹터 - ex) Technology */
+  sector?: string;
+  /** 거래소 - ex) NASDAQ */
+  exchange?: string;
+};
+
 export const fmpIndustryPerformanceSchema = z.object({
   /** 날짜 - ex) 2025-12-29 */
   date: z.string(),
@@ -29,3 +38,12 @@ export const fmpIndustryPerformanceSchema = z.object({
 export type FmpIndustryPerformanceDTO = z.infer<
   typeof fmpIndustryPerformanceSchema
 >;
+
+export type FmpIndustryPerformanceQuery = {
+  /** 날짜 - ex) 2025-12-29 */
+  date: string;
+  /** 산업 - ex) Technology */
+  industry?: string;
+  /** 거래소 - ex) NASDAQ */
+  exchange?: string;
+};

@@ -12,6 +12,8 @@ import type { ApiProviderConfig } from "../provider.config";
 import { API_PROVIDER, getApiProviderConfig } from "../provider.config";
 import { toQueryString } from "../query-string";
 import {
+  toFmpIndustryPerformanceQuery,
+  toFmpMarketSectorPerformanceQuery,
   toIndustryPerformance,
   toMarketSectorPerformance,
 } from "./fmp-market-performance.adapter";
@@ -34,9 +36,10 @@ export class FmpMarketPerformanceProvider implements MarketPerformanceProvider {
   async getMarketSectorPerformance(
     query: MarketSectorPerformanceQuery
   ): Promise<MarketSectorPerformance[]> {
+    const providerQuery = toFmpMarketSectorPerformanceQuery(query);
     const url = `${
       this.apiConfig.baseUrl
-    }/sector-performance-snapshot${toQueryString(query)}`;
+    }/sector-performance-snapshot${toQueryString(providerQuery)}`;
     const data = await fetcher<FmpMarketSectorPerformanceDTO[]>(url, {
       provider: this.name,
     });
@@ -57,9 +60,10 @@ export class FmpMarketPerformanceProvider implements MarketPerformanceProvider {
   async getIndustryPerformance(
     query: IndustryPerformanceQuery
   ): Promise<IndustryPerformance[]> {
+    const providerQuery = toFmpIndustryPerformanceQuery(query);
     const url = `${
       this.apiConfig.baseUrl
-    }/industry-performance-snapshot${toQueryString(query)}`;
+    }/industry-performance-snapshot${toQueryString(providerQuery)}`;
     const data = await fetcher<FmpIndustryPerformanceDTO[]>(url, {
       provider: this.name,
     });
