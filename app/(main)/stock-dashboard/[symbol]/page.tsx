@@ -16,7 +16,7 @@ const getQuote = async (symbol: string) => {
 
 export default async function StockDetailPage({ params }: { params: { symbol: string } }) {
   const queryClient = new QueryClient();
-  const { symbol } = params;
+  const { symbol } = await params;
 
   await queryClient.prefetchQuery({
     queryKey: [QUOTE_QUERY_KEY, symbol],
