@@ -26,6 +26,10 @@ export const API_PROVIDER_CONFIG = {
     baseUrl: process.env.FINNHUB_API_BASE_URL!,
     apiKey: process.env.FINNHUB_API_KEY!,
   },
+  YAHOO: {
+    baseUrl: "",
+    apiKey: "",
+  },
   NONE: {
     baseUrl: "",
     apiKey: "",

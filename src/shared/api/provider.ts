@@ -6,6 +6,8 @@ export const API_PROVIDER = {
   ALPHAVANTAGE: "ALPHAVANTAGE",
   /** Finnhub - 30 Calls / Seconds & 60 Calls / Minute */
   FINNHUB: "FINNHUB",
+  /** Yahoo Finance */
+  YAHOO: "YAHOO",
   /** 사용하지 않는 공급자 */
   NONE: "NONE",
 } as const;
