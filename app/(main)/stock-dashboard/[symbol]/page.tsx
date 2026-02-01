@@ -2,6 +2,7 @@ import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query
 
 import { QUOTE_QUERY_KEY } from "@/entities/quote/lib/use-get-quote-query";
 import { quoteService } from "@/server/service/quote.service";
+import { StockChartWidget } from "@/widgets/stock-chart";
 import { SymbolQuoteSection } from "@/widgets/symbol-quote/ui/symbol-quote-section";
 
 const getQuote = async (symbol: string) => {
@@ -26,7 +27,10 @@ export default async function StockDetailPage({ params }: { params: { symbol: st
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <SymbolQuoteSection />
+      <div className="flex flex-col gap-6">
+        <SymbolQuoteSection />
+        <StockChartWidget />
+      </div>
     </HydrationBoundary>
   );
 }
