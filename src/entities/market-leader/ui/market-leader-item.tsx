@@ -1,8 +1,8 @@
-import type { MarketLeaderItem as MarketLeaderItemEntity } from "@/entities/market-leader";
+import type { MarketLeaderItemModel } from "@/entities/market-leader";
 import { formatDollarAmount } from "@/shared/lib/utils/format-dollar-amount";
 
 export type MarketLeaderItemProps = {
-  data: MarketLeaderItemEntity;
+  data: MarketLeaderItemModel;
   rank: number;
 };
 

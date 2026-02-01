@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import type { MarketLeaderItem as MarketLeaderItemEntity } from "@/entities/market-leader";
+import type { MarketLeaderItemModel as MarketLeaderItemEntity } from "@/entities/market-leader";
 
 import { MarketLeaderItem } from "./market-leader-item";
 

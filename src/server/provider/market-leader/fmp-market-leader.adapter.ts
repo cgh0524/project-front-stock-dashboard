@@ -1,10 +1,10 @@
-import type { MarketLeaderItem } from "@/entities/market-leader";
+import type { MarketLeaderItemModel } from "@/entities/market-leader";
 
 import type { FmpMarketLeaderItemDTO } from "./fmp-market-leader.schema";
 
 export function toMarketLeaderItem(
   payload: FmpMarketLeaderItemDTO
-): MarketLeaderItem {
+): MarketLeaderItemModel {
   return {
     symbol: payload.symbol,
     price: payload.price,

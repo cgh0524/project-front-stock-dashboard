@@ -85,6 +85,7 @@ const AUTHORIZATION_HANDLERS: Record<ApiProvider, AuthorizationHandler> = {
   [API_PROVIDER.FINNHUB]: authorizeWithHeader("X-Finnhub-Token"),
   [API_PROVIDER.ALPHAVANTAGE]: authorizeWithQuery("apikey"),
   [API_PROVIDER.FMP]: authorizeWithQuery("apikey"),
+  [API_PROVIDER.YAHOO]: passthroughAuthorization,
 };
 
 /** 공급자 설정에 따라 인증 부여 */

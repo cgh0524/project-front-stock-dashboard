@@ -1,4 +1,4 @@
-import type { MarketLeaderItem } from "@/entities/market-leader";
+import type { MarketLeaderItemModel } from "@/entities/market-leader";
 import { ERROR_SOURCE } from "@/server/errors/base-error";
 import { fetcher } from "@/server/http/http-client";
 import { parseOrFail } from "@/server/validation/zod-validate";
@@ -18,7 +18,7 @@ export class FmpMarketLeaderProvider implements MarketLeaderProvider {
     this.name
   );
 
-  async getBiggestGainers(): Promise<MarketLeaderItem[]> {
+  async getBiggestGainers(): Promise<MarketLeaderItemModel[]> {
     const url = `${this.apiConfig.baseUrl}/biggest-gainers`;
     const data = await fetcher<FmpMarketLeaderItemDTO[]>(url, {
       provider: this.name,
@@ -37,7 +37,7 @@ export class FmpMarketLeaderProvider implements MarketLeaderProvider {
     return dtos.map(toMarketLeaderItem);
   }
 
-  async getBiggestLosers(): Promise<MarketLeaderItem[]> {
+  async getBiggestLosers(): Promise<MarketLeaderItemModel[]> {
     const url = `${this.apiConfig.baseUrl}/biggest-losers`;
     const data = await fetcher<FmpMarketLeaderItemDTO[]>(url, {
       provider: this.name,
@@ -55,7 +55,7 @@ export class FmpMarketLeaderProvider implements MarketLeaderProvider {
 
     return dtos.map(toMarketLeaderItem);
   }
-  async getMostActives(): Promise<MarketLeaderItem[]> {
+  async getMostActives(): Promise<MarketLeaderItemModel[]> {
     const url = `${this.apiConfig.baseUrl}/most-actives`;
     const data = await fetcher<FmpMarketLeaderItemDTO[]>(url, {
       provider: this.name,

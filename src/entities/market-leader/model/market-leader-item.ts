@@ -1,4 +1,4 @@
-export type MarketLeaderItem = {
+export type MarketLeaderItemModel = {
   /** 심볼 - ex) IDEX */
   symbol: string;
   /** 현재가 - ex) 0.0021 */

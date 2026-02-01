@@ -1,4 +1,4 @@
-import type { MarketLeaderItem } from "@/entities/market-leader";
+import type { MarketLeaderItemModel } from "@/entities/market-leader";
 import type { ApiSuccess } from "@/shared/api/api-success";
 
 import type { ApiError } from "../errors/api-error";
@@ -14,7 +14,7 @@ export class MarketLeaderService {
 
   /** 가장 많이 상승한 종목 조회 */
   async getBiggestGainers(): Promise<
-    ApiSuccess<MarketLeaderItem[]> | ApiError
+    ApiSuccess<MarketLeaderItemModel[]> | ApiError
   > {
     try {
       const result = await this.provider.getBiggestGainers();
@@ -25,7 +25,7 @@ export class MarketLeaderService {
   }
 
   /** 가장 많이 하락한 종목 조회 */
-  async getBiggestLosers(): Promise<ApiSuccess<MarketLeaderItem[]> | ApiError> {
+  async getBiggestLosers(): Promise<ApiSuccess<MarketLeaderItemModel[]> | ApiError> {
     try {
       const result = await this.provider.getBiggestLosers();
       return normalizeSuccess(this.provider.name, result);
@@ -35,7 +35,7 @@ export class MarketLeaderService {
   }
 
   /** 가장 거래가 활발한 종목 조회 */
-  async getMostActives(): Promise<ApiSuccess<MarketLeaderItem[]> | ApiError> {
+  async getMostActives(): Promise<ApiSuccess<MarketLeaderItemModel[]> | ApiError> {
     try {
       const result = await this.provider.getMostActives();
       return normalizeSuccess(this.provider.name, result);
