@@ -20,6 +20,7 @@ export type StockChartProps = {
 
 const DEFAULT_RANGE_DAYS = 30;
 const DEFAULT_INTERVAL = "1d" as const;
+const DEFAULT_DATE_BAR_HEIGHT = 26;
 
 function getDateRange(rangeDays: number) {
   const toDate = dayjs().format("YYYY-MM-DD");
@@ -31,7 +32,7 @@ export function StockChartWidget({
   rangeDays = DEFAULT_RANGE_DAYS,
   interval = DEFAULT_INTERVAL,
   includePrePost,
-  height,
+  height = 300,
   className,
 }: StockChartProps) {
   const { symbol } = useParams();
@@ -50,9 +51,12 @@ export function StockChartWidget({
     includePrePost,
   });
 
+  const minHeight = height + DEFAULT_DATE_BAR_HEIGHT;
+  const containerStyle = { minHeight: `${minHeight}px` };
+
   if (isLoading) {
     return (
-      <div className="flex items-center w-full min-h-44 py-6 bg-surface-default rounded-md">
+      <div className="flex items-center w-full py-6 bg-surface-default rounded-md" style={containerStyle}>
         <LoadingSpinner message="Loading chart..." />
       </div>
     );
@@ -60,7 +64,7 @@ export function StockChartWidget({
 
   if (error) {
     return (
-      <div className="w-full min-h-44 py-6 bg-surface-default rounded-md">
+      <div className="flex items-center w-full py-6 bg-surface-default rounded-md" style={containerStyle}>
         <ErrorMessage message={error.message} retry={refetch} />
       </div>
     );
@@ -68,7 +72,10 @@ export function StockChartWidget({
 
   if (!chartData || chartData.data.length === 0) {
     return (
-      <div className="flex items-center justify-center w-full min-h-44 py-6 bg-surface-default rounded-md">
+      <div
+        className="flex items-center justify-center w-full py-6 bg-surface-default rounded-md"
+        style={containerStyle}
+      >
         <EmptyContent message="No chart data" size="lg" />
       </div>
     );
