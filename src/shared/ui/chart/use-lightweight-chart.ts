@@ -13,6 +13,8 @@ export type UseLightweightChartParams<TSeries, TData, TSeriesOptions> = {
   setSeriesData: (series: TSeries, data: TData[]) => void;
   applySeriesOptions?: (series: TSeries, options?: Partial<TSeriesOptions>) => void;
   onReady?: (payload: { chart: IChartApi; series: TSeries }) => void;
+  /** 데이터 업데이트 시 fitContent 호출 여부 (기본값: true) */
+  fitContentOnUpdate?: boolean;
 };
 
 export function useLightweightChart<TSeries, TData, TSeriesOptions>({
@@ -25,6 +27,7 @@ export function useLightweightChart<TSeries, TData, TSeriesOptions>({
   setSeriesData,
   applySeriesOptions,
   onReady,
+  fitContentOnUpdate = true,
 }: UseLightweightChartParams<TSeries, TData, TSeriesOptions>) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const chartRef = useRef<IChartApi | null>(null);
@@ -94,8 +97,10 @@ export function useLightweightChart<TSeries, TData, TSeriesOptions>({
   useEffect(() => {
     if (!seriesRef.current) return;
     setSeriesData(seriesRef.current, data);
-    chartRef.current?.timeScale().fitContent();
-  }, [data, setSeriesData]);
+    if (fitContentOnUpdate) {
+      chartRef.current?.timeScale().fitContent();
+    }
+  }, [data, fitContentOnUpdate, setSeriesData]);
 
   /** 옵션 변경 시 차트 설정 반영 */
   useEffect(() => {

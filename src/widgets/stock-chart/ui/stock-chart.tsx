@@ -2,11 +2,13 @@
 
 import dayjs from "dayjs";
 import { useParams } from "next/navigation";
+import { useMemo } from "react";
 
 import type { ChartInterval } from "@/entities/chart";
 import { CHART_INTERVAL, StockChart } from "@/entities/chart";
-import { useGetChartQuery } from "@/entities/chart";
+import { useInfiniteChartQuery } from "@/entities/chart";
 import { EmptyContent, ErrorMessage, LoadingSpinner } from "@/shared/ui/fallback";
+import { useInfiniteChartScroll } from "@/widgets/stock-chart/lib/use-infinite-chart-scroll";
 
 export type StockChartProps = {
   /** 기본 조회 기간 (일) */
@@ -33,18 +35,25 @@ export function StockChartWidget({
   rangeDays = DEFAULT_RANGE_DAYS,
   interval = DEFAULT_INTERVAL,
   includePrePost,
-  height = 300,
+  height,
   className,
 }: StockChartProps) {
   const { symbol } = useParams();
   const { fromDate, toDate } = getDateRange(rangeDays);
 
+  /** 차트 컨테이너 스타일 관련 파생값 */
+  const minHeight = (height ?? 0) + DEFAULT_DATE_BAR_HEIGHT;
+  const containerStyle = { minHeight: `${minHeight}px` };
+
   const {
-    data: chartData,
+    data,
     isLoading,
     error,
     refetch,
-  } = useGetChartQuery({
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+  } = useInfiniteChartQuery({
     symbol: symbol as string,
     fromDate,
     toDate,
@@ -52,8 +61,18 @@ export function StockChartWidget({
     includePrePost,
   });
 
-  const minHeight = height + DEFAULT_DATE_BAR_HEIGHT;
-  const containerStyle = { minHeight: `${minHeight}px` };
+  const mergedData = useMemo(() => {
+    if (!data?.pages?.length) return [];
+    return [...data.pages].reverse().flatMap((page) => page.data);
+  }, [data]);
+
+  const { onReady } = useInfiniteChartScroll({
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+  });
+
+
 
   if (isLoading) {
     return (
@@ -71,7 +90,7 @@ export function StockChartWidget({
     );
   }
 
-  if (!chartData || chartData.data.length === 0) {
+  if (!mergedData.length) {
     return (
       <div
         className="flex items-center justify-center w-full py-6 bg-surface-default rounded-md"
@@ -84,9 +103,10 @@ export function StockChartWidget({
 
   return (
     <StockChart
-      data={chartData.data}
+      data={mergedData}
       height={height}
       className={className}
+      onReady={onReady}
     />
   );
 }

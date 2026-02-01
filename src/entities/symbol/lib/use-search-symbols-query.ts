@@ -20,23 +20,3 @@ export const useSearchSymbolsQuery = ({
   });
 };
 
-const data: Symbol[] = [
-  {
-    description: "Apple Inc.",
-    displaySymbol: "AAPL",
-    symbol: "AAPL",
-    type: "Common Stock",
-  },
-  {
-    description: "Microsoft Corporation",
-    displaySymbol: "MSFT",
-    symbol: "MSFT",
-    type: "Common Stock",
-  },
-  {
-    description: "Amazon.com Inc.",
-    displaySymbol: "AMZN",
-    symbol: "AMZN",
-    type: "Common Stock",
-  },
-];

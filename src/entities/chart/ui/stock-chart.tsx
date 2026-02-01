@@ -2,21 +2,25 @@
 
 import dayjs from "dayjs";
 
-import type { BarChartProps, BarData } from "@/shared/ui/chart";
+import type {
+  CandleStickChartProps,
+  CandleStickData,
+} from "@/shared/ui/chart";
 import { CandleStickChart } from "@/shared/ui/chart";
 
 import type { OHLCV } from "../model";
 
 export type StockChartProps = {
   data: OHLCV[];
-  height?: BarChartProps["height"];
-  autoResize?: BarChartProps["autoResize"];
-  options?: BarChartProps["options"];
-  seriesOptions?: BarChartProps["seriesOptions"];
-  className?: BarChartProps["className"];
+  height?: CandleStickChartProps["height"];
+  autoResize?: CandleStickChartProps["autoResize"];
+  options?: CandleStickChartProps["options"];
+  seriesOptions?: CandleStickChartProps["seriesOptions"];
+  className?: CandleStickChartProps["className"];
+  onReady?: CandleStickChartProps["onReady"];
 };
 
-function toBarData(data: OHLCV[]): BarData[] {
+function toCandleStickData(data: OHLCV[]): CandleStickData[] {
   return data.flatMap((item) => {
     if (
       item.open === null ||
@@ -31,7 +35,7 @@ function toBarData(data: OHLCV[]): BarData[] {
 
     return [
       {
-        time: timestamp.unix() as BarData["time"],
+        time: timestamp.unix() as CandleStickData["time"],
         open: item.open,
         high: item.high,
         low: item.low,
@@ -48,17 +52,19 @@ export function StockChart({
   options,
   seriesOptions,
   className,
+  onReady,
 }: StockChartProps) {
-  const barData = toBarData(data);
+  const candleStickData = toCandleStickData(data);
 
   return (
     <CandleStickChart
-      data={barData}
+      data={candleStickData}
       height={height}
       autoResize={autoResize}
       options={options}
       seriesOptions={seriesOptions}
       className={className}
+      onReady={onReady}
     />
   );
 }

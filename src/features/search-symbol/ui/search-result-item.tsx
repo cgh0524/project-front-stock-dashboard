@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 import type { Symbol } from "@/entities/symbol";
 
 export type SearchResultItemProps = {

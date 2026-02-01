@@ -52,6 +52,7 @@ export function CandleStickChart({
     autoResize,
     options: mergedOptions,
     seriesOptions,
+    fitContentOnUpdate: false,
     createSeries: (chart, nextOptions) =>
       chart.addSeries(CandlestickSeries, { ...(nextOptions ?? {}) } as CandlestickSeriesOptions),
     setSeriesData: (series, nextData) => series.setData(nextData),
