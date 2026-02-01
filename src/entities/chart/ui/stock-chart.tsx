@@ -3,7 +3,7 @@
 import dayjs from "dayjs";
 
 import type { BarChartProps, BarData } from "@/shared/ui/chart";
-import { BarChart } from "@/shared/ui/chart";
+import { CandleStickChart } from "@/shared/ui/chart";
 
 import type { OHLCV } from "../model";
 
@@ -52,7 +52,7 @@ export function StockChart({
   const barData = toBarData(data);
 
   return (
-    <BarChart
+    <CandleStickChart
       data={barData}
       height={height}
       autoResize={autoResize}

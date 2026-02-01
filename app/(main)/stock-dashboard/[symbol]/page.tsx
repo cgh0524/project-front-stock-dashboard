@@ -15,7 +15,11 @@ const getQuote = async (symbol: string) => {
   throw new Error(result.message);
 };
 
-export default async function StockDetailPage({ params }: { params: { symbol: string } }) {
+export default async function StockDetailPage({
+  params,
+}: {
+  params: Promise<{ symbol: string }>;
+}) {
   const queryClient = new QueryClient();
   const { symbol } = await params;
 
