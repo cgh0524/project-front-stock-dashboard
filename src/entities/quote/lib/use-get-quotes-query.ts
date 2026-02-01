@@ -2,8 +2,7 @@ import { useQueries } from "@tanstack/react-query";
 
 import type { Quote } from "../model";
 import { getQuote } from "./get-quote";
-
-export const QUOTES_QUERY_KEY = "quotes";
+import { quoteQueryKeys } from "./query-keys";
 
 export const useGetQuotesQuery = ({
   queries,
@@ -14,7 +13,7 @@ export const useGetQuotesQuery = ({
 }) => {
   return useQueries<Quote[]>({
     queries: queries.map((query) => ({
-      queryKey: [QUOTES_QUERY_KEY, query],
+      queryKey: quoteQueryKeys.quotes({ query }),
       queryFn: () => getQuote(query),
       staleTime,
     })),

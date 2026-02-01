@@ -3,7 +3,8 @@
 import dayjs from "dayjs";
 import { useParams } from "next/navigation";
 
-import { StockChart } from "@/entities/chart";
+import type { ChartInterval } from "@/entities/chart";
+import { CHART_INTERVAL, StockChart } from "@/entities/chart";
 import { useGetChartQuery } from "@/entities/chart";
 import { EmptyContent, ErrorMessage, LoadingSpinner } from "@/shared/ui/fallback";
 
@@ -11,15 +12,15 @@ export type StockChartProps = {
   /** 기본 조회 기간 (일) */
   rangeDays?: number;
   /** 기본 간격 */
-  interval?: "1d" | "1wk" | "1mo" | "1m" | "5m" | "15m" | "60m";
+  interval?: ChartInterval;
   /** 프리/애프터 포함 여부 */
   includePrePost?: boolean;
   height?: number;
   className?: string;
 };
 
-const DEFAULT_RANGE_DAYS = 30;
-const DEFAULT_INTERVAL = "1d" as const;
+const DEFAULT_RANGE_DAYS = 90;
+const DEFAULT_INTERVAL = CHART_INTERVAL.ONE_DAY;
 const DEFAULT_DATE_BAR_HEIGHT = 26;
 
 function getDateRange(rangeDays: number) {

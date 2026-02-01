@@ -5,13 +5,9 @@ import {
 } from "@tanstack/react-query";
 import dayjs from "dayjs";
 
-import {
-  MARKET_BIGGEST_GAINERS_QUERY_KEY,
-  MARKET_BIGGEST_LOSERS_QUERY_KEY,
-  MARKET_MOST_ACTIVES_QUERY_KEY,
-} from "@/entities/market-leader/lib";
-import { MARKET_SECTOR_PERFORMANCE_QUERY_KEY } from "@/entities/market-performance/lib";
-import { KEY_MARKET_INDICES_QUERY_KEY } from "@/entities/quote";
+import { marketLeaderQueryKeys } from "@/entities/market-leader/lib";
+import { marketPerformanceQueryKeys } from "@/entities/market-performance/lib";
+import { quoteQueryKeys } from "@/entities/quote";
 import { marketPerformanceService } from "@/server/service/market-performance.service";
 import { MARKET_EXCHANGE } from "@/shared/lib/types";
 import { KeyMarketIndices } from "@/widgets/key-market-indices";
@@ -51,37 +47,36 @@ export default async function StockDashboard() {
   await Promise.all([
     // 주요 시장 지수 조회
     queryClient.prefetchQuery({
-      queryKey: [KEY_MARKET_INDICES_QUERY_KEY],
+      queryKey: quoteQueryKeys.keyMarketIndices(),
       queryFn: async () => await getKeyMarketIndices(),
     }),
 
     // 시장 성적 조회
     queryClient.prefetchQuery({
-      queryKey: [
-        MARKET_SECTOR_PERFORMANCE_QUERY_KEY,
-        TODAY,
-        MARKET_EXCHANGE.NASDAQ,
-        null,
-      ],
+      queryKey: marketPerformanceQueryKeys.sector({
+        date: TODAY,
+        exchange: MARKET_EXCHANGE.NASDAQ,
+        sector: undefined,
+      }),
       queryFn: async () =>
         await getMarketSectorPerformance(TODAY, MARKET_EXCHANGE.NASDAQ),
     }),
 
     // 가장 많이 상승한 종목 조회
     queryClient.prefetchQuery({
-      queryKey: [MARKET_BIGGEST_GAINERS_QUERY_KEY],
+      queryKey: marketLeaderQueryKeys.biggestGainers(),
       queryFn: async () => await getMarketBiggestGainers(),
     }),
 
     // 가장 많이 하락한 종목 조회
     queryClient.prefetchQuery({
-      queryKey: [MARKET_BIGGEST_LOSERS_QUERY_KEY],
+      queryKey: marketLeaderQueryKeys.biggestLosers(),
       queryFn: async () => await getMarketBiggestLosers(),
     }),
 
     // 가장 거래가 활발한 종목 조회
     queryClient.prefetchQuery({
-      queryKey: [MARKET_MOST_ACTIVES_QUERY_KEY],
+      queryKey: marketLeaderQueryKeys.mostActives(),
       queryFn: async () => await getMarketMostActives(),
     }),
   ]);

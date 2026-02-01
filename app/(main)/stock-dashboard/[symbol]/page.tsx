@@ -1,6 +1,6 @@
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
 
-import { QUOTE_QUERY_KEY } from "@/entities/quote/lib/use-get-quote-query";
+import { quoteQueryKeys } from "@/entities/quote";
 import { quoteService } from "@/server/service/quote.service";
 import { StockChartWidget } from "@/widgets/stock-chart";
 import { SymbolQuoteSection } from "@/widgets/symbol-quote/ui/symbol-quote-section";
@@ -24,7 +24,7 @@ export default async function StockDetailPage({
   const { symbol } = await params;
 
   await queryClient.prefetchQuery({
-    queryKey: [QUOTE_QUERY_KEY, symbol],
+    queryKey: quoteQueryKeys.detail({ symbol }),
     queryFn: () => getQuote(symbol),
     staleTime: 1000 * 60 * 2,
   });

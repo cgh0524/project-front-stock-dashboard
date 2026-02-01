@@ -1,12 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 
 import { getMarketBiggestLosers } from "./get-market-biggest-losers";
-
-export const MARKET_BIGGEST_LOSERS_QUERY_KEY = "market-biggest-losers";
+import { marketLeaderQueryKeys } from "./query-keys";
 
 export const useGetMarketBiggestLosersQuery = () => {
   return useQuery({
-    queryKey: [MARKET_BIGGEST_LOSERS_QUERY_KEY],
+    queryKey: marketLeaderQueryKeys.biggestLosers(),
     queryFn: async () => await getMarketBiggestLosers(),
     staleTime: 1000 * 60 * 10, // 10 minutes
   });
