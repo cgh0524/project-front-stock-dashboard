@@ -4,5 +4,8 @@ export { CandleStickChart } from "./candle-stick-chart";
 export type {
   CandleStickChartProps,
   CandleStickChartReadyPayload,
+  CandleStickCrosshairPayload,
   CandleStickData,
 } from "./candle-stick-chart.types";
+export type { ChartTooltipItem, ChartTooltipProps } from "./chart-tooltip";
+export { ChartTooltip } from "./chart-tooltip";

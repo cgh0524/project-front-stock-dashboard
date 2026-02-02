@@ -35,7 +35,7 @@ export function StockChartWidget({
   rangeDays = DEFAULT_RANGE_DAYS,
   interval = DEFAULT_INTERVAL,
   includePrePost,
-  height,
+  height = 300,
   className,
 }: StockChartProps) {
   const { symbol } = useParams();

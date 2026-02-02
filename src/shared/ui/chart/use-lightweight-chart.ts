@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 import { type ChartOptions, createChart, type DeepPartial, type IChartApi } from "lightweight-charts";
@@ -34,8 +35,8 @@ export function useLightweightChart<TSeries, TData, TSeriesOptions>({
   const seriesRef = useRef<TSeries | null>(null);
   const resizeObserverRef = useRef<ResizeObserver | null>(null);
 
-  /** 마운트 시 차트/시리즈 생성 (SSR 안전: useEffect 내부에서만 접근) */
-  useEffect(() => {
+  /** 차트 초기화 */
+  const initChart = () => {
     const container = containerRef.current;
     if (!container) return;
 
@@ -53,26 +54,18 @@ export function useLightweightChart<TSeries, TData, TSeriesOptions>({
     chart.timeScale().fitContent();
 
     onReady?.({ chart, series });
+  };
 
-    // 언마운트 시 리소스 정리
-    return () => {
-      resizeObserverRef.current?.disconnect();
-      resizeObserverRef.current = null;
-      chart.remove();
-      chartRef.current = null;
-      seriesRef.current = null;
-    };
-    // 마운트/언마운트 시에만 실행
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  /** 차트 정리 */
+  const cleanupChart = () => {
+    chartRef.current?.remove();
+    chartRef.current = null;
+    seriesRef.current = null;
+  };
 
-  /** 컨테이너 리사이즈 시 차트 크기 동기화 */
-  useEffect(() => {
-    if (!autoResize) {
-      resizeObserverRef.current?.disconnect();
-      resizeObserverRef.current = null;
-      return;
-    }
+  /** 리사이즈 옵저버 설정 */
+  const setupResizeObserver = () => {
+    if (!autoResize) return;
 
     const container = containerRef.current;
     const chart = chartRef.current;
@@ -85,36 +78,69 @@ export function useLightweightChart<TSeries, TData, TSeriesOptions>({
       chart.applyOptions({ width, height: nextHeight } as ChartOptions);
       chart.timeScale().fitContent();
     });
+
     resizeObserverRef.current.observe(container);
+  };
 
-    return () => {
-      resizeObserverRef.current?.disconnect();
-      resizeObserverRef.current = null;
-    };
-  }, [autoResize]);
+  /** 리사이즈 옵저버 정리 */
+  const cleanupResizeObserver = () => {
+    resizeObserverRef.current?.disconnect();
+    resizeObserverRef.current = null;
+  };
 
-  /** 데이터 변경 시 시리즈 업데이트 */
-  useEffect(() => {
+  /** 시리즈 데이터 업데이트 */
+  const updateSeriesData = () => {
     if (!seriesRef.current) return;
     setSeriesData(seriesRef.current, data);
     if (fitContentOnUpdate) {
       chartRef.current?.timeScale().fitContent();
     }
-  }, [data, fitContentOnUpdate, setSeriesData]);
+  };
 
-  /** 옵션 변경 시 차트 설정 반영 */
-  useEffect(() => {
+  /** 차트 옵션 업데이트 */
+  const updateChartOptions = () => {
     if (!chartRef.current) return;
     chartRef.current.applyOptions({
       ...(options ?? {}),
       height,
     } as ChartOptions);
-  }, [height, options]);
+  };
 
-  /** 시리즈 옵션 변경 시 시리즈 설정 반영 */
-  useEffect(() => {
+  /** 시리즈 옵션 업데이트 */
+  const updateSeriesOptions = () => {
     if (!seriesRef.current || !applySeriesOptions) return;
     applySeriesOptions(seriesRef.current, seriesOptions);
+  };
+
+  useEffect(() => {
+    initChart();
+    setupResizeObserver();
+    return () => {
+      cleanupResizeObserver();
+      cleanupChart();
+    };
+     
+  }, []);
+
+  useEffect(() => {
+    if (!autoResize) {
+      cleanupResizeObserver();
+      return;
+    }
+    setupResizeObserver();
+    return cleanupResizeObserver;
+  }, [autoResize]);
+
+  useEffect(() => {
+    updateSeriesData();
+  }, [data, fitContentOnUpdate, setSeriesData]);
+
+  useEffect(() => {
+    updateChartOptions();
+  }, [height, options]);
+
+  useEffect(() => {
+    updateSeriesOptions();
   }, [applySeriesOptions, seriesOptions]);
 
   return { containerRef };
