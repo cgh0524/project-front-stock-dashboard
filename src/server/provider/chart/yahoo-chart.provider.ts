@@ -10,6 +10,7 @@ import { toChartResult, toYahooChartQuery } from "./yahoo-chart.adapter";
 import { yahooChartSchema } from "./yahoo-chart.schema";
 
 const yahooFinance = new YahooFinance();
+const NO_DATA_MESSAGE = "Data doesn't exist for startDate";
 
 export class YahooChartProvider implements ChartProvider {
   readonly name = API_PROVIDER.YAHOO;
@@ -19,11 +20,19 @@ export class YahooChartProvider implements ChartProvider {
     options: ChartQuery
   ): Promise<ChartResult> {
     const providerOptions = toYahooChartQuery(options);
-    const data = await yahooFinance.chart(symbol, providerOptions);
-    const dto = parseOrFail(yahooChartSchema, data, {
-      source: ERROR_SOURCE.UPSTREAM,
-      context: { provider: this.name, symbol },
-    });
-    return toChartResult(dto);
+    try {
+      const data = await yahooFinance.chart(symbol, providerOptions);
+      const dto = parseOrFail(yahooChartSchema, data, {
+        source: ERROR_SOURCE.UPSTREAM,
+        context: { provider: this.name, symbol },
+      });
+      return toChartResult(dto);
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
+      if (message.includes(NO_DATA_MESSAGE)) {
+        return { meta: null, data: [] };
+      }
+      throw error;
+    }
   }
 }

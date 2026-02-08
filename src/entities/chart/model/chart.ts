@@ -44,6 +44,6 @@ export type OHLCV = {
 };
 
 export type ChartResult = {
-  meta: ChartMeta;
+  meta: ChartMeta | null;
   data: OHLCV[];
 };
