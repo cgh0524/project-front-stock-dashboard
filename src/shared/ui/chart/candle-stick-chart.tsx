@@ -19,6 +19,7 @@ import type {
 import { useCandlestickCrosshairMove } from "./use-candlestick-crosshair-move";
 import { useLightweightChart } from "./use-lightweight-chart";
 import { useVisibleLogicalRangeChange } from "./use-visible-logical-range-change";
+import { useVolumeSeries } from "./use-volume-series";
 
 const DEFAULT_HEIGHT = 320;
 const DEFAULT_CHART_OPTIONS: DeepPartial<ChartOptions> = {
@@ -34,10 +35,12 @@ const DEFAULT_CHART_OPTIONS: DeepPartial<ChartOptions> = {
 
 export function CandleStickChart({
   data,
+  volume,
   height = DEFAULT_HEIGHT,
   autoResize = true,
   options,
   seriesOptions,
+  volumeSeriesOptions,
   className,
   onCrosshairMove,
   onVisibleRangeChange,
@@ -49,9 +52,16 @@ export function CandleStickChart({
     };
   }, [options]);
 
+  /** 볼륨 시리즈 초기화 */
+  const { attach: attachVolumeSeries } = useVolumeSeries({
+    volume,
+    volumeSeriesOptions,
+  });
+  /** 크로스 헤어 이벤트 처리 */
   const { attach: attachCrosshairMove } = useCandlestickCrosshairMove({
     onCrosshairMove,
   });
+  /** 뷰포트 범위 변경 이벤트 처리 */
   const { attach: attachVisibleRangeChange } = useVisibleLogicalRangeChange({
     onVisibleRangeChange,
   });
@@ -59,6 +69,7 @@ export function CandleStickChart({
   const onReady = (payload: CandleStickChartReadyPayload) => {
     attachCrosshairMove(payload.chart, payload.series);
     attachVisibleRangeChange(payload.chart);
+    attachVolumeSeries(payload.chart);
   };
 
   const seriesHandlers: {
