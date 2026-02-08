@@ -5,7 +5,7 @@ import type {
   CandleStickChartProps,
   CandleStickCrosshairPayload,
   CandleStickData,
-} from "./candle-stick-chart.types";
+} from "../type/candle-stick-chart.types";
 
 type CandlestickCrosshairMoveParams = {
   onCrosshairMove?: CandleStickChartProps["onCrosshairMove"];

@@ -1,6 +1,6 @@
 import { useId, useState } from "react";
 
-import type { Option } from "@/shared/lib/types";
+import type { Option } from "@/shared/types";
 
 import { SelectDropdown } from "./select-dropdown";
 import { SelectOption } from "./select-option";

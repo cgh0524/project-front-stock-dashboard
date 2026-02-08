@@ -1,8 +1,8 @@
+import { Tile } from "@/shared/ui/layout";
 import {
   formatDollarAmount,
   formatSignedDollarAmount,
-} from "@/shared/lib/utils/format-dollar-amount";
-import { Tile } from "@/shared/ui/layout";
+} from "@/shared/utils/format-dollar-amount";
 
 import type { Quote } from "../model";
 

@@ -4,11 +4,11 @@ import dayjs from "dayjs";
 import { useState } from "react";
 
 import { MarketExchangeSelect } from "@/entities/market-performance";
-import type { Option } from "@/shared/lib/types";
-import { MARKET_EXCHANGE } from "@/shared/lib/types";
-import { createOption } from "@/shared/lib/utils/create-options";
+import type { Option } from "@/shared/types";
+import { MARKET_EXCHANGE } from "@/shared/types";
 import { DateStepper } from "@/shared/ui/date-stepper";
 import { Section } from "@/shared/ui/layout";
+import { createOption } from "@/shared/utils/create-options";
 
 import { MarketSectorPerformanceListContainer } from "./market-sector-performance-list-container";
 

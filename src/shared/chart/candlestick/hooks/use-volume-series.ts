@@ -6,7 +6,7 @@ import {
 } from "lightweight-charts";
 import { useEffect, useRef } from "react";
 
-import type { VolumeData } from "./candle-stick-chart.types";
+import type { VolumeData } from "../type/candle-stick-chart.types";
 
 export type UseVolumeSeriesParams = {
   volume?: VolumeData[];

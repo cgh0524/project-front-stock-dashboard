@@ -5,8 +5,8 @@ import {
   BarSeries,
 } from "lightweight-charts";
 
-import type { BarChartReadyPayload } from "./bar-chart.types";
-import { useLightweightChart } from "./use-lightweight-chart";
+import { useLightweightChart } from "../../core/hooks/use-lightweight-chart";
+import type { BarChartReadyPayload } from "../type/bar-chart.types";
 
 export type BarChartProps = {
   data: BarData[];

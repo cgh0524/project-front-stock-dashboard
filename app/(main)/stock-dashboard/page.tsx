@@ -9,7 +9,7 @@ import { marketLeaderQueryKeys } from "@/entities/market-leader/lib";
 import { marketPerformanceQueryKeys } from "@/entities/market-performance/lib";
 import { quoteQueryKeys } from "@/entities/quote";
 import { marketPerformanceService } from "@/server/service/market-performance.service";
-import { MARKET_EXCHANGE } from "@/shared/lib/types";
+import { MARKET_EXCHANGE } from "@/shared/types";
 import { KeyMarketIndices } from "@/widgets/key-market-indices";
 import { getKeyMarketIndices } from "@/widgets/key-market-indices/lib";
 import { MarketLeaders } from "@/widgets/market-leaders";

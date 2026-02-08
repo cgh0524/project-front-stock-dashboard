@@ -1,7 +1,7 @@
 import type { LogicalRange } from "lightweight-charts";
 import { useCallback, useRef } from "react";
 
-import { useThrottleFn } from "@/shared/lib/hooks/use-throttle-fn";
+import { useThrottleFn } from "@/shared/hooks/use-throttle-fn";
 
 export type UseInfiniteChartScrollParams = {
   fetchNextPage: () => void;

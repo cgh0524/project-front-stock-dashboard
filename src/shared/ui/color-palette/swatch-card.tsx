@@ -1,4 +1,4 @@
-import type { Swatch } from "@/shared/lib/design-tokens/types";
+import type { Swatch } from "@/shared/design-tokens/types";
 
 type SwatchCardProps = Swatch;
 

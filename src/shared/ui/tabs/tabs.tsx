@@ -1,4 +1,4 @@
-import type { Option } from "@/shared/lib/types";
+import type { Option } from "@/shared/types";
 
 import { Tab } from "./tab";
 

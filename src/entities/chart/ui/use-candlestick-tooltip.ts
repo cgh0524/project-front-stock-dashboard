@@ -3,7 +3,7 @@ import {  useRef, useState } from "react";
 import type {
   CandleStickCrosshairPayload,
   ChartTooltipItem,
-} from "@/shared/ui/chart";
+} from "@/shared/chart";
 
 export type CandleStickTooltipState = {
   open: boolean;

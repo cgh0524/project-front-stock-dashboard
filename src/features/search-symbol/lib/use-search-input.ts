@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { useDebouncedValue } from "@/shared/lib/hooks/useDebounceValue";
+import { useDebouncedValue } from "@/shared/hooks/use-debounce-value";
 
 export const useSearchInput = () => {
   const [searchKeyword, setSearchKeyword] = useState("");

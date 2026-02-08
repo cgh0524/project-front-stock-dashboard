@@ -1,5 +1,5 @@
 import type { MarketLeaderItemModel } from "@/entities/market-leader";
-import { formatDollarAmount } from "@/shared/lib/utils/format-dollar-amount";
+import { formatDollarAmount } from "@/shared/utils/format-dollar-amount";
 
 export type MarketLeaderItemProps = {
   data: MarketLeaderItemModel;

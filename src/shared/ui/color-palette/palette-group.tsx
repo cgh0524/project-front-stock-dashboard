@@ -1,4 +1,4 @@
-import type { SwatchGroup } from "@/shared/lib/design-tokens/types";
+import type { SwatchGroup } from "@/shared/design-tokens/types";
 
 import { SwatchCard } from ".";
 

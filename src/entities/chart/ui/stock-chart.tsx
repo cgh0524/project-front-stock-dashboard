@@ -2,8 +2,8 @@
 
 import dayjs from "dayjs";
 
-import type { CandleStickChartProps, CandleStickData, VolumeData } from "@/shared/ui/chart";
-import { CandleStickChart, ChartTooltip } from "@/shared/ui/chart";
+import type { CandleStickChartProps, CandleStickData, VolumeData } from "@/shared/chart";
+import { CandleStickChart, ChartTooltip } from "@/shared/chart";
 
 import type { OHLCV } from "../model";
 import { useCandlestickTooltip } from "./use-candlestick-tooltip";

@@ -12,14 +12,14 @@ import {
 } from "lightweight-charts";
 import { useMemo } from "react";
 
+import { useLightweightChart } from "../../core/hooks/use-lightweight-chart";
+import { useVisibleLogicalRangeChange } from "../../core/hooks/use-visible-logical-range-change";
+import { useCandlestickCrosshairMove } from "../hooks/use-candlestick-crosshair-move";
+import { useVolumeSeries } from "../hooks/use-volume-series";
 import type {
   CandleStickChartProps,
   CandleStickChartReadyPayload,
-} from "./candle-stick-chart.types";
-import { useCandlestickCrosshairMove } from "./use-candlestick-crosshair-move";
-import { useLightweightChart } from "./use-lightweight-chart";
-import { useVisibleLogicalRangeChange } from "./use-visible-logical-range-change";
-import { useVolumeSeries } from "./use-volume-series";
+} from "../type/candle-stick-chart.types";
 
 const DEFAULT_HEIGHT = 320;
 const DEFAULT_CHART_OPTIONS: DeepPartial<ChartOptions> = {
