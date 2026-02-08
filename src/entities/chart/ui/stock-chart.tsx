@@ -57,15 +57,22 @@ export function StockChart({
 
   return (
     <div className="relative w-full">
-    <CandleStickChart
-      data={candleStickData}
-      height={height}
-      autoResize={autoResize}
-      options={options}
-      seriesOptions={seriesOptions}
-      className={className}
+      <CandleStickChart
+        data={candleStickData}
+        height={height}
+        autoResize={autoResize}
+        options={options}
+        seriesOptions={seriesOptions}
+        className={className}
         onCrosshairMove={onCrosshairMove}
         onVisibleRangeChange={onVisibleRangeChange}
-    />
+      />
+      <ChartTooltip
+        open={tooltipState.open}
+        x={tooltipState.x}
+        y={tooltipState.y}
+        items={tooltipState.items}
+      />
+    </div>
   );
 }
