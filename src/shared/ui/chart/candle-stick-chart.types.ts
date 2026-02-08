@@ -3,6 +3,7 @@ import type {
   ChartOptions,
   IChartApi,
   ISeriesApi,
+  LogicalRange,
   UTCTimestamp,
 } from "lightweight-charts";
 
@@ -19,6 +20,11 @@ export type CandleStickChartReadyPayload = {
   series: ISeriesApi<"Candlestick">;
 };
 
+export type CandleStickCrosshairPayload = {
+  point: { x: number; y: number } | null;
+  data: CandleStickData | null;
+};
+
 export type CandleStickChartProps = {
   data: CandleStickData[];
   height?: number;
@@ -26,5 +32,6 @@ export type CandleStickChartProps = {
   options?: Partial<ChartOptions>;
   seriesOptions?: Partial<CandlestickSeriesOptions>;
   className?: string;
-  onReady?: (payload: CandleStickChartReadyPayload) => void;
+  onCrosshairMove?: (payload: CandleStickCrosshairPayload) => void;
+  onVisibleRangeChange?: (range: LogicalRange | null) => void;
 };

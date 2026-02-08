@@ -2,13 +2,11 @@
 
 import dayjs from "dayjs";
 
-import type {
-  CandleStickChartProps,
-  CandleStickData,
-} from "@/shared/ui/chart";
-import { CandleStickChart } from "@/shared/ui/chart";
+import type { CandleStickChartProps, CandleStickData } from "@/shared/ui/chart";
+import { CandleStickChart, ChartTooltip } from "@/shared/ui/chart";
 
 import type { OHLCV } from "../model";
+import { useCandlestickTooltip } from "./use-candlestick-tooltip";
 
 export type StockChartProps = {
   data: OHLCV[];
@@ -17,7 +15,7 @@ export type StockChartProps = {
   options?: CandleStickChartProps["options"];
   seriesOptions?: CandleStickChartProps["seriesOptions"];
   className?: CandleStickChartProps["className"];
-  onReady?: CandleStickChartProps["onReady"];
+  onVisibleRangeChange?: CandleStickChartProps["onVisibleRangeChange"];
 };
 
 function toCandleStickData(data: OHLCV[]): CandleStickData[] {
@@ -52,11 +50,13 @@ export function StockChart({
   options,
   seriesOptions,
   className,
-  onReady,
+  onVisibleRangeChange,
 }: StockChartProps) {
   const candleStickData = toCandleStickData(data);
+  const { tooltipState, onCrosshairMove } = useCandlestickTooltip();
 
   return (
+    <div className="relative w-full">
     <CandleStickChart
       data={candleStickData}
       height={height}
@@ -64,7 +64,8 @@ export function StockChart({
       options={options}
       seriesOptions={seriesOptions}
       className={className}
-      onReady={onReady}
+        onCrosshairMove={onCrosshairMove}
+        onVisibleRangeChange={onVisibleRangeChange}
     />
   );
 }

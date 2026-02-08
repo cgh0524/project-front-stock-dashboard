@@ -9,3 +9,5 @@ export type {
 } from "./candle-stick-chart.types";
 export type { ChartTooltipItem, ChartTooltipProps } from "./chart-tooltip";
 export { ChartTooltip } from "./chart-tooltip";
+export { useCandlestickCrosshairMove } from "./use-candlestick-crosshair-move";
+export { useVisibleLogicalRangeChange } from "./use-visible-logical-range-change";

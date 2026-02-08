@@ -1,5 +1,5 @@
-import type { IChartApi, LogicalRange } from "lightweight-charts";
-import { useCallback, useEffect, useRef } from "react";
+import type { LogicalRange } from "lightweight-charts";
+import { useCallback, useRef } from "react";
 
 import { useThrottleFn } from "@/shared/lib/hooks/use-throttle-fn";
 
@@ -18,10 +18,6 @@ export function useInfiniteChartScroll({
   threshold = 5,
   throttleMs = 500,
 }: UseInfiniteChartScrollParams) {
-  /** 차트 인스턴스 */
-  const chartRef = useRef<IChartApi | null>(null);
-  /** range 구독 해제 함수 */
-  const unsubscribeRef = useRef<(() => void) | null>(null);
   /** 이전 range.from 값 (임계값 crossing 판단용) */
   const prevRangeFromRef = useRef<number | null>(null);
 
@@ -46,36 +42,5 @@ export function useInfiniteChartScroll({
     [hasNextPage, isFetchingNextPage, threshold, throttledFetchNextPage]
   );
 
-  useEffect(() => {
-    return () => {
-      unsubscribeRef.current?.();
-      unsubscribeRef.current = null;
-    };
-  }, []);
-
-  useEffect(() => {
-    const chart = chartRef.current;
-    if (!chart) return;
-    const timeScale = chart.timeScale();
-    // 최신 콜백을 반영하기 위해 재구독
-    unsubscribeRef.current?.();
-    timeScale.subscribeVisibleLogicalRangeChange(handleVisibleRangeChange);
-    unsubscribeRef.current = () => {
-      timeScale.unsubscribeVisibleLogicalRangeChange(handleVisibleRangeChange);
-    };
-  }, [handleVisibleRangeChange]);
-
-  const onReady = useCallback(
-    ({ chart }: { chart: IChartApi }) => {
-      chartRef.current = chart;
-      const timeScale = chart.timeScale();
-      timeScale.subscribeVisibleLogicalRangeChange(handleVisibleRangeChange);
-      unsubscribeRef.current = () => {
-        timeScale.unsubscribeVisibleLogicalRangeChange(handleVisibleRangeChange);
-      };
-    },
-    [handleVisibleRangeChange]
-  );
-
-  return { onReady };
+  return { onVisibleRangeChange: handleVisibleRangeChange };
 }

@@ -66,7 +66,7 @@ export function StockChartWidget({
     return [...data.pages].reverse().flatMap((page) => page.data);
   }, [data]);
 
-  const { onReady } = useInfiniteChartScroll({
+  const { onVisibleRangeChange } = useInfiniteChartScroll({
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
@@ -106,7 +106,7 @@ export function StockChartWidget({
       data={mergedData}
       height={height}
       className={className}
-      onReady={onReady}
+      onVisibleRangeChange={onVisibleRangeChange}
     />
   );
 }

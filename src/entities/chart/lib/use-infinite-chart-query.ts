@@ -66,5 +66,6 @@ export function useInfiniteChartQuery(params: UseInfiniteChartQueryParams) {
       if (!lastPage?.data?.length) return undefined;
       return getPreviousRange(lastPageParam);
     },
+    refetchOnWindowFocus: false,
   });
 }
