@@ -1,4 +1,5 @@
 import type { ChartInterval } from "@/entities/chart";
+import { CHART_INTERVAL } from "@/entities/chart";
 import { ERROR_SOURCE } from "@/server/errors/base-error";
 import { ValidationError } from "@/server/errors/validation-error";
 import { fail, normalizeError } from "@/server/http/error-response";
@@ -74,7 +75,7 @@ function parseChartInterval(
   value: string | null
 ): ChartInterval | undefined | typeof INVALID_VALUE {
   if (value === null) return undefined;
-  const allowed: ChartInterval[] = ["1m", "5m", "15m", "60m", "1d", "1wk", "1mo"];
+  const allowed = Object.values(CHART_INTERVAL);
   return allowed.includes(value as ChartInterval)
     ? (value as ChartInterval)
     : INVALID_VALUE;

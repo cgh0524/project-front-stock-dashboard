@@ -1,7 +1,7 @@
 import {
   primitivePaletteGroups,
   semanticPaletteGroups,
-} from "@/shared/lib/design-tokens";
+} from "@/shared/design-tokens";
 import { PaletteGroup } from "@/shared/ui/color-palette/palette-group";
 
 /**
