@@ -74,7 +74,11 @@ export function useLightweightChart<TSeries, TData, TSeriesOptions>({
     resizeObserverRef.current = new ResizeObserver((entries) => {
       const entry = entries[0];
       if (!entry) return;
+      if (chartRef.current !== chart) return;
+
       const { width, height: nextHeight } = entry.contentRect;
+      if (width <= 0 || nextHeight <= 0) return;
+      
       chart.applyOptions({ width, height: nextHeight } as ChartOptions);
       chart.timeScale().fitContent();
     });

@@ -17,6 +17,13 @@ export const shadeKeys = [
 const primitiveBases = ["gray", "blue", "green", "red", "yellow"] as const;
 
 const toCssVarToken = (name: string) => `--color-${name}`;
+const toCssVarValue = (name: string) => `var(${toCssVarToken(name)})`;
+
+export const semanticColorValues = {
+  positive: toCssVarValue("positive"),
+  negative: toCssVarValue("negative"),
+  textMuted: toCssVarValue("text-muted"),
+} as const;
 
 const buildPrimitiveGroups = (): SwatchGroup[] => [
   ...primitiveBases.map((base) => ({

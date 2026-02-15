@@ -6,6 +6,7 @@ import type { CandleStickChartProps, CandleStickData, VolumeData } from "@/share
 import { CandleStickChart, ChartTooltip } from "@/shared/chart";
 
 import type { OHLCV } from "../model";
+import { CHART_VOLUME_COLORS } from "../model";
 import { useCandlestickTooltip } from "./use-candlestick-tooltip";
 
 export type StockChartProps = {
@@ -43,10 +44,6 @@ function toCandleStickData(data: OHLCV[]): CandleStickData[] {
   });
 }
 
-const VOLUME_UP_COLOR = "rgba(16, 185, 129, 0.6)";
-const VOLUME_DOWN_COLOR = "rgba(239, 68, 68, 0.6)";
-const VOLUME_NEUTRAL_COLOR = "rgba(148, 163, 184, 0.6)";
-
 function toVolumeData(data: OHLCV[]): VolumeData[] {
   return data.flatMap((item) => {
     if (item.volume === null) return [];
@@ -54,9 +51,12 @@ function toVolumeData(data: OHLCV[]): VolumeData[] {
     const timestamp = dayjs(item.time);
     if (!timestamp.isValid()) return [];
 
-    let color = VOLUME_NEUTRAL_COLOR;
+    let color: string = CHART_VOLUME_COLORS.neutral;
     if (item.open !== null && item.close !== null) {
-      color = item.close >= item.open ? VOLUME_UP_COLOR : VOLUME_DOWN_COLOR;
+      color =
+        item.close >= item.open
+          ? CHART_VOLUME_COLORS.up
+          : CHART_VOLUME_COLORS.down;
     }
 
     return [
@@ -79,7 +79,7 @@ export function StockChart({
   onVisibleRangeChange,
 }: StockChartProps) {
   const candleStickData = toCandleStickData(data);
-  const volumeData = toVolumeData(data);
+  const volumeData = toVolumeData(data)
   const { tooltipState, onCrosshairMove } = useCandlestickTooltip();
 
   return (
