@@ -22,7 +22,7 @@ export type StockChartProps = {
   className?: string;
 };
 
-const DEFAULT_RANGE_DAYS = 90;
+const DEFAULT_RANGE_DAYS = 365;
 const DEFAULT_INTERVAL = CHART_INTERVAL.ONE_DAY;
 const DEFAULT_DATE_BAR_HEIGHT = 26;
 
@@ -51,9 +51,9 @@ export function StockChartWidget({
     isLoading,
     error,
     refetch,
-    fetchNextPage,
-    hasNextPage,
-    isFetchingNextPage,
+    fetchNextPage: fetchPreviousData,
+    hasNextPage: hasMorePreviousData,
+    isFetchingNextPage: isFetchingPreviousData,
   } = useInfiniteChartQuery({
     symbol: symbol as string,
     fromDate,
@@ -68,9 +68,10 @@ export function StockChartWidget({
   }, [data]);
 
   const { onVisibleRangeChange } = useInfiniteChartScroll({
-    fetchNextPage,
-    hasNextPage,
-    isFetchingNextPage,
+    fetchPreviousData,
+    hasMorePreviousData,
+    isFetchingPreviousData,
+    loadedDataCount: mergedData.length,
   });
 
 
