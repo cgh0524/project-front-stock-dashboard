@@ -51,7 +51,11 @@ export function SearchResultList({
       <ul className="list-none">
         {symbols.map((item, index) => (
           <li key={`${item.displaySymbol}-${index}`}>
-            <Link href={`/stock-dashboard/${item.symbol}?name=${item.description}`}>
+            <Link
+              href={`/stock-dashboard/${item.symbol}`}
+              title={item.symbol}
+              aria-label={`View details for ${item.symbol} (${item.description})`}
+            >
               <SearchResultItem symbol={item} />
             </Link>
           </li>
