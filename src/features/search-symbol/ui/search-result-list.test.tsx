@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom";
 
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import React from "react";
 
 import type { Symbol } from "@/entities/symbol";
@@ -66,5 +66,29 @@ describe("SearchResultList", () => {
     expect(screen.getByText("MSFT")).toBeInTheDocument();
     expect(screen.getByText("Apple Inc.")).toBeInTheDocument();
     expect(screen.getByText("Microsoft Corporation")).toBeInTheDocument();
+  });
+
+  it("아이템 클릭 시 onSelectSymbol을 호출한다", () => {
+    const onSelectSymbol = jest.fn();
+    const symbols = [
+      createSymbol({
+        symbol: "AAPL",
+        displaySymbol: "AAPL",
+        description: "Apple Inc.",
+      }),
+    ];
+
+    render(
+      <SearchResultList
+        loading={false}
+        symbols={symbols}
+        error={null}
+        onSelectSymbol={onSelectSymbol}
+      />
+    );
+
+    fireEvent.click(screen.getByRole("link", { name: /view details for aapl/i }));
+
+    expect(onSelectSymbol).toHaveBeenCalledTimes(1);
   });
 });

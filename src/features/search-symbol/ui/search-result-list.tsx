@@ -10,12 +10,14 @@ export type SearchResultListProps = {
   symbols: Symbol[];
   loading: boolean;
   error: Error | null;
+  onSelectSymbol?: () => void;
 };
 
 export function SearchResultList({
   loading,
   error,
   symbols,
+  onSelectSymbol,
 }: SearchResultListProps) {
   const defaultStyles =
     "absolute w-full max-h-96 p-2 overflow-y-auto bg-surface-default border-border-default border-solid border rounded-md shadow-lg drop-shadow-lg";
@@ -55,6 +57,7 @@ export function SearchResultList({
               href={`/stock-dashboard/${item.symbol}`}
               title={item.symbol}
               aria-label={`View details for ${item.symbol} (${item.description})`}
+              onClick={onSelectSymbol}
             >
               <SearchResultItem symbol={item} />
             </Link>

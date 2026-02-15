@@ -1,5 +1,6 @@
-import { useId, useState } from "react";
+import { useId, useRef, useState } from "react";
 
+import { useOnClickOutside } from "@/shared/hooks/use-on-click-outside";
 import type { Option } from "@/shared/types";
 
 import { SelectDropdown } from "./select-dropdown";
@@ -14,6 +15,7 @@ export type SelectProps = {
 
 export function Select({ selectedOption, options, onChange }: SelectProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
   const listboxId = useId();
 
   const onClickTrigger = () => {
@@ -25,8 +27,15 @@ export function Select({ selectedOption, options, onChange }: SelectProps) {
     setIsOpen(false);
   };
 
+  useOnClickOutside({
+    ref: containerRef,
+    onClickOutside: () => setIsOpen(false),
+    enabled: isOpen,
+  });
+
   return (
     <div
+      ref={containerRef}
       role="combobox"
       aria-controls={listboxId}
       aria-expanded={isOpen}
