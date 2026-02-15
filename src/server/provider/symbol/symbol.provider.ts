@@ -1,4 +1,4 @@
-import type { Symbol } from "@/entities/symbol/model/symbol";
+import type { Symbol } from "@/entities/symbol";
 
 import type { ApiProvider } from "../provider.config";
 import { FinnhubSymbolProvider } from "./finnhub-symbol.provider";

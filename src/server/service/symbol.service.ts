@@ -1,4 +1,4 @@
-import type { Symbol } from "@/entities/symbol/model/symbol";
+import type { Symbol } from "@/entities/symbol";
 import { type SymbolProvider, symbolProvider } from "@/server/provider/symbol";
 import type { ApiSuccess } from "@/shared/api/api-success";
 

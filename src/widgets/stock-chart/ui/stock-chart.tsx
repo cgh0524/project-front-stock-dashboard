@@ -8,7 +8,8 @@ import type { ChartInterval } from "@/entities/chart";
 import { CHART_INTERVAL, StockChart } from "@/entities/chart";
 import { useInfiniteChartQuery } from "@/entities/chart";
 import { EmptyContent, ErrorMessage, LoadingSpinner } from "@/shared/ui/fallback";
-import { useInfiniteChartScroll } from "@/widgets/stock-chart/lib/use-infinite-chart-scroll";
+
+import { useInfiniteChartScroll } from "../lib/use-infinite-chart-scroll";
 
 export type StockChartProps = {
   /** 기본 조회 기간 (일) */

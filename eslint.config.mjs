@@ -23,6 +23,22 @@ export default defineConfig([
     rules: {
       "simple-import-sort/imports": "error",
       "simple-import-sort/exports": "error",
+      "no-restricted-imports": [
+        "error",
+        {
+          patterns: [
+            {
+              group: [
+                "@/entities/*/*/*",
+                "@/features/*/*/*",
+                "@/widgets/*/*/*",
+              ],
+              message:
+                "FSD public API(배럴)만 import하세요. 파일 직접 경로 대신 index가 있는 디렉터리 경로를 사용하세요.",
+            },
+          ],
+        },
+      ],
       "@typescript-eslint/consistent-type-imports": [
         "error",
         {

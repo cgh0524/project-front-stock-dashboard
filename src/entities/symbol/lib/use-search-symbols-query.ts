@@ -1,8 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 
 import type { Symbol } from "@/entities/symbol";
-import { getSearchSymbols } from "@/entities/symbol/lib/get-search-symbols";
-import { symbolQueryKeys } from "@/entities/symbol/lib/query-keys";
+
+import { getSearchSymbols } from "./get-search-symbols";
+import { symbolQueryKeys } from "./query-keys";
 
 export const useSearchSymbolsQuery = ({
   query,
@@ -19,4 +20,3 @@ export const useSearchSymbolsQuery = ({
     placeholderData: (previousData) => previousData,
   });
 };
-

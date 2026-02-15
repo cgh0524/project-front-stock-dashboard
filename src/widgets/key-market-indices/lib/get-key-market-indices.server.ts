@@ -1,7 +1,6 @@
 "server-only";
 
-import type { KeyMarketIndiceResult } from "@/entities/quote";
-import { KEY_MARKET_INDICES } from "@/entities/quote/lib/key-market-indices";
+import { KEY_MARKET_INDICES, type KeyMarketIndiceResult } from "@/entities/quote";
 import { quoteService } from "@/server/service/quote.service";
 
 /** (Server-side) 나스닥, S&P500, DOW&JONES, 금 추종 ETFs 조회 */
