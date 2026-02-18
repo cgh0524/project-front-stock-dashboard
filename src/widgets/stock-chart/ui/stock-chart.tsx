@@ -149,6 +149,7 @@ export function StockChartWidget({
         <StockChart
           key={selectedInterval}
           data={mergedData}
+          interval={selectedInterval}
           height={height}
           className={className}
           onVisibleRangeChange={onVisibleRangeChange}

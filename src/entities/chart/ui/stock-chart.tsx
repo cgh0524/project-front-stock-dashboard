@@ -1,16 +1,19 @@
 "use client";
 
-import dayjs from "dayjs";
-
-import type { CandleStickChartProps, CandleStickData, VolumeData } from "@/shared/chart";
+import type { CandleStickChartProps } from "@/shared/chart";
 import { CandleStickChart, ChartTooltip } from "@/shared/chart";
 
-import type { OHLCV } from "../model";
-import { CHART_VOLUME_COLORS } from "../model";
+import {
+  formatCrosshairTime,
+  toCandleStickData,
+  toVolumeData,
+} from "../lib/chart-mappers";
+import type { ChartInterval, OHLCV } from "../model";
 import { useCandlestickTooltip } from "./use-candlestick-tooltip";
 
 export type StockChartProps = {
   data: OHLCV[];
+  interval: ChartInterval;
   height?: CandleStickChartProps["height"];
   autoResize?: CandleStickChartProps["autoResize"];
   options?: CandleStickChartProps["options"];
@@ -19,58 +22,9 @@ export type StockChartProps = {
   onVisibleRangeChange?: CandleStickChartProps["onVisibleRangeChange"];
 };
 
-function toCandleStickData(data: OHLCV[]): CandleStickData[] {
-  return data.flatMap((item) => {
-    if (
-      item.open === null ||
-      item.high === null ||
-      item.low === null ||
-      item.close === null
-    )
-      return [];
-
-    const timestamp = dayjs(item.time);
-    if (!timestamp.isValid()) return [];
-
-    return [
-      {
-        time: timestamp.unix() as CandleStickData["time"],
-        open: item.open,
-        high: item.high,
-        low: item.low,
-        close: item.close,
-      },
-    ];
-  });
-}
-
-function toVolumeData(data: OHLCV[]): VolumeData[] {
-  return data.flatMap((item) => {
-    if (item.volume === null) return [];
-
-    const timestamp = dayjs(item.time);
-    if (!timestamp.isValid()) return [];
-
-    let color: string = CHART_VOLUME_COLORS.neutral;
-    if (item.open !== null && item.close !== null) {
-      color =
-        item.close >= item.open
-          ? CHART_VOLUME_COLORS.up
-          : CHART_VOLUME_COLORS.down;
-    }
-
-    return [
-      {
-        time: timestamp.unix() as VolumeData["time"],
-        value: item.volume,
-        color,
-      },
-    ];
-  });
-}
-
 export function StockChart({
   data,
+  interval,
   height,
   autoResize,
   options,
@@ -79,8 +33,17 @@ export function StockChart({
   onVisibleRangeChange,
 }: StockChartProps) {
   const candleStickData = toCandleStickData(data);
-  const volumeData = toVolumeData(data)
+  const volumeData = toVolumeData(data);
   const { tooltipState, onCrosshairMove } = useCandlestickTooltip();
+  const chartOptions: CandleStickChartProps["options"] = {
+    ...options,
+    localization: {
+      locale: options?.localization?.locale ?? "en-US",
+      dateFormat: options?.localization?.dateFormat ?? "dd MMM 'yy",
+      ...(options?.localization ?? {}),
+      timeFormatter: (time) => formatCrosshairTime(time, interval),
+    },
+  };
 
   return (
     <div className="relative w-full">
@@ -89,7 +52,7 @@ export function StockChart({
         volume={volumeData}
         height={height}
         autoResize={autoResize}
-        options={options}
+        options={chartOptions}
         seriesOptions={seriesOptions}
         className={className}
         onCrosshairMove={onCrosshairMove}
