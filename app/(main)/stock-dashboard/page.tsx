@@ -10,15 +10,15 @@ import { marketPerformanceQueryKeys } from "@/entities/market-performance";
 import { quoteQueryKeys } from "@/entities/quote";
 import { marketPerformanceService } from "@/server/service/market-performance.service";
 import { MARKET_EXCHANGE } from "@/shared/types";
-import { KeyMarketIndices } from "@/widgets/key-market-indices";
-import { getKeyMarketIndices } from "@/widgets/key-market-indices/api";
-import { MarketLeaders } from "@/widgets/market-leaders";
+import { KeyMarketIndices } from "@/widgets/stock-dashboard/key-market-indices";
+import { getKeyMarketIndices } from "@/widgets/stock-dashboard/key-market-indices/api";
+import { MarketLeaders } from "@/widgets/stock-dashboard/market-leaders";
 import {
   getMarketBiggestGainers,
   getMarketBiggestLosers,
   getMarketMostActives,
-} from "@/widgets/market-leaders/api";
-import { MarketSectorPerformance } from "@/widgets/market-sector-performance";
+} from "@/widgets/stock-dashboard/market-leaders/api";
+import { MarketSectorPerformance } from "@/widgets/stock-dashboard/market-sector-performance";
 
 const getMarketSectorPerformance = async (date: string, exchange: string) => {
   const result = await marketPerformanceService.getMarketSectorPerformance({

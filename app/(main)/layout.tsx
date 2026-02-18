@@ -1,5 +1,5 @@
-import { MainHeader } from "@/widgets/main-header";
-import { MainNavigation } from "@/widgets/main-navigation";
+import { MainHeader } from "@/widgets/shared/main-header";
+import { MainNavigation } from "@/widgets/shared/main-navigation";
 
 export default function MainLayout({
   children,

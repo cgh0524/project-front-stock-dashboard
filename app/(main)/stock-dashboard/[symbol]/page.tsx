@@ -2,8 +2,8 @@ import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query
 
 import { quoteQueryKeys } from "@/entities/quote";
 import { quoteService } from "@/server/service/quote.service";
-import { StockChartWidget } from "@/widgets/stock-chart";
-import { SymbolQuoteSection } from "@/widgets/symbol-quote";
+import { StockChartWidget } from "@/widgets/stock-dashboard-symbol/stock-chart";
+import { SymbolQuoteSection } from "@/widgets/stock-dashboard-symbol/symbol-quote";
 
 const getQuote = async (symbol: string) => {
   const result = await quoteService.getQuote(symbol);

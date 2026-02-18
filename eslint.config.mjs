@@ -31,7 +31,7 @@ export default defineConfig([
               group: [
                 "@/entities/*/*/*",
                 "@/features/*/*/*",
-                "@/widgets/*/*/*",
+                "@/widgets/*/*/*/*",
               ],
               message:
                 "FSD public API(배럴)만 import하세요. 파일 직접 경로 대신 index가 있는 디렉터리 경로를 사용하세요.",
