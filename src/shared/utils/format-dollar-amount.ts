@@ -9,7 +9,7 @@ export function formatDollarAmount(value: number): string {
   return `$${abs}`;
 }
 
-/** 금액 앞에 + 또는 -를 붙이는 함수 */
+/** 금액 앞에 +$ 또는 -$를 붙이는 함수 */
 export function formatSignedDollarAmount(value: number): string {
   const abs = Math.abs(value);
   

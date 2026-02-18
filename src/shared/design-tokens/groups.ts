@@ -11,6 +11,7 @@ export const shadeKeys = [
   "600",
   "700",
   "800",
+  "850",
   "900",
 ] as const;
 
