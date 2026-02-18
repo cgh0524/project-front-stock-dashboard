@@ -4,6 +4,7 @@ import type {
   CandleStickCrosshairPayload,
   ChartTooltipItem,
 } from "@/shared/chart";
+import { formatFixed } from "@/shared/utils/format-number";
 
 export type CandleStickTooltipState = {
   open: boolean;
@@ -33,10 +34,10 @@ export function useCandlestickTooltip() {
 
     const { open, high, low, close } = payload.data;
     const items: ChartTooltipItem[] = [
-      { label: "Opened", value: open.toFixed(2) },
-      { label: "High", value: high.toFixed(2) },
-      { label: "Low", value: low.toFixed(2) },
-      { label: "Closed", value: close.toFixed(2) },
+      { label: "Opened", value: formatFixed(open) },
+      { label: "High", value: formatFixed(high) },
+      { label: "Low", value: formatFixed(low) },
+      { label: "Closed", value: formatFixed(close) },
     ];
 
     const next = {

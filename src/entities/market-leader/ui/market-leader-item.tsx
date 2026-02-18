@@ -1,5 +1,5 @@
 import type { MarketLeaderItemModel } from "@/entities/market-leader";
-import { formatDollarAmount } from "@/shared/utils/format-dollar-amount";
+import { formatCurrency, formatPercent } from "@/shared/utils/format-number";
 
 export type MarketLeaderItemProps = {
   data: MarketLeaderItemModel;
@@ -36,12 +36,12 @@ export const MarketLeaderItem = ({ rank, data }: MarketLeaderItemProps) => {
 
       {/* Current Price */}
       <span className={`text-sm font-bold text-center ${textColorStyles}`}>
-        {formatDollarAmount(Number(data.price.toFixed(2)))}
+        {formatCurrency(data.price)}
       </span>
 
       {/* Change Percentage */}
       <span className={`text-sm font-bold text-right ${textColorStyles}`}>
-        {data.changePercentage.toFixed(2)}%
+        {formatPercent(data.changePercentage, { showSign: true })}
       </span>
     </div>
   );

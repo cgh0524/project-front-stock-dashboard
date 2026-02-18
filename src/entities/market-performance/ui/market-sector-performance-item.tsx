@@ -1,4 +1,5 @@
 import { Tile } from "@/shared/ui/layout";
+import { formatPercent } from "@/shared/utils/format-number";
 
 import type { MarketSectorPerformance } from "../types";
 
@@ -9,21 +10,18 @@ export type MarketSectorPerformanceItemProps = {
 export function MarketSectorPerformanceItem({
   data,
 }: MarketSectorPerformanceItemProps) {
-  const ZERO_CHANGE_PERCENTAGE = "0.00";
-
-  const changePercentage =
-    data.averageChange?.toFixed(2) ?? ZERO_CHANGE_PERCENTAGE;
+  const changePercentage = data.averageChange ?? 0;
   const textColorStyles =
-    changePercentage === ZERO_CHANGE_PERCENTAGE
+    changePercentage === 0
       ? "text-text-primary"
-      : changePercentage > ZERO_CHANGE_PERCENTAGE
+      : changePercentage > 0
         ? "text-positive"
         : "text-negative";
   return (
     <Tile className="flex flex-col justify-between gap-2 min-w-12 min-h-[100px] p-4 border border-border-default">
       <span className="text-base font-bold">{data.sector}</span>
       <span className={`text-sm font-bold ${textColorStyles}`}>
-        {data.averageChange.toFixed(2)}%
+        {formatPercent(changePercentage, { showSign: true })}
       </span>
     </Tile>
   );

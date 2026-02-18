@@ -1,20 +1,18 @@
 import Link from "next/link";
 
 import { Tile } from "@/shared/ui/layout";
+import { formatCurrency, formatPercent } from "@/shared/utils/format-number";
 
 import type { Quote } from "../types";
 
 export type KeyMarketIndiceItemProps = { data: Quote };
 
 export function KeyMarketIndiceItem({ data }: KeyMarketIndiceItemProps) {
-  const ZERO_CHANGE_PERCENTAGE = "0.00";
-
-  const changePercentage =
-    data.changePercentage?.toFixed(2) ?? ZERO_CHANGE_PERCENTAGE;
+  const changePercentage = data.changePercentage ?? 0;
   const textColorStyles =
-    changePercentage === ZERO_CHANGE_PERCENTAGE
+    changePercentage === 0
       ? "text-text-primary"
-      : changePercentage > ZERO_CHANGE_PERCENTAGE
+      : changePercentage > 0
         ? "text-positive"
         : "text-negative";
 
@@ -27,13 +25,10 @@ export function KeyMarketIndiceItem({ data }: KeyMarketIndiceItemProps) {
       <Tile className="flex flex-col justify-between gap-2 min-w-12 min-h-[100px] p-4 border border-border-default">
         <span className="text-xl font-bold">{data.symbol}</span>
         <span className={`text-lg font-bold ${textColorStyles}`}>
-          {data.currentPrice.toLocaleString("en-US", {
-            style: "currency",
-            currency: "USD",
-          })}
+          {formatCurrency(data.currentPrice)}
         </span>
         <span className={textColorStyles}>
-          {data.changePercentage?.toFixed(2)}%
+          {formatPercent(changePercentage, { showSign: true })}
         </span>
       </Tile>
     </Link>

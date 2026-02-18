@@ -1,8 +1,8 @@
 import { Tile } from "@/shared/ui/layout";
 import {
-  formatDollarAmount,
-  formatSignedDollarAmount,
-} from "@/shared/utils/format-dollar-amount";
+  formatCurrency,
+  formatPercent,
+} from "@/shared/utils/format-number";
 
 import type { Quote } from "../types";
 
@@ -37,17 +37,19 @@ export const SymbolQuote = ({ quote, name }: SymbolQuoteProps) => {
         </div>
 
         <span className={`text-sm ${changePercentageStyles}`}>
-          {changePercentage?.toFixed(2)}%
+          {changePercentage !== undefined
+            ? formatPercent(changePercentage, { showSign: true })
+            : "-"}
         </span>
       </div>
 
       <div className="flex flex-col">
         <span className={`text-xl font-bold ${textColorStyles}`}>
-          {formatDollarAmount(Number(currentPrice.toFixed(2)))}
+          {formatCurrency(currentPrice)}
         </span>
         {changeAmount !== undefined && (
           <span className={`text-sm font-bold ${textColorStyles}`}>
-            ({formatSignedDollarAmount(Number(changeAmount.toFixed(2)))})
+            ({formatCurrency(changeAmount, { showSign: true })})
           </span>
         )}
       </div>

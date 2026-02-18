@@ -44,14 +44,14 @@ function toMetricCards(data: StockMetricSummary): MetricCard[] {
       label: "52 Week Return",
       value:
         data.week52PriceReturnDaily !== undefined
-          ? formatPercent(data.week52PriceReturnDaily)
+          ? formatPercent(data.week52PriceReturnDaily, { showSign: true })
           : DASH,
     },
     {
       key: "salesPerShare",
       label: "Sales Per Share",
       value:
-        data.salesPerShare !== undefined ? formatFixed(data.salesPerShare, 2) : DASH,
+        data.salesPerShare !== undefined ? formatCurrency(data.salesPerShare) : DASH,
     },
     {
       key: "netMargin",
@@ -76,8 +76,6 @@ export function StockMetricSection() {
   });
 
   const cards = toMetricCards(data ?? {});
-
-
   const hasAnyValue = cards.some((card) => card.value !== DASH);
 
   return (
