@@ -1,5 +1,5 @@
 import { MarketLeaderList } from "@/entities/market-leader";
-import { useGetMarketMostActivesQuery } from "@/entities/market-leader/lib";
+import { useGetMarketMostActivesQuery } from "@/entities/market-leader";
 import { EmptyContent, ErrorMessage, LoadingSpinner } from "@/shared/ui/fallback";
 
 export const MarketMostActiveList = () => {

@@ -1,6 +1,6 @@
 import { Tile } from "@/shared/ui/layout";
 
-import type { MarketSectorPerformance } from "../model";
+import type { MarketSectorPerformance } from "../types";
 
 export type MarketSectorPerformanceItemProps = {
   data: MarketSectorPerformance;

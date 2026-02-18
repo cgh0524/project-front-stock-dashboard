@@ -1,4 +1,4 @@
-import type { MarketSectorPerformance } from "../model";
+import type { MarketSectorPerformance } from "../types";
 import { MarketSectorPerformanceItem } from "./market-sector-performance-item";
 
 export type MarketSectorPerformanceListProps = {

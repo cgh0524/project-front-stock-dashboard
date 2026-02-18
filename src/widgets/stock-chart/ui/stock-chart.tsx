@@ -16,7 +16,7 @@ import {
 import { useInfiniteChartQuery } from "@/entities/chart";
 import { EmptyContent, ErrorMessage, LoadingSpinner } from "@/shared/ui/fallback";
 
-import { useInfiniteChartScroll } from "../lib/use-infinite-chart-scroll";
+import { useInfiniteChartScroll } from "../hooks/use-infinite-chart-scroll";
 
 export type StockChartProps = {
   /** 기본 조회 기간 (일) */

@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import { Tile } from "@/shared/ui/layout";
 
-import type { Quote } from "../model";
+import type { Quote } from "../types";
 
 export type KeyMarketIndiceItemProps = { data: Quote };
 

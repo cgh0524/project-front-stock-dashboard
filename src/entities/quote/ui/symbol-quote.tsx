@@ -4,7 +4,7 @@ import {
   formatSignedDollarAmount,
 } from "@/shared/utils/format-dollar-amount";
 
-import type { Quote } from "../model";
+import type { Quote } from "../types";
 
 export type SymbolQuoteProps = {
   quote: Quote;

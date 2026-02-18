@@ -5,7 +5,7 @@ import { useRef, useState } from "react";
 import { useSearchSymbolsQuery } from "@/entities/symbol";
 import { useOnClickOutside } from "@/shared/hooks/use-on-click-outside";
 
-import { useSearchInput } from "../lib";
+import { useSearchInput } from "../hooks";
 import { SearchInput } from "./search-input";
 import { SearchResultList } from "./search-result-list";
 

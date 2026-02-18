@@ -18,12 +18,8 @@ export function MainNavigation() {
 
   const pathname = usePathname();
 
-  const isActiveRoute = (href: string) => {
-    return href === "/" ? pathname === "/" : pathname.startsWith(href);
-  };
-
   return (
-    <nav className="min-w-[190px] w-[190px] bg-surface-default">
+    <nav className="min-w-[190px] w-[190px] bg-surface-default shadow-[10px_0_16px_rgba(0,0,0,0.08)]">
       <div className="p-2 text-2xl font-bold text-center italic text-accent-primary">
         Market Watch
       </div>
@@ -33,7 +29,7 @@ export function MainNavigation() {
           <MainNavigationItem
             key={item.href}
             href={item.href}
-            isActive={isActiveRoute(item.href)}
+            isActive={item.href === pathname}
           >
             {item.label}
           </MainNavigationItem>

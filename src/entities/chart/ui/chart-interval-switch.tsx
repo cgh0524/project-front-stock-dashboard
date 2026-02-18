@@ -2,8 +2,11 @@ import type { Option } from "@/shared/types";
 import { Tabs } from "@/shared/ui/tabs";
 import { createOption } from "@/shared/utils/create-options";
 
-import type { ChartInterval } from "../model";
-import { CHART_DEFAULT_INTERVAL_OPTIONS, CHART_INTERVAL_LABELS } from "../model";
+import {
+  CHART_DEFAULT_INTERVAL_OPTIONS,
+  CHART_INTERVAL_LABELS,
+} from "../constants/chart";
+import type { ChartInterval } from "../types";
 
 export type ChartIntervalSwitchProps = {
   value: ChartInterval;

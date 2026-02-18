@@ -5,19 +5,19 @@ import {
 } from "@tanstack/react-query";
 import dayjs from "dayjs";
 
-import { marketLeaderQueryKeys } from "@/entities/market-leader/lib";
-import { marketPerformanceQueryKeys } from "@/entities/market-performance/lib";
+import { marketLeaderQueryKeys } from "@/entities/market-leader";
+import { marketPerformanceQueryKeys } from "@/entities/market-performance";
 import { quoteQueryKeys } from "@/entities/quote";
 import { marketPerformanceService } from "@/server/service/market-performance.service";
 import { MARKET_EXCHANGE } from "@/shared/types";
 import { KeyMarketIndices } from "@/widgets/key-market-indices";
-import { getKeyMarketIndices } from "@/widgets/key-market-indices/lib";
+import { getKeyMarketIndices } from "@/widgets/key-market-indices/api";
 import { MarketLeaders } from "@/widgets/market-leaders";
 import {
   getMarketBiggestGainers,
   getMarketBiggestLosers,
   getMarketMostActives,
-} from "@/widgets/market-leaders/lib";
+} from "@/widgets/market-leaders/api";
 import { MarketSectorPerformance } from "@/widgets/market-sector-performance";
 
 const getMarketSectorPerformance = async (date: string, exchange: string) => {

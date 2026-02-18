@@ -1,7 +1,7 @@
 "use client";
 
 import { MarketLeaderList } from "@/entities/market-leader";
-import { useGetMarketBiggestGainersQuery } from "@/entities/market-leader/lib";
+import { useGetMarketBiggestGainersQuery } from "@/entities/market-leader";
 import { EmptyContent, ErrorMessage, LoadingSpinner } from "@/shared/ui/fallback";
 
 export const MarketBiggestGainerList = () => {

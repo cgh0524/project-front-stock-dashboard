@@ -3,12 +3,12 @@
 import type { CandleStickChartProps } from "@/shared/chart";
 import { CandleStickChart, ChartTooltip } from "@/shared/chart";
 
+import type { ChartInterval, OHLCV } from "../types";
 import {
   formatCrosshairTime,
   toCandleStickData,
   toVolumeData,
-} from "../lib/chart-mappers";
-import type { ChartInterval, OHLCV } from "../model";
+} from "../utils/chart-mappers";
 import { useCandlestickTooltip } from "./use-candlestick-tooltip";
 
 export type StockChartProps = {
