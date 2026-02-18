@@ -10,6 +10,7 @@
   --color-gray-600: #4b5563;
   --color-gray-700: #374151;
   --color-gray-800: #1f2937;
+  --color-gray-850: #1a2330;
   --color-gray-900: #111827;
 
   --color-blue-50: #eff6ff;
@@ -21,6 +22,7 @@
   --color-blue-600: #2563eb;
   --color-blue-700: #1d4ed8;
   --color-blue-800: #1e40af;
+  --color-blue-850: #1e3d9d;
   --color-blue-900: #1e3a8a;
 
   --color-green-50: #ecfdf5;
@@ -32,6 +34,7 @@
   --color-green-600: #059669;
   --color-green-700: #047857;
   --color-green-800: #065f46;
+  --color-green-850: #05563f;
   --color-green-900: #064e3b;
 
   --color-red-50: #fef2f2;
@@ -43,6 +46,7 @@
   --color-red-600: #dc2626;
   --color-red-700: #b91c1c;
   --color-red-800: #991b1b;
+  --color-red-850: #8c1c1c;
   --color-red-900: #7f1d1d;
 
   --color-yellow-50: #fffbeb;
@@ -54,6 +58,7 @@
   --color-yellow-600: #d97706;
   --color-yellow-700: #b45309;
   --color-yellow-800: #92400e;
+  --color-yellow-850: #85390f;
   --color-yellow-900: #78350f;
 
   --color-white: #ffffff;
@@ -62,9 +67,11 @@
   /* Semantic palette for stock dashboard */
   --color-bg-default: var(--color-gray-50);
   --color-bg-subtle: var(--color-gray-100);
+  --color-bg-elevated: #f6f7f8;
 
   --color-surface-default: var(--color-white);
   --color-surface-alt: var(--color-gray-50);
+  --color-surface-elevated: #f6f7f8;
 
   --color-border-default: var(--color-gray-200);
   --color-border-strong: var(--color-gray-300);
@@ -94,9 +101,11 @@
 @theme {
   --color-bg-default: var(--color-bg-default);
   --color-bg-subtle: var(--color-bg-subtle);
+  --color-bg-elevated: var(--color-bg-elevated);
 
   --color-surface-default: var(--color-surface-default);
   --color-surface-alt: var(--color-surface-alt);
+  --color-surface-elevated: var(--color-surface-elevated);
 
   --color-border-default: var(--color-border-default);
   --color-border-strong: var(--color-border-strong);
@@ -124,9 +133,11 @@
   :root {
     --color-bg-default: var(--color-gray-900);
     --color-bg-subtle: var(--color-gray-800);
+    --color-bg-elevated: var(--color-gray-850);
 
     --color-surface-default: var(--color-gray-800);
     --color-surface-alt: var(--color-gray-900);
+    --color-surface-elevated: var(--color-gray-850);
 
     --color-border-default: var(--color-gray-700);
     --color-border-strong: var(--color-gray-600);

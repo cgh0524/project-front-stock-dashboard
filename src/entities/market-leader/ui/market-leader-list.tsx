@@ -10,7 +10,7 @@ type MarketLeaderListProps = {
 
 export const MarketLeaderList = ({ data }: MarketLeaderListProps) => {
   return (
-    <div className="max-w-full">
+    <div className="max-w-full rounded-md overflow-hidden">
       {/* Table Header */}
       <div
         className="grid
@@ -29,7 +29,7 @@ export const MarketLeaderList = ({ data }: MarketLeaderListProps) => {
       </div>
 
       {/* Table Body */}
-      <ul className="flex flex-col py-2 px-2 bg-surface-default rounded-md max-h-[500px] overflow-y-auto">
+      <ul className="flex flex-col py-2 px-2 bg-surface-default max-h-[500px] overflow-y-auto">
         {data.map((item: MarketLeaderItemEntity, index: number) => (
           <li key={item.symbol}>
             <Link
