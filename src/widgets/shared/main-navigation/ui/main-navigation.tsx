@@ -14,6 +14,10 @@ export function MainNavigation() {
       href: "/stock-dashboard",
       label: "Stock Dashboard",
     },
+    {
+      href: "/news",
+      label: "News",
+    },
   ];
 
   const pathname = usePathname();
