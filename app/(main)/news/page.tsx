@@ -1,8 +1,26 @@
-export default function NewsPage() {
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+} from "@tanstack/react-query";
+
+import { getNews, NEWS_CATEGORY, newsQueryKeys } from "@/entities/news";
+import { NewsSection } from "@/widgets/news";
+
+export default async function NewsPage() {
+  const queryClient = new QueryClient();
+
+  await queryClient.prefetchInfiniteQuery({
+    queryKey: newsQueryKeys.feed({ category: NEWS_CATEGORY.GENERAL }),
+    queryFn: ({ pageParam }) => getNews({ category: NEWS_CATEGORY.GENERAL, minId: pageParam }),
+    initialPageParam: 0,
+  });
+
   return (
-    <section className="flex flex-col gap-3">
-      <h1 className="text-2xl font-bold text-text-primary">News</h1>
-      <p className="text-sm text-text-secondary">Market news feed will be added here.</p>
-    </section>
+    <div>
+      <HydrationBoundary state={dehydrate(queryClient)}>
+        <NewsSection />
+      </HydrationBoundary>
+    </div>
   );
 }
