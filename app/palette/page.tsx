@@ -1,8 +1,8 @@
+import { PaletteGroup } from "@/shared/components/color-palette/palette-group";
 import {
   primitivePaletteGroups,
   semanticPaletteGroups,
 } from "@/shared/design-tokens";
-import { PaletteGroup } from "@/shared/ui/color-palette/palette-group";
 
 /**
  * 이 페이지는 프로젝트에 사용되는 디자인 토큰을 확인하기 위한 페이지이며,

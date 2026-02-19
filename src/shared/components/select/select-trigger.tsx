@@ -1,5 +1,5 @@
+import DropdownArrow from "@/shared/icons/dropdown-arrow.svg";
 import type { Option } from "@/shared/types";
-import DropdownArrow from "@/shared/ui/icon/dropdown-arrow.svg";
 
 export type SelectTriggerProps = {
   selectedOption?: Option;

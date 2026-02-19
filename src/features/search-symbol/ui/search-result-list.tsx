@@ -1,8 +1,8 @@
 import Link from "next/link";
 
 import type { Symbol } from "@/entities/symbol";
-import { EmptyContent } from "@/shared/ui/fallback/empty-content";
-import { LoadingSpinner } from "@/shared/ui/fallback/loading-spinner";
+import { EmptyContent } from "@/shared/components/fallback/empty-content";
+import { LoadingSpinner } from "@/shared/components/fallback/loading-spinner";
 
 import { SearchResultItem } from "./search-result-item";
 

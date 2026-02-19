@@ -1,5 +1,5 @@
+import { Tabs } from "@/shared/components/tabs";
 import type { Option } from "@/shared/types";
-import { Tabs } from "@/shared/ui/tabs";
 import { createOption } from "@/shared/utils/create-options";
 
 import {

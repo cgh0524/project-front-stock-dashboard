@@ -6,8 +6,8 @@ import {
   type StockMetricSummary,
   useStockMetricQuery,
 } from "@/entities/stock-metric";
-import { EmptyContent, ErrorMessage, LoadingSpinner } from "@/shared/ui/fallback";
-import { Section, Tile } from "@/shared/ui/layout";
+import { EmptyContent, ErrorMessage, LoadingSpinner } from "@/shared/components/fallback";
+import { Section, Tile } from "@/shared/components/layout";
 import {
   formatCurrency,
   formatFixed,

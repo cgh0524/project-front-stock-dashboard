@@ -1,7 +1,7 @@
 "use client";
 
+import { Select } from "@/shared/components/select";
 import { MARKET_EXCHANGE, type Option } from "@/shared/types";
-import { Select } from "@/shared/ui/select";
 import { createOptions } from "@/shared/utils/create-options";
 
 export type MarketExchangeSelectProps = {

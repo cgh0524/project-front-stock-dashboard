@@ -3,13 +3,13 @@
 import { useState } from "react";
 
 import { MarketLeadersTabs } from "@/entities/market-leader";
+import { Section } from "@/shared/components/layout";
 import type { MarketLeadersOptionKey } from "@/shared/types";
 import {
   MARKET_LEADERS_OPTION_KEY,
   MARKET_LEADERS_OPTION_LABEL,
   type Option,
 } from "@/shared/types";
-import { Section } from "@/shared/ui/layout";
 import { createOption } from "@/shared/utils/create-options";
 
 import { MarketBiggestGainerList } from "./market-biggest-gainer-list";

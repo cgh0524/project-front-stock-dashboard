@@ -6,7 +6,7 @@ import {
   EmptyContent,
   ErrorMessage,
   LoadingSpinner,
-} from "@/shared/ui/fallback";
+} from "@/shared/components/fallback";
 
 export type MarketSectorPerformanceListContainerProps = {
   /** 날짜 (YYYY-MM-DD) */

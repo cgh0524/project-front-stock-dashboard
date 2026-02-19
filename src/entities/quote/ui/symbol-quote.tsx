@@ -1,4 +1,4 @@
-import { Tile } from "@/shared/ui/layout";
+import { Tile } from "@/shared/components/layout";
 import {
   formatCurrency,
   formatPercent,

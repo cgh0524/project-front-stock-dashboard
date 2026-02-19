@@ -4,8 +4,8 @@ import {
   KeyMarketIndiceItem,
   useKeyMarketIndicesQuery,
 } from "@/entities/quote";
-import { EmptyContent, ErrorMessage, LoadingSpinner } from "@/shared/ui/fallback";
-import { Section, Tile } from "@/shared/ui/layout";
+import { EmptyContent, ErrorMessage, LoadingSpinner } from "@/shared/components/fallback";
+import { Section, Tile } from "@/shared/components/layout";
 
 export function KeyMarketIndices() {
   const { data, isLoading, error, refetch } =

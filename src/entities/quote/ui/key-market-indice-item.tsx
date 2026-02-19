@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { Tile } from "@/shared/ui/layout";
+import { Tile } from "@/shared/components/layout";
 import { formatCurrency, formatPercent } from "@/shared/utils/format-number";
 
 import type { Quote } from "../types";

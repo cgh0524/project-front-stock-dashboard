@@ -1,9 +1,9 @@
+import { Tabs } from "@/shared/components/tabs";
 import type { Option } from "@/shared/types";
 import {
   MARKET_LEADERS_OPTION_KEY,
   MARKET_LEADERS_OPTION_LABEL,
 } from "@/shared/types";
-import { Tabs } from "@/shared/ui/tabs";
 import { createOptions } from "@/shared/utils/create-options";
 
 export type MarketLeadersTabsProps = {

@@ -1,6 +1,6 @@
 import { MarketLeaderList } from "@/entities/market-leader";
 import { useMarketBiggestLosersQuery } from "@/entities/market-leader";
-import { EmptyContent, ErrorMessage, LoadingSpinner } from "@/shared/ui/fallback";
+import { EmptyContent, ErrorMessage, LoadingSpinner } from "@/shared/components/fallback";
 
 export const MarketBiggestLoserList = () => {
   const { data, isLoading, isError, error, refetch } =

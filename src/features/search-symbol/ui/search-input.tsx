@@ -1,5 +1,5 @@
-import SearchIcon from "@/shared/ui/icon/search.svg";
-import { Input } from "@/shared/ui/input";
+import { Input } from "@/shared/components/input";
+import SearchIcon from "@/shared/icons/search.svg";
 
 export type SearchInputProps = {
   value: string;

@@ -4,7 +4,7 @@ import { useParams } from "next/navigation";
 
 import { SymbolQuote, useQuoteQuery } from "@/entities/quote";
 import { useSearchSymbolsQuery } from "@/entities/symbol";
-import { ErrorMessage, LoadingSpinner } from "@/shared/ui/fallback";
+import { ErrorMessage, LoadingSpinner } from "@/shared/components/fallback";
 
 export const SymbolQuoteSection = () => {
   const { symbol } = useParams();

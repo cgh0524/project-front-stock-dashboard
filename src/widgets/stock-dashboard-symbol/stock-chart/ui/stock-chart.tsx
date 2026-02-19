@@ -14,7 +14,7 @@ import {
   StockChart,
 } from "@/entities/stock-chart";
 import { useInfiniteStockChartQuery } from "@/entities/stock-chart";
-import { EmptyContent, ErrorMessage, LoadingSpinner } from "@/shared/ui/fallback";
+import { EmptyContent, ErrorMessage, LoadingSpinner } from "@/shared/components/fallback";
 
 import { useInfiniteChartScroll } from "../hooks/use-infinite-chart-scroll";
 

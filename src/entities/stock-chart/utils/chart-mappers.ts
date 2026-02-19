@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 
-import type { CandleStickData, VolumeData } from "@/shared/lightweight-chart";
+import type { CandleStickData, VolumeData } from "@/shared/components/lightweight-chart";
 
 import type { ChartInterval, OHLCV } from "../types";
 import { CHART_INTERVAL, CHART_VOLUME_COLORS } from "../types";
