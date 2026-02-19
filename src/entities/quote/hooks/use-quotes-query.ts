@@ -4,7 +4,7 @@ import { getQuote } from "../api/get-quote";
 import { quoteQueryKeys } from "../constants/query-keys";
 import type { Quote } from "../types";
 
-export const useGetQuotesQuery = ({
+export const useQuotesQuery = ({
   queries,
   staleTime,
 }: {

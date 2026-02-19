@@ -4,7 +4,7 @@ import { useParams } from "next/navigation";
 
 import {
   type StockMetricSummary,
-  useGetStockMetricQuery,
+  useStockMetricQuery,
 } from "@/entities/stock-metric";
 import { EmptyContent, ErrorMessage, LoadingSpinner } from "@/shared/ui/fallback";
 import { Section, Tile } from "@/shared/ui/layout";
@@ -71,7 +71,7 @@ export function StockMetricSection() {
   const { symbol } = useParams();
   const normalizedSymbol = String(symbol ?? "");
 
-  const { data, isLoading, error, refetch } = useGetStockMetricQuery({
+  const { data, isLoading, error, refetch } = useStockMetricQuery({
     symbol: normalizedSymbol,
   });
 

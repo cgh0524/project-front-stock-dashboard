@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 import { type ChartOptions, createChart, type DeepPartial, type IChartApi } from "lightweight-charts";
@@ -133,18 +132,22 @@ export function useLightweightChart<TSeries, TData, TSeriesOptions>({
     }
     setupResizeObserver();
     return cleanupResizeObserver;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [autoResize]);
 
   useEffect(() => {
     updateSeriesData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, fitContentOnUpdate, setSeriesData]);
 
   useEffect(() => {
     updateChartOptions();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [height, options]);
 
   useEffect(() => {
     updateSeriesOptions();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [applySeriesOptions, seriesOptions]);
 
   return { containerRef };

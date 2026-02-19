@@ -11,7 +11,7 @@ export type InfiniteChartPageParam = {
   toDate?: ChartQuery["toDate"];
 };
 
-export type UseInfiniteChartQueryParams = {
+export type UseInfiniteStockChartQueryParams = {
   symbol: string;
   fromDate: ChartQuery["fromDate"];
   toDate?: ChartQuery["toDate"];
@@ -37,7 +37,7 @@ function getPreviousRange(param: InfiniteChartPageParam): InfiniteChartPageParam
   };
 }
 
-export function useInfiniteChartQuery(params: UseInfiniteChartQueryParams) {
+export function useInfiniteStockChartQuery(params: UseInfiniteStockChartQueryParams) {
   const { symbol, fromDate, toDate, interval, includePrePost } = params;
 
   return useInfiniteQuery<

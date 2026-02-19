@@ -1,3 +1,3 @@
-export * from "./use-get-key-market-indices-query";
-export * from "./use-get-quote-query";
-export * from "./use-get-quotes-query";
+export * from "./use-key-market-indices-query";
+export * from "./use-quote-query";
+export * from "./use-quotes-query";

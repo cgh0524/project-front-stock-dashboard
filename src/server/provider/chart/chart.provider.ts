@@ -1,4 +1,4 @@
-import type { ChartQuery, ChartResult } from "@/entities/chart";
+import type { ChartQuery, ChartResult } from "@/entities/stock-chart";
 
 import type { ApiProvider } from "../provider.config";
 import { YahooChartProvider } from "./yahoo-chart.provider";

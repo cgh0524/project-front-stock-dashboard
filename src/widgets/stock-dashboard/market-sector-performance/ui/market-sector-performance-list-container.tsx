@@ -1,6 +1,6 @@
 import {
   MarketSectorPerformanceList,
-  useGetMarketSectorPerformanceQuery,
+  useMarketSectorPerformanceQuery,
 } from "@/entities/market-performance";
 import {
   EmptyContent,
@@ -24,7 +24,7 @@ export function MarketSectorPerformanceListContainer({
     error: performancesError,
     isLoading,
     refetch,
-  } = useGetMarketSectorPerformanceQuery({
+  } = useMarketSectorPerformanceQuery({
     date: date,
     exchange: exchange,
   });

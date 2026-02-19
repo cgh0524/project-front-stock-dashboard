@@ -1,1 +1,1 @@
-export * from "./use-get-stock-metric-query";
+export * from "./use-stock-metric-query";

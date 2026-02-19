@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getMarketBiggestGainers } from "../api/get-market-biggest-gainers";
 import { marketLeaderQueryKeys } from "../constants/query-keys";
 
-export const useGetMarketBiggestGainersQuery = () => {
+export const useMarketBiggestGainersQuery = () => {
   return useQuery({
     queryKey: marketLeaderQueryKeys.biggestGainers(),
     queryFn: async () => await getMarketBiggestGainers(),

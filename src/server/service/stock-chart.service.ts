@@ -1,4 +1,4 @@
-import type { ChartQuery, ChartResult } from "@/entities/chart";
+import type { ChartQuery, ChartResult } from "@/entities/stock-chart";
 import type { ApiSuccess } from "@/shared/api/api-success";
 
 import type { ApiError } from "../errors/api-error";
@@ -7,7 +7,7 @@ import { normalizeSuccess } from "../http/success-response";
 import type { ChartProvider } from "../provider/chart";
 import { chartProvider } from "../provider/chart";
 
-class ChartService {
+class StockChartService {
   constructor(private readonly provider: ChartProvider) {}
 
   async getChart(
@@ -23,4 +23,4 @@ class ChartService {
   }
 }
 
-export const chartService = new ChartService(chartProvider);
+export const stockChartService = new StockChartService(chartProvider);

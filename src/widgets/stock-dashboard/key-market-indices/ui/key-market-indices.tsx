@@ -2,14 +2,14 @@
 
 import {
   KeyMarketIndiceItem,
-  useGetKeyMarketIndicesQuery,
+  useKeyMarketIndicesQuery,
 } from "@/entities/quote";
 import { EmptyContent, ErrorMessage, LoadingSpinner } from "@/shared/ui/fallback";
 import { Section, Tile } from "@/shared/ui/layout";
 
 export function KeyMarketIndices() {
   const { data, isLoading, error, refetch } =
-    useGetKeyMarketIndicesQuery();
+    useKeyMarketIndicesQuery();
 
   const items = data?.map((result, index) =>
     result.data ? (

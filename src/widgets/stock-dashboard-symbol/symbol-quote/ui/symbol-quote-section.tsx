@@ -2,7 +2,7 @@
 
 import { useParams } from "next/navigation";
 
-import { SymbolQuote, useGetQuoteQuery } from "@/entities/quote";
+import { SymbolQuote, useQuoteQuery } from "@/entities/quote";
 import { useSearchSymbolsQuery } from "@/entities/symbol";
 import { ErrorMessage, LoadingSpinner } from "@/shared/ui/fallback";
 
@@ -15,7 +15,7 @@ export const SymbolQuoteSection = () => {
     isLoading,
     error,
     refetch,
-  } = useGetQuoteQuery({ symbol: normalizedSymbol });
+  } = useQuoteQuery({ symbol: normalizedSymbol });
 
   const { data: symbols } = useSearchSymbolsQuery({
     query: normalizedSymbol,

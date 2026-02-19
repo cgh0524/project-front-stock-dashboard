@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 import { useParams } from "next/navigation";
 import { useMemo, useState } from "react";
 
-import type { ChartInterval, OHLCV } from "@/entities/chart";
+import type { ChartInterval, OHLCV } from "@/entities/stock-chart";
 import {
   CHART_DEFAULT_INTERVAL,
   CHART_DEFAULT_INTRADAY_RANGE_DAYS,
@@ -12,8 +12,8 @@ import {
   CHART_INTRADAY_INTERVALS,
   ChartIntervalSwitch,
   StockChart,
-} from "@/entities/chart";
-import { useInfiniteChartQuery } from "@/entities/chart";
+} from "@/entities/stock-chart";
+import { useInfiniteStockChartQuery } from "@/entities/stock-chart";
 import { EmptyContent, ErrorMessage, LoadingSpinner } from "@/shared/ui/fallback";
 
 import { useInfiniteChartScroll } from "../hooks/use-infinite-chart-scroll";
@@ -95,7 +95,7 @@ export function StockChartWidget({
     fetchNextPage: fetchPreviousData,
     hasNextPage: hasMorePreviousData,
     isFetchingNextPage: isFetchingPreviousData,
-  } = useInfiniteChartQuery({
+  } = useInfiniteStockChartQuery({
     symbol: symbol as string,
     fromDate,
     toDate,

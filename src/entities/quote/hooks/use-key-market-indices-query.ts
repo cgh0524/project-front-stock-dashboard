@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getKeyMarketIndices } from "../api/get-key-market-indices";
 import { quoteQueryKeys } from "../constants/query-keys";
 
-export const useGetKeyMarketIndicesQuery = () => {
+export const useKeyMarketIndicesQuery = () => {
   return useQuery({
     queryKey: quoteQueryKeys.keyMarketIndices(),
     queryFn: async () => await getKeyMarketIndices(),

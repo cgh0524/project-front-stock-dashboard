@@ -8,7 +8,7 @@ type ChartQueryParams = ChartQuery & {
   symbol: string;
 };
 
-export const useGetChartQuery = (params: ChartQueryParams) => {
+export const useStockChartQuery = (params: ChartQueryParams) => {
   const { symbol, fromDate, toDate, interval, includePrePost } = params;
 
   return useQuery({

@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 
-import type { ChartQuery, ChartResult, OHLCV } from "@/entities/chart";
+import type { ChartQuery, ChartResult, OHLCV } from "@/entities/stock-chart";
 import { ERROR_SOURCE } from "@/server/errors/base-error";
 import { ValidationError } from "@/server/errors/validation-error";
 

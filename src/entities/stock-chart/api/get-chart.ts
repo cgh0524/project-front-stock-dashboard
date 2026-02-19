@@ -10,7 +10,7 @@ export const getChart = async (
 ): Promise<ChartResult> => {
 
   const { data } = await axiosClient.get<ApiSuccess<ChartResult>>(
-    `/api/chart${toQueryString({ symbol, ...query })}`
+    `/api/stock-chart${toQueryString({ symbol, ...query })}`
   );
 
   return data.data;

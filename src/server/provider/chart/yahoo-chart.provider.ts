@@ -1,6 +1,6 @@
 import YahooFinance from "yahoo-finance2";
 
-import type { ChartQuery, ChartResult } from "@/entities/chart";
+import type { ChartQuery, ChartResult } from "@/entities/stock-chart";
 import { ERROR_SOURCE } from "@/server/errors/base-error";
 import { parseOrFail } from "@/server/validation/zod-validate";
 

@@ -1,7 +1,7 @@
 "use client";
 
-import type { CandleStickChartProps } from "@/shared/chart";
-import { CandleStickChart, ChartTooltip } from "@/shared/chart";
+import type { CandleStickChartProps } from "@/shared/lightweight-chart";
+import { CandleStickChart, ChartTooltip } from "@/shared/lightweight-chart";
 
 import type { ChartInterval, OHLCV } from "../types";
 import {

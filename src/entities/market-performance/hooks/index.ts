@@ -1,1 +1,1 @@
-export * from "./use-get-market-sector-performance-query";
+export * from "./use-market-sector-performance-query";

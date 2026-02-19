@@ -1,10 +1,10 @@
-import type { ChartInterval } from "@/entities/chart";
-import { CHART_INTERVAL } from "@/entities/chart";
+import type { ChartInterval } from "@/entities/stock-chart";
+import { CHART_INTERVAL } from "@/entities/stock-chart";
 import { ERROR_SOURCE } from "@/server/errors/base-error";
 import { ValidationError } from "@/server/errors/validation-error";
 import { fail, normalizeError } from "@/server/http/error-response";
 import { ok } from "@/server/http/success-response";
-import { chartService } from "@/server/service/chart.service";
+import { stockChartService } from "@/server/service/stock-chart.service";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -58,7 +58,7 @@ export async function GET(request: Request) {
     );
   }
 
-  const result = await chartService.getChart(symbol, {
+  const result = await stockChartService.getChart(symbol, {
     fromDate,
     toDate,
     interval,

@@ -3,7 +3,7 @@ import {  useRef, useState } from "react";
 import type {
   CandleStickCrosshairPayload,
   ChartTooltipItem,
-} from "@/shared/chart";
+} from "@/shared/lightweight-chart";
 import { formatFixed } from "@/shared/utils/format-number";
 
 export type CandleStickTooltipState = {
