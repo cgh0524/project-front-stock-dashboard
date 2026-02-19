@@ -8,10 +8,6 @@ export function MainNavigation() {
   const items = [
     {
       href: "/",
-      label: "Home",
-    },
-    {
-      href: "/stock-dashboard",
       label: "Stock Dashboard",
     },
     {
