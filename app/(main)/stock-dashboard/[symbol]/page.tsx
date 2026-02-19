@@ -1,9 +1,12 @@
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
 
 import { quoteQueryKeys } from "@/entities/quote";
+import { recommendationTrendQueryKeys } from "@/entities/recommendation-trend";
 import { stockMetricQueryKeys } from "@/entities/stock-metric";
 import { quoteService } from "@/server/service/quote.service";
+import { recommendationTrendService } from "@/server/service/recommendation-trend.service";
 import { stockMetricService } from "@/server/service/stock-metric.service";
+import { RecommendationTrendSection } from "@/widgets/stock-dashboard-symbol/recommendation-trend";
 import { StockChartWidget } from "@/widgets/stock-dashboard-symbol/stock-chart";
 import { StockMetricSection } from "@/widgets/stock-dashboard-symbol/stock-metric";
 import { SymbolQuoteSection } from "@/widgets/stock-dashboard-symbol/symbol-quote";
@@ -20,6 +23,16 @@ const getQuote = async (symbol: string) => {
 
 const getStockMetric = async (symbol: string) => {
   const result = await stockMetricService.getStockMetric(symbol);
+
+  if (result.ok) {
+    return result.data;
+  }
+
+  throw new Error(result.message);
+};
+
+const getRecommendationTrends = async (symbol: string) => {
+  const result = await recommendationTrendService.getRecommendationTrends(symbol);
 
   if (result.ok) {
     return result.data;
@@ -47,6 +60,11 @@ export default async function StockDetailPage({
       queryFn: () => getStockMetric(symbol),
       staleTime: 1000 * 60 * 10,
     }),
+    queryClient.prefetchQuery({
+      queryKey: recommendationTrendQueryKeys.detail({ symbol }),
+      queryFn: () => getRecommendationTrends(symbol),
+      staleTime: 1000 * 60 * 20,
+    }),
   ]);
 
   return (
@@ -55,6 +73,7 @@ export default async function StockDetailPage({
         <SymbolQuoteSection />
         <StockChartWidget />
         <StockMetricSection />
+        <RecommendationTrendSection />
       </div>
     </HydrationBoundary>
   );
