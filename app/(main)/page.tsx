@@ -4,6 +4,7 @@ import {
   QueryClient,
 } from "@tanstack/react-query";
 import dayjs from "dayjs";
+import type { Metadata } from "next";
 
 import { marketLeaderQueryKeys } from "@/entities/market-leader";
 import { marketPerformanceQueryKeys } from "@/entities/market-performance";
@@ -19,6 +20,12 @@ import {
   getMarketMostActives,
 } from "@/widgets/stock-dashboard/market-leaders/api";
 import { MarketSectorPerformance } from "@/widgets/stock-dashboard/market-sector-performance";
+
+export const metadata: Metadata = {
+  title: "Stock Dashboard",
+  description:
+    "Dashboard for tracking key indices, sector performance, and top market leaders in one view.",
+};
 
 const getMarketSectorPerformance = async (date: string, exchange: string) => {
   const result = await marketPerformanceService.getMarketSectorPerformance({

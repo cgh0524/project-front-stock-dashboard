@@ -1,4 +1,5 @@
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
+import type { Metadata } from "next";
 
 import { quoteQueryKeys } from "@/entities/quote";
 import { recommendationTrendQueryKeys } from "@/entities/recommendation-trend";
@@ -10,6 +11,20 @@ import { RecommendationTrendSection } from "@/widgets/stock-dashboard-symbol/rec
 import { StockChartWidget } from "@/widgets/stock-dashboard-symbol/stock-chart";
 import { StockMetricSection } from "@/widgets/stock-dashboard-symbol/stock-metric";
 import { SymbolQuoteSection } from "@/widgets/stock-dashboard-symbol/symbol-quote";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ symbol: string }>;
+}): Promise<Metadata> {
+  const { symbol } = await params;
+  const normalizedSymbol = symbol.toUpperCase();
+
+  return {
+    title: `${normalizedSymbol} Stock Detail`,
+    description: `Price, chart, financial metrics, and analyst recommendation trends for ${normalizedSymbol}.`,
+  };
+}
 
 const getQuote = async (symbol: string) => {
   const result = await quoteService.getQuote(symbol);
