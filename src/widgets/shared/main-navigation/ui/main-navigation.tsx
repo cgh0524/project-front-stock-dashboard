@@ -2,6 +2,8 @@
 
 import { usePathname } from "next/navigation";
 
+import { isMatchedPath } from "@/shared/config/base-path";
+
 import { MainNavigationItem } from "./main-navigation-item";
 
 export function MainNavigation() {
@@ -29,7 +31,7 @@ export function MainNavigation() {
           <MainNavigationItem
             key={item.href}
             href={item.href}
-            isActive={item.href === pathname}
+            isActive={isMatchedPath(pathname, item.href)}
           >
             {item.label}
           </MainNavigationItem>

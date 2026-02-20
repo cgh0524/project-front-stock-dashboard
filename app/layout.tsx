@@ -5,11 +5,11 @@ import localFont from "next/font/local";
 
 import {
   APP_NAME,
-  BASE_PATH,
   getMetadataBase,
   METADATA_DESCRIPTION,
 } from "@/app/config/metadata";
 import { QueryProvider } from "@/app/providers";
+import { BASE_PATH } from "@/shared/config/base-path";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
