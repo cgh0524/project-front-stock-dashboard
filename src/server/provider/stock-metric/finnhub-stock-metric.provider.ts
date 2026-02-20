@@ -22,7 +22,7 @@ export class FinnhubStockMetricProvider implements StockMetricProvider {
     const data = await fetcher(url, {
       provider: this.name,
       next: {
-        revalidate: 1000 * 60 * 60,
+        revalidate: 3600, // 1시간
         tags: [symbolUpperCased, "stock-metric"],
       },
     });

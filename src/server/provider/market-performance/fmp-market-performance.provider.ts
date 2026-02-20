@@ -7,10 +7,10 @@ import type {
 import { ERROR_SOURCE } from "@/server/errors/base-error";
 import { fetcher } from "@/server/http/http-client";
 import { parseOrFail } from "@/server/validation/zod-validate";
+import { toQueryString } from "@/shared/utils/query-string";
 
 import type { ApiProviderConfig } from "../provider.config";
 import { API_PROVIDER, getApiProviderConfig } from "../provider.config";
-import { toQueryString } from "../query-string";
 import {
   toFmpIndustryPerformanceQuery,
   toFmpMarketSectorPerformanceQuery,

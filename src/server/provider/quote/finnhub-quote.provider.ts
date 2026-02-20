@@ -21,7 +21,7 @@ export class FinnhubQuoteProvider implements QuoteProvider {
     const data = await fetcher(url, {
       provider: this.name,
       next: {
-        revalidate: 1000 * 60 * 1, // 1분
+        revalidate: 60, // 1분
         tags: [symbolUpperCased, "quotes"],
       },
     });

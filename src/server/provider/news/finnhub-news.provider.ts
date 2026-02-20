@@ -2,10 +2,10 @@ import type { NewsItem, NewsQuery } from "@/entities/news";
 import { ERROR_SOURCE } from "@/server/errors/base-error";
 import { fetcher } from "@/server/http/http-client";
 import { parseOrFail } from "@/server/validation/zod-validate";
+import { toQueryString } from "@/shared/utils/query-string";
 
 import type { ApiProviderConfig } from "../provider.config";
 import { API_PROVIDER, getApiProviderConfig } from "../provider.config";
-import { toQueryString } from "../query-string";
 import { toNewsItems } from "./finnhub-news.adapter";
 import { finnhubNewsSchema } from "./finnhub-news.schema";
 import type { NewsProvider } from "./news.provider";
@@ -26,7 +26,7 @@ export class FinnhubNewsProvider implements NewsProvider {
     const data = await fetcher(url, {
       provider: this.name,
       next: {
-        revalidate: 1000 * 60 * 5,
+        revalidate: 300, // 5분
         tags: [`news:${query.category}`, "news"],
       },
     });
