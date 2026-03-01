@@ -1,4 +1,5 @@
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
+import dayjs from "dayjs";
 import type { Metadata } from "next";
 
 import { quoteQueryKeys } from "@/entities/quote";
@@ -34,6 +35,7 @@ export default async function StockDetailPage({
 }) {
   const queryClient = new QueryClient();
   const { symbol } = await params;
+  const today = dayjs().format("YYYY-MM-DD");
 
   await Promise.all([
     queryClient.prefetchQuery({
@@ -57,7 +59,7 @@ export default async function StockDetailPage({
     <HydrationBoundary state={dehydrate(queryClient)}>
       <div className="flex flex-col gap-6">
         <SymbolQuoteSection />
-        <StockChartWidget />
+        <StockChartWidget today={today} />
         <StockMetricSection />
         <RecommendationTrendSection />
       </div>

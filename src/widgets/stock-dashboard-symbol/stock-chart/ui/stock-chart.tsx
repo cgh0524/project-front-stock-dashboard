@@ -21,6 +21,8 @@ import { useInfiniteChartScroll } from "../hooks/use-infinite-chart-scroll";
 export type StockChartProps = {
   /** 기본 조회 기간 (일) */
   rangeDays?: number;
+  /** 기준 종료일 (YYYY-MM-DD) */
+  today?: string;
   /** 기본 간격 */
   interval?: ChartInterval;
   /** 프리/애프터 포함 여부 */
@@ -33,9 +35,9 @@ export type StockChartProps = {
 const DEFAULT_DATE_BAR_HEIGHT = 26;
 
 /** 조회 기간에 따라 시작/종료 날짜 계산 */
-function getDateRange(rangeDays: number) {
-  const toDate = dayjs().format("YYYY-MM-DD");
-  const fromDate = dayjs().subtract(rangeDays, "day").format("YYYY-MM-DD");
+function getDateRange(rangeDays: number, today: string) {
+  const toDate = today;
+  const fromDate = dayjs(today).subtract(rangeDays, "day").format("YYYY-MM-DD");
   return { fromDate, toDate };
 }
 
@@ -62,6 +64,7 @@ function mergeChartDataBytimeAsc(pages: { data: OHLCV[] }[]): OHLCV[] {
 
 export function StockChartWidget({
   rangeDays,
+  today = dayjs().format("YYYY-MM-DD"),
   interval = CHART_DEFAULT_INTERVAL,
   includePrePost,
   height = 300,
@@ -81,7 +84,7 @@ export function StockChartWidget({
       ? CHART_DEFAULT_INTRADAY_RANGE_DAYS
       : CHART_DEFAULT_RANGE_DAYS);
 
-  const { fromDate, toDate } = getDateRange(effectiveRangeDays);
+  const { fromDate, toDate } = getDateRange(effectiveRangeDays, today);
 
   /** 차트 컨테이너 스타일 관련 파생값 */
   const minHeight = (height ?? 0) + DEFAULT_DATE_BAR_HEIGHT;

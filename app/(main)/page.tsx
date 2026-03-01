@@ -32,6 +32,7 @@ export default async function StockDashboard() {
   const queryClient = new QueryClient();
 
   const TODAY = dayjs().format("YYYY-MM-DD");
+  const ONCE_A_WEEK_AGO = dayjs().subtract(7, "day").format("YYYY-MM-DD");
 
   await Promise.all([
     // 주요 시장 지수 조회
@@ -82,7 +83,10 @@ export default async function StockDashboard() {
     <div className="flex flex-col gap-14">
       <HydrationBoundary state={dehydrate(queryClient)}>
         <KeyMarketIndices />
-        <MarketSectorPerformance />
+        <MarketSectorPerformance
+          today={TODAY}
+          minDate={ONCE_A_WEEK_AGO}
+        />
         <MarketLeaders />
       </HydrationBoundary>
     </div>

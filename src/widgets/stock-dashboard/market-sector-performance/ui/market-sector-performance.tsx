@@ -1,6 +1,5 @@
 "use client";
 
-import dayjs from "dayjs";
 import { useState } from "react";
 
 import { MarketExchangeSelect } from "@/entities/market-performance";
@@ -12,16 +11,22 @@ import { createOption } from "@/shared/utils/create-options";
 
 import { MarketSectorPerformanceListContainer } from "./market-sector-performance-list-container";
 
-export function MarketSectorPerformance() {
-  const TODAY = dayjs().format("YYYY-MM-DD");
-  const ONCE_A_WEEK_AGO = dayjs().subtract(7, "day").format("YYYY-MM-DD");
+type MarketSectorPerformanceProps = {
+  today: string;
+  minDate: string;
+};
+
+export function MarketSectorPerformance({
+  today,
+  minDate,
+}: MarketSectorPerformanceProps) {
 
   const [exchange, setExchange] = useState<Option>(() =>
     createOption(MARKET_EXCHANGE.NASDAQ)
   );
 
   /** 선택된 날짜, YYYY-MM-DD 형식 */
-  const [date, setDate] = useState<string>(TODAY);
+  const [date, setDate] = useState<string>(today);
 
   return (
     <Section
@@ -29,8 +34,8 @@ export function MarketSectorPerformance() {
       actions={
         <DateStepper
           date={date}
-          min={ONCE_A_WEEK_AGO}
-          max={TODAY}
+          min={minDate}
+          max={today}
           onChangeDate={setDate}
         />
       }

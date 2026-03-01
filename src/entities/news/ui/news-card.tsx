@@ -1,8 +1,11 @@
 import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
 
 import { Tile } from "@/shared/components/layout";
 
 import type { NewsItem } from "../types";
+
+dayjs.extend(utc);
 
 export type NewsCardProps = {
   news: NewsItem;
@@ -10,8 +13,8 @@ export type NewsCardProps = {
 
 const formatPublishedAt = (datetime: number) => {
   const normalizedTimestamp = datetime > 1_000_000_000_000
-    ? dayjs(datetime)
-    : dayjs.unix(datetime);
+    ? dayjs.utc(datetime)
+    : dayjs.unix(datetime).utc();
 
   return normalizedTimestamp.isValid()
     ? normalizedTimestamp.format("YYYY-MM-DD HH:mm")
