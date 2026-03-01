@@ -5,9 +5,10 @@ import {
 } from "@tanstack/react-query";
 import type { Metadata } from "next";
 
-import { getNews, NEWS_CATEGORY, newsQueryKeys } from "@/entities/news";
+import { NEWS_CATEGORY, newsQueryKeys } from "@/entities/news";
 import { CACHE_POLICY } from "@/shared/config/cache-policy";
 import { NewsSection } from "@/widgets/news";
+import { getNews } from "@/widgets/news/api";
 
 export const metadata: Metadata = {
   title: "Market News",

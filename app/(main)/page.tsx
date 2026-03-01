@@ -9,7 +9,6 @@ import type { Metadata } from "next";
 import { marketLeaderQueryKeys } from "@/entities/market-leader";
 import { marketPerformanceQueryKeys } from "@/entities/market-performance";
 import { quoteQueryKeys } from "@/entities/quote";
-import { marketPerformanceService } from "@/server/service/market-performance.service";
 import { CACHE_POLICY } from "@/shared/config/cache-policy";
 import { MARKET_EXCHANGE } from "@/shared/types";
 import { KeyMarketIndices } from "@/widgets/stock-dashboard/key-market-indices";
@@ -21,24 +20,12 @@ import {
   getMarketMostActives,
 } from "@/widgets/stock-dashboard/market-leaders/api";
 import { MarketSectorPerformance } from "@/widgets/stock-dashboard/market-sector-performance";
+import { getMarketSectorPerformance } from "@/widgets/stock-dashboard/market-sector-performance/api";
 
 export const metadata: Metadata = {
   title: "Stock Dashboard",
   description:
     "Dashboard for tracking key indices, sector performance, and top market leaders in one view.",
-};
-
-const getMarketSectorPerformance = async (date: string, exchange: string) => {
-  const result = await marketPerformanceService.getMarketSectorPerformance({
-    date,
-    exchange,
-  });
-
-  if (result.ok) {
-    return result.data;
-  }
-
-  throw new Error(result.message);
 };
 
 export default async function StockDashboard() {
@@ -62,7 +49,10 @@ export default async function StockDashboard() {
         sector: undefined,
       }),
       queryFn: async () =>
-        await getMarketSectorPerformance(TODAY, MARKET_EXCHANGE.NASDAQ),
+        await getMarketSectorPerformance({
+          date: TODAY,
+          exchange: MARKET_EXCHANGE.NASDAQ,
+        }),
       staleTime: CACHE_POLICY.marketPerformance.staleTimeMs,
     }),
 

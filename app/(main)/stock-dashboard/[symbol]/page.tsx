@@ -4,14 +4,14 @@ import type { Metadata } from "next";
 import { quoteQueryKeys } from "@/entities/quote";
 import { recommendationTrendQueryKeys } from "@/entities/recommendation-trend";
 import { stockMetricQueryKeys } from "@/entities/stock-metric";
-import { quoteService } from "@/server/service/quote.service";
-import { recommendationTrendService } from "@/server/service/recommendation-trend.service";
-import { stockMetricService } from "@/server/service/stock-metric.service";
 import { CACHE_POLICY } from "@/shared/config/cache-policy";
 import { RecommendationTrendSection } from "@/widgets/stock-dashboard-symbol/recommendation-trend";
+import { getRecommendationTrends } from "@/widgets/stock-dashboard-symbol/recommendation-trend/api";
 import { StockChartWidget } from "@/widgets/stock-dashboard-symbol/stock-chart";
 import { StockMetricSection } from "@/widgets/stock-dashboard-symbol/stock-metric";
+import { getStockMetric } from "@/widgets/stock-dashboard-symbol/stock-metric/api";
 import { SymbolQuoteSection } from "@/widgets/stock-dashboard-symbol/symbol-quote";
+import { getQuote } from "@/widgets/stock-dashboard-symbol/symbol-quote/api";
 
 export async function generateMetadata({
   params,
@@ -26,36 +26,6 @@ export async function generateMetadata({
     description: `Price, chart, financial metrics, and analyst recommendation trends for ${normalizedSymbol}.`,
   };
 }
-
-const getQuote = async (symbol: string) => {
-  const result = await quoteService.getQuote(symbol);
-
-  if (result.ok) {
-    return result.data;
-  }
-
-  throw new Error(result.message);
-};
-
-const getStockMetric = async (symbol: string) => {
-  const result = await stockMetricService.getStockMetric(symbol);
-
-  if (result.ok) {
-    return result.data;
-  }
-
-  throw new Error(result.message);
-};
-
-const getRecommendationTrends = async (symbol: string) => {
-  const result = await recommendationTrendService.getRecommendationTrends(symbol);
-
-  if (result.ok) {
-    return result.data;
-  }
-
-  throw new Error(result.message);
-};
 
 export default async function StockDetailPage({
   params,
