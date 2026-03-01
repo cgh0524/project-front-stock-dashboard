@@ -2,6 +2,8 @@ import type { InfiniteData } from "@tanstack/react-query";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import dayjs from "dayjs";
 
+import { CACHE_POLICY } from "@/shared/config/cache-policy";
+
 import { getChart } from "../api/get-chart";
 import { chartQueryKeys } from "../constants/query-keys";
 import type { ChartQuery, ChartResult } from "../types";
@@ -66,6 +68,7 @@ export function useInfiniteStockChartQuery(params: UseInfiniteStockChartQueryPar
       if (!lastPage?.data?.length) return undefined;
       return getPreviousRange(lastPageParam);
     },
+    staleTime: CACHE_POLICY.stockChart.staleTimeMs,
     refetchOnWindowFocus: false,
   });
 }

@@ -1,5 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 
+import { CACHE_POLICY } from "@/shared/config/cache-policy";
+
 import { getChart } from "../api/get-chart";
 import { chartQueryKeys } from "../constants/query-keys";
 import type { ChartQuery } from "../types";
@@ -23,6 +25,6 @@ export const useStockChartQuery = (params: ChartQueryParams) => {
         interval,
         includePrePost,
       }),
-    staleTime: 1000 * 60 * 2,
+    staleTime: CACHE_POLICY.stockChart.staleTimeMs,
   });
 };

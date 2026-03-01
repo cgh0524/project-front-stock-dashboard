@@ -10,6 +10,7 @@ import { marketLeaderQueryKeys } from "@/entities/market-leader";
 import { marketPerformanceQueryKeys } from "@/entities/market-performance";
 import { quoteQueryKeys } from "@/entities/quote";
 import { marketPerformanceService } from "@/server/service/market-performance.service";
+import { CACHE_POLICY } from "@/shared/config/cache-policy";
 import { MARKET_EXCHANGE } from "@/shared/types";
 import { KeyMarketIndices } from "@/widgets/stock-dashboard/key-market-indices";
 import { getKeyMarketIndices } from "@/widgets/stock-dashboard/key-market-indices/api";
@@ -41,13 +42,7 @@ const getMarketSectorPerformance = async (date: string, exchange: string) => {
 };
 
 export default async function StockDashboard() {
-  const queryClient = new QueryClient({
-    defaultOptions: {
-      queries: {
-        staleTime: 1000 * 60 * 5,
-      },
-    },
-  });
+  const queryClient = new QueryClient();
 
   const TODAY = dayjs().format("YYYY-MM-DD");
 
@@ -56,6 +51,7 @@ export default async function StockDashboard() {
     queryClient.prefetchQuery({
       queryKey: quoteQueryKeys.keyMarketIndices(),
       queryFn: async () => await getKeyMarketIndices(),
+      staleTime: CACHE_POLICY.quote.staleTimeMs,
     }),
 
     // 시장 성적 조회
@@ -67,24 +63,28 @@ export default async function StockDashboard() {
       }),
       queryFn: async () =>
         await getMarketSectorPerformance(TODAY, MARKET_EXCHANGE.NASDAQ),
+      staleTime: CACHE_POLICY.marketPerformance.staleTimeMs,
     }),
 
     // 가장 많이 상승한 종목 조회
     queryClient.prefetchQuery({
       queryKey: marketLeaderQueryKeys.biggestGainers(),
       queryFn: async () => await getMarketBiggestGainers(),
+      staleTime: CACHE_POLICY.marketLeader.staleTimeMs,
     }),
 
     // 가장 많이 하락한 종목 조회
     queryClient.prefetchQuery({
       queryKey: marketLeaderQueryKeys.biggestLosers(),
       queryFn: async () => await getMarketBiggestLosers(),
+      staleTime: CACHE_POLICY.marketLeader.staleTimeMs,
     }),
 
     // 가장 거래가 활발한 종목 조회
     queryClient.prefetchQuery({
       queryKey: marketLeaderQueryKeys.mostActives(),
       queryFn: async () => await getMarketMostActives(),
+      staleTime: CACHE_POLICY.marketLeader.staleTimeMs,
     }),
   ]);
 

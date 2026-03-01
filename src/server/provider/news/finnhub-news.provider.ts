@@ -2,6 +2,7 @@ import type { NewsItem, NewsQuery } from "@/entities/news";
 import { ERROR_SOURCE } from "@/server/errors/base-error";
 import { fetcher } from "@/server/http/http-client";
 import { parseOrFail } from "@/server/validation/zod-validate";
+import { CACHE_POLICY } from "@/shared/config/cache-policy";
 import { toQueryString } from "@/shared/utils/query-string";
 
 import type { ApiProviderConfig } from "../provider.config";
@@ -26,7 +27,7 @@ export class FinnhubNewsProvider implements NewsProvider {
     const data = await fetcher(url, {
       provider: this.name,
       next: {
-        revalidate: 300, // 5분
+        revalidate: CACHE_POLICY.news.revalidateSeconds,
         tags: [`news:${query.category}`, "news"],
       },
     });

@@ -7,6 +7,7 @@ import { stockMetricQueryKeys } from "@/entities/stock-metric";
 import { quoteService } from "@/server/service/quote.service";
 import { recommendationTrendService } from "@/server/service/recommendation-trend.service";
 import { stockMetricService } from "@/server/service/stock-metric.service";
+import { CACHE_POLICY } from "@/shared/config/cache-policy";
 import { RecommendationTrendSection } from "@/widgets/stock-dashboard-symbol/recommendation-trend";
 import { StockChartWidget } from "@/widgets/stock-dashboard-symbol/stock-chart";
 import { StockMetricSection } from "@/widgets/stock-dashboard-symbol/stock-metric";
@@ -68,17 +69,17 @@ export default async function StockDetailPage({
     queryClient.prefetchQuery({
       queryKey: quoteQueryKeys.detail({ symbol }),
       queryFn: () => getQuote(symbol),
-      staleTime: 1000 * 60 * 5,
+      staleTime: CACHE_POLICY.quote.staleTimeMs,
     }),
     queryClient.prefetchQuery({
       queryKey: stockMetricQueryKeys.detail({ symbol }),
       queryFn: () => getStockMetric(symbol),
-      staleTime: 1000 * 60 * 10,
+      staleTime: CACHE_POLICY.stockMetric.staleTimeMs,
     }),
     queryClient.prefetchQuery({
       queryKey: recommendationTrendQueryKeys.detail({ symbol }),
       queryFn: () => getRecommendationTrends(symbol),
-      staleTime: 1000 * 60 * 20,
+      staleTime: CACHE_POLICY.recommendationTrend.staleTimeMs,
     }),
   ]);
 

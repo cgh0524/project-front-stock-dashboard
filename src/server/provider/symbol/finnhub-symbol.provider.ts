@@ -6,6 +6,7 @@ import {
   getApiProviderConfig,
 } from "@/server/provider/provider.config";
 import { toSymbols } from "@/server/provider/symbol/finnhub-symbol.adapter";
+import { CACHE_POLICY } from "@/shared/config/cache-policy";
 
 import { ERROR_SOURCE } from "../../errors/base-error";
 import { parseOrFail } from "../../validation/zod-validate";
@@ -22,6 +23,10 @@ export class FinnhubSymbolProvider implements SymbolProvider {
     const url = `${this.apiConfig.baseUrl}/search?q=${query}&exchange=US`;
     const data = await fetcher(url, {
       provider: this.name,
+      next: {
+        revalidate: CACHE_POLICY.symbolSearch.revalidateSeconds,
+        tags: ["symbol-search", `symbol-search:${query.toUpperCase()}`],
+      },
     });
 
     const dto = parseOrFail(finnhubSymbolResultSchema, data, {

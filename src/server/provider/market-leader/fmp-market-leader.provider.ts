@@ -2,6 +2,7 @@ import type { MarketLeaderItemModel } from "@/entities/market-leader";
 import { ERROR_SOURCE } from "@/server/errors/base-error";
 import { fetcher } from "@/server/http/http-client";
 import { parseOrFail } from "@/server/validation/zod-validate";
+import { CACHE_POLICY } from "@/shared/config/cache-policy";
 
 import type { ApiProviderConfig } from "../provider.config";
 import { API_PROVIDER, getApiProviderConfig } from "../provider.config";
@@ -22,6 +23,10 @@ export class FmpMarketLeaderProvider implements MarketLeaderProvider {
     const url = `${this.apiConfig.baseUrl}/biggest-gainers`;
     const data = await fetcher<FmpMarketLeaderItemDTO[]>(url, {
       provider: this.name,
+      next: {
+        revalidate: CACHE_POLICY.marketLeader.revalidateSeconds,
+        tags: ["market-leader", "market-leader:biggest-gainers"],
+      },
     });
 
     const dtos = data.map((dto) =>
@@ -41,6 +46,10 @@ export class FmpMarketLeaderProvider implements MarketLeaderProvider {
     const url = `${this.apiConfig.baseUrl}/biggest-losers`;
     const data = await fetcher<FmpMarketLeaderItemDTO[]>(url, {
       provider: this.name,
+      next: {
+        revalidate: CACHE_POLICY.marketLeader.revalidateSeconds,
+        tags: ["market-leader", "market-leader:biggest-losers"],
+      },
     });
 
     const dtos = data.map((dto) =>
@@ -59,6 +68,10 @@ export class FmpMarketLeaderProvider implements MarketLeaderProvider {
     const url = `${this.apiConfig.baseUrl}/most-actives`;
     const data = await fetcher<FmpMarketLeaderItemDTO[]>(url, {
       provider: this.name,
+      next: {
+        revalidate: CACHE_POLICY.marketLeader.revalidateSeconds,
+        tags: ["market-leader", "market-leader:most-actives"],
+      },
     });
 
     const dtos = data.map((dto) =>

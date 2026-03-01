@@ -2,6 +2,7 @@ import type { Quote } from "@/entities/quote";
 import { ERROR_SOURCE } from "@/server/errors/base-error";
 import { fetcher } from "@/server/http/http-client";
 import { parseOrFail } from "@/server/validation/zod-validate";
+import { CACHE_POLICY } from "@/shared/config/cache-policy";
 
 import type { ApiProviderConfig } from "../provider.config";
 import { API_PROVIDER, getApiProviderConfig } from "../provider.config";
@@ -21,7 +22,7 @@ export class FinnhubQuoteProvider implements QuoteProvider {
     const data = await fetcher(url, {
       provider: this.name,
       next: {
-        revalidate: 60, // 1분
+        revalidate: CACHE_POLICY.quote.revalidateSeconds,
         tags: [symbolUpperCased, "quotes"],
       },
     });

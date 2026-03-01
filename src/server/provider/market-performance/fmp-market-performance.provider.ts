@@ -7,6 +7,7 @@ import type {
 import { ERROR_SOURCE } from "@/server/errors/base-error";
 import { fetcher } from "@/server/http/http-client";
 import { parseOrFail } from "@/server/validation/zod-validate";
+import { CACHE_POLICY } from "@/shared/config/cache-policy";
 import { toQueryString } from "@/shared/utils/query-string";
 
 import type { ApiProviderConfig } from "../provider.config";
@@ -42,6 +43,13 @@ export class FmpMarketPerformanceProvider implements MarketPerformanceProvider {
     }/sector-performance-snapshot${toQueryString(providerQuery)}`;
     const data = await fetcher<FmpMarketSectorPerformanceDTO[]>(url, {
       provider: this.name,
+      next: {
+        revalidate: CACHE_POLICY.marketPerformance.revalidateSeconds,
+        tags: [
+          "market-performance",
+          `market-performance:sector:${query.date}:${query.exchange ?? "all"}:${query.sector ?? "all"}`,
+        ],
+      },
     });
 
     const dtos = data.map((dto) =>
@@ -66,6 +74,13 @@ export class FmpMarketPerformanceProvider implements MarketPerformanceProvider {
     }/industry-performance-snapshot${toQueryString(providerQuery)}`;
     const data = await fetcher<FmpIndustryPerformanceDTO[]>(url, {
       provider: this.name,
+      next: {
+        revalidate: CACHE_POLICY.marketPerformance.revalidateSeconds,
+        tags: [
+          "market-performance",
+          `market-performance:industry:${query.date}:${query.exchange ?? "all"}:${query.industry ?? "all"}`,
+        ],
+      },
     });
 
     const dtos = data.map((dto) =>

@@ -1,6 +1,8 @@
 import type { InfiniteData } from "@tanstack/react-query";
 import { useInfiniteQuery } from "@tanstack/react-query";
 
+import { CACHE_POLICY } from "@/shared/config/cache-policy";
+
 import { getNews } from "../api";
 import { newsQueryKeys } from "../constants";
 import type { NewsCategory, NewsItem } from "../types";
@@ -26,7 +28,7 @@ export const useInfiniteNewsQuery = ({ category }: { category: NewsCategory }) =
       if (nextMinId === undefined) return undefined;
       return nextMinId > lastPageParam ? nextMinId : undefined;
     },
-    staleTime: 1000 * 60 * 5,
+    staleTime: CACHE_POLICY.news.staleTimeMs,
     refetchOnWindowFocus: false,
   });
 };
