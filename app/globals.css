@@ -171,6 +171,10 @@
   }
 }
 
+html {
+  overscroll-behavior: none;
+}
+
 body {
   color: var(--foreground);
   background: var(--background);
