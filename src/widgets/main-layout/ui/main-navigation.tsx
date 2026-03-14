@@ -1,0 +1,47 @@
+"use client";
+
+import { usePathname } from "next/navigation";
+
+import { isMatchedPath } from "@/shared/config/base-path";
+
+import { MainNavigationItem } from "./main-navigation-item";
+
+type MainNavigationProps = {
+  onNavigate?: () => void;
+};
+
+export function MainNavigation({ onNavigate }: MainNavigationProps) {
+  const items = [
+    {
+      href: "/",
+      label: "Stock Dashboard",
+    },
+    {
+      href: "/news",
+      label: "News",
+    },
+  ];
+
+  const pathname = usePathname();
+
+  return (
+    <nav className="min-w-[190px] w-[190px] h-full bg-surface-default shadow-[10px_0_16px_rgba(0,0,0,0.08)]">
+      <div className="p-2 text-2xl font-bold text-center italic text-accent-primary">
+        Stock Watch
+      </div>
+
+      <ul className="flex flex-col items-center gap-1 p-1">
+        {items.map((item) => (
+          <MainNavigationItem
+            key={item.href}
+            href={item.href}
+            isActive={isMatchedPath(pathname, item.href)}
+            onClick={onNavigate}
+          >
+            {item.label}
+          </MainNavigationItem>
+        ))}
+      </ul>
+    </nav>
+  );
+}
