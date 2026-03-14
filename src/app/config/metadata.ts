@@ -1,4 +1,4 @@
-const DEFAULT_APP_NAME = "Market Watch";
+const DEFAULT_APP_NAME = "Stock Watch";
 const DEFAULT_SITE_URL = "https://stock-watch-v1.vercel.app";
 const DEFAULT_DESCRIPTION =
   "Portfolio stock dashboard built with Next.js and React, featuring FSD architecture, BFF APIs";
