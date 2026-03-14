@@ -2,6 +2,7 @@ import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query
 import dayjs from "dayjs";
 import type { Metadata } from "next";
 
+import { getPageMetaData, METADATA_PAGE_NAME } from "@/app";
 import { quoteQueryKeys } from "@/entities/quote";
 import { recommendationTrendQueryKeys } from "@/entities/recommendation-trend";
 import { stockMetricQueryKeys } from "@/entities/stock-metric";
@@ -14,18 +15,14 @@ import { getStockMetric } from "@/widgets/stock-dashboard-symbol/stock-metric/ap
 import { SymbolQuoteSection } from "@/widgets/stock-dashboard-symbol/symbol-quote";
 import { getQuote } from "@/widgets/stock-dashboard-symbol/symbol-quote/api";
 
+// [symbol]은 동적 세그먼트라 정적 metadata 객체 대신 generateMetadata를 사용
 export async function generateMetadata({
   params,
 }: {
   params: Promise<{ symbol: string }>;
 }): Promise<Metadata> {
   const { symbol } = await params;
-  const normalizedSymbol = symbol.toUpperCase();
-
-  return {
-    title: `${normalizedSymbol} Stock Detail`,
-    description: `Price, chart, financial metrics, and analyst recommendation trends for ${normalizedSymbol}.`,
-  };
+  return getPageMetaData(METADATA_PAGE_NAME.STOCK_DETAIL, symbol);
 }
 
 export default async function StockDetailPage({

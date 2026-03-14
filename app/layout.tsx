@@ -4,10 +4,8 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 
 import {
-  APP_NAME,
-  getMetadataBase,
-  METADATA_DESCRIPTION,
-} from "@/app/config/metadata";
+  getRootMetadata,
+} from "@/app";
 import { QueryProvider } from "@/app/providers";
 import { BASE_PATH } from "@/shared/config/base-path";
 
@@ -22,46 +20,7 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-export const metadata: Metadata = {
-  metadataBase: getMetadataBase(),
-  title: {
-    default: APP_NAME,
-    template: `%s | ${APP_NAME}`,
-  },
-  description: METADATA_DESCRIPTION,
-  applicationName: APP_NAME,
-  keywords: [
-    "Next.js",
-    "React",
-    "TypeScript",
-    "React Query",
-    "FSD",
-    "BFF",
-    "DIP",
-    "Stock Dashboard",
-    "Portfolio",
-  ],
-  alternates: {
-    canonical: BASE_PATH,
-  },
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    siteName: APP_NAME,
-    title: APP_NAME,
-    description: METADATA_DESCRIPTION,
-    url: BASE_PATH,
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: APP_NAME,
-    description: METADATA_DESCRIPTION,
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-};
+export const metadata: Metadata = getRootMetadata({ canonicalPath: BASE_PATH });
 
 export default function RootLayout({
   children,

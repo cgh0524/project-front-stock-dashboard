@@ -3,17 +3,14 @@ import {
   HydrationBoundary,
   QueryClient,
 } from "@tanstack/react-query";
-import type { Metadata } from "next";
 
+import { getPageMetaData, METADATA_PAGE_NAME } from "@/app";
 import { NEWS_CATEGORY, newsQueryKeys } from "@/entities/news";
 import { CACHE_POLICY } from "@/shared/config/cache-policy";
 import { NewsSection } from "@/widgets/news";
 import { getNews } from "@/widgets/news/api";
 
-export const metadata: Metadata = {
-  title: "Market News",
-  description: "Explore category-based market news with infinite scrolling.",
-};
+export const metadata = getPageMetaData(METADATA_PAGE_NAME.MARKET_NEWS);
 
 export default async function NewsPage() {
   const queryClient = new QueryClient();
