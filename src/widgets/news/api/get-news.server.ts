@@ -1,4 +1,4 @@
-"server-only";
+import "server-only";
 
 import type { NewsItem, NewsQuery } from "@/entities/news";
 import { newsService } from "@/server/service/news.service";

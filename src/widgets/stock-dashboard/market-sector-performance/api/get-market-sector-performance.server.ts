@@ -1,4 +1,4 @@
-"server-only";
+import "server-only";
 
 import type { MarketSectorPerformance } from "@/entities/market-performance";
 import { marketPerformanceService } from "@/server/service/market-performance.service";

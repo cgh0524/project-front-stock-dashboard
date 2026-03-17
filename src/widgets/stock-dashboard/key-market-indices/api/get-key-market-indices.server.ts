@@ -1,4 +1,4 @@
-"server-only";
+import "server-only";
 
 import { KEY_MARKET_INDICES, type KeyMarketIndiceResult } from "@/entities/quote";
 import { quoteService } from "@/server/service/quote.service";

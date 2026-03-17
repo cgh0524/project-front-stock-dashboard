@@ -1,4 +1,4 @@
-"server-only";
+import "server-only";
 
 import type { Quote } from "@/entities/quote";
 import { quoteService } from "@/server/service/quote.service";

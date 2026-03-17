@@ -1,4 +1,4 @@
-"server-only";
+import "server-only";
 
 import type { StockMetricSummary } from "@/entities/stock-metric";
 import { stockMetricService } from "@/server/service/stock-metric.service";

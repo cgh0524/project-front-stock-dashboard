@@ -1,4 +1,4 @@
-"server-only";
+import "server-only";
 
 import type { RecommendationTrend } from "@/entities/recommendation-trend";
 import { recommendationTrendService } from "@/server/service/recommendation-trend.service";
