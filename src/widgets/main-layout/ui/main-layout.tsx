@@ -26,7 +26,7 @@ export function MainLayout({
   }, [pathname]);
 
   return (
-    <div className="flex h-screen min-h-screen">
+    <div className="flex h-dvh min-h-dvh">
       {/* 데스크톱 전용 사이드 내비게이션 */}
       <aside className="hidden md:block">
         <MainNavigation />
@@ -38,7 +38,7 @@ export function MainLayout({
       />
 
       {/* 페이지 본문 스크롤 영역: 헤더 + 컨텐츠 */}
-      <main className="flex-1 overflow-auto overscroll-none w-full min-h-0 mx-auto">
+      <main className="flex-1 overflow-auto overscroll-none w-full min-h-0 mx-auto pb-safe">
         <MainHeader onOpenNavigation={() => setIsNavigationOpen(true)} />
         <div className="max-w-6xl mx-auto p-5">{children}</div>
       </main>
